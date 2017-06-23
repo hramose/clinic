@@ -3,7 +3,7 @@
 class RouteTest extends TestCase {
 
     public function testGetPacient() {
-        $response = $this->call('GET', '/pacient');
+        $response = $this->call('GET', '/pacient/8');
         $this->assertEquals(201, $response->status());
     }
 
