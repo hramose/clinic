@@ -17,4 +17,19 @@ $app->get('/', function () use ($app) {
 
 $app->get('/pacient/{id}', 'PacientController@show');
 
+$app->get('/pacients/', 'PacientController@showAll');
+
 $app->post('/pacient/', 'PacientController@create');
+
+$app->put('/pacient/', 'PacientController@edit');
+
+$app->delete('/pacient/', 'PacientController@delete');
+
+//TODO: create ConsultController
+$app->get('/consult/{id}', 'PacientController@show');
+
+$app->post('/consult/', 'PacientController@create');
+
+$app->put('/consult/', 'PacientController@edit');
+
+$app->delete('/consult/', 'PacientController@delete');

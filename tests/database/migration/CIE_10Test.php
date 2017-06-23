@@ -4,7 +4,7 @@ class CIE_10TableTest extends TestCase {
 
     protected $TABLE_NAME = "cie10";
     protected $COLUMNS = array(
-        "diagnostic_id", "description"
+        "code", "description"
     );
 
     public function testTable() {
