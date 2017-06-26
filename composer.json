@@ -1,7 +1,7 @@
 {
     "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "description": "Clinict history support",
+    "keywords": ["Nydia", "Clinic", "Pacient"],
     "license": "MIT",
     "type": "project",
     "require": {

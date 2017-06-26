@@ -1,0 +1,6 @@
+1. Download xammp php 7
+2. Download and install composer
+3. composer global require "laravel/lumen-installer"
+4. composer update
+5. php artisan migrate
+6. phpunit or vendor/bin/phpunit
