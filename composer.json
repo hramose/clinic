@@ -12,6 +12,7 @@
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "phpunit/phpunit": "~5.0",
+        "phpunit/phpunit-skeleton-generator": "*",
         "mockery/mockery": "~0.9"
     },
     "autoload": {

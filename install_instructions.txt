@@ -4,3 +4,4 @@
 4. composer update
 5. php artisan migrate
 6. phpunit or vendor/bin/phpunit
+7. finally run: php -S localhost:8000 -t public

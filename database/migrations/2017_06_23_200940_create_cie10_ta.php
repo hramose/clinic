@@ -18,7 +18,7 @@ class CreateCie10Ta extends Migration {
      */
     public function up() {
         Schema::create(CreateCie10Ta::$TABLE_NAME, function(Blueprint $table) {
-            $table->integer(CreateCie10Ta::$COLUMNS[0]);
+            $table->string(CreateCie10Ta::$COLUMNS[0],8);
             $table->text(CreateCie10Ta::$COLUMNS[1]);
             $table->primary(CreateCie10Ta::$COLUMNS[0]);
         });

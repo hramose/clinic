@@ -4,29 +4,33 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use App\Pacient;
+use App\Consult;
 
-class PacientController extends Controller {
+class DiagnosticController extends Controller {
 
     public function show($id) {
-        $pacient = Pacient::find($id);
-        return response()->json($pacient, 201);
+        $consult = Consult::find($id);
+        return response()->json($consult, 201);
     }
 
     public function showAll() {
-        $pacients = Pacient::all();
-        return response()->json($pacients, 201);
-//        return new Response($pacients,201);
+        $history = Consult::all();
+        return response()->json($history, 201);
+    }
+
+    public function history($pacientId) {
+        $history = Consult::where("id_pacient",$pacientId)->get();
+        return response()->json($history, 201);
     }
 
     public function create(Request $request) {
-        $pacient = Pacient::create($request->all());
-        return response()->json($pacient, 201);
+        $consult = Consult::create($request->all());
+        return response()->json($consult, 201);
     }
 
     public function edit(Request $request, $id) {
-        $pacient = Pacient::find($id);
-        
+        $consult = Consult::find($id);
+
         $pacient->full_name = $request->full_name;
         $pacient->last_name = $request->last_name;
         $pacient->doc_type = $request->doc_type;
@@ -51,14 +55,14 @@ class PacientController extends Controller {
         $pacient->cesarias = $request->cesarias;
         $pacient->fur = $request->fur;
         $pacient->pf = $request->pf;
-        
-        return response()->json($pacient, 201);
+
+        return response()->json($consult, 201);
     }
 
     public function delete($id) {
-        $destroy = Pacient::find($id);
+        $destroy = Consult::find($id);
         $destroy->delete();
-        return response()->json(["deleted"], 204);
+        return response()->json(["deleted" => TRUE], 204);
     }
 
 }

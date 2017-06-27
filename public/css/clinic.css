@@ -1,0 +1,47 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26/06/2017, 06:57:33 PM
+    Author     : JuanCamilo
+*/
+
+/* label color */
+.input-field label {
+    color: #FFFFFF;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+    color: blue;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid blue;
+    box-shadow: 0 1px 0 0 blue;
+}
+/* valid color */
+.input-field input[type=text].valid {
+    border-bottom: 1px solid #FFFFFF;
+    box-shadow: 0 1px 0 0 blue;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+    border-bottom: 1px solid blue;
+    box-shadow: 0 1px 0 0 blue;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+    color: blue;
+}
+.multipage-form{
+    margin-top: 30px;
+    height: 250px;
+}
+.tabs{
+    margin-bottom: 30px;
+}
+#personal_data{
+    padding: 10px;
+}

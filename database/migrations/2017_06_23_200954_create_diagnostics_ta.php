@@ -19,7 +19,7 @@ class CreateDiagnosticsTa extends Migration
     public function up() {
         Schema::create(CreateDiagnosticsTa::$TABLE_NAME, function(Blueprint $table) {
             $table->unsignedInteger(CreateDiagnosticsTa::$COLUMNS[0]);
-            $table->integer(CreateDiagnosticsTa::$COLUMNS[1]);
+            $table->string(CreateDiagnosticsTa::$COLUMNS[1],5);
             $table->primary([CreateDiagnosticsTa::$COLUMNS[0],CreateDiagnosticsTa::$COLUMNS[1]]);
             
             $table->foreign(CreateDiagnosticsTa::$COLUMNS[0])

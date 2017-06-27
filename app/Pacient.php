@@ -16,5 +16,7 @@ class Pacient extends Model {
         , "menarquia", "cycles", "gestacion", "partos", "abortos", "ectopicos"
         , "cesarias", "fur", "pf"
     ];
+    
+    protected $primaryKey = "n_documento";
 
 }
