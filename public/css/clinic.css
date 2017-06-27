@@ -45,3 +45,11 @@ and open the template in the editor.
 #personal_data{
     padding: 10px;
 }
+.pacient-card{
+    margin-right: 4px;
+    padding: 8px;
+}
+textarea.materialize-textarea{
+    background: white;
+    color: black;
+}

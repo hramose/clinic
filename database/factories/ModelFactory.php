@@ -1,15 +1,15 @@
 <?php
 
 /*
-|--------------------------------------------------------------------------
-| Model Factories
-|--------------------------------------------------------------------------
-|
-| Here you may define all of your model factories. Model factories give
-| you a convenient way to create models for testing and seeding your
-| database. Just tell the factory how a default model should look.
-|
-*/
+  |--------------------------------------------------------------------------
+  | Model Factories
+  |--------------------------------------------------------------------------
+  |
+  | Here you may define all of your model factories. Model factories give
+  | you a convenient way to create models for testing and seeding your
+  | database. Just tell the factory how a default model should look.
+  |
+ */
 
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     return [
@@ -20,11 +20,11 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Pacient::class, function (Faker\Generator $faker) {
     return [
+        'n_documento' => $faker->numberBetween(10, 1015642638),
         'full_name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'n_documento' => $faker->bankAccountNumber,
-        'phone' => $faker->phoneNumber,
-        'address' => $faker->address,
+        'phone' => $faker->numerify("##########"),
+        'address' => substr($faker->address, 0, 30),
         'gender' => 'Masculino',
         'doc_type' => 'Cedula de Ciudadania',
         'scholar_level' => 'Analfabeta',
@@ -37,6 +37,12 @@ $factory->define(App\Pacient::class, function (Faker\Generator $faker) {
         'immunological_past' => $faker->text,
         'menarquia' => 15,
         'cycles' => '30/25',
-        'gestacion' => '12',
+        'gestacion' => 12,
+        'partos' => 0,
+        'abortos' => 2,
+        'ectopicos' => 0,
+        'cesarias' => 0,
+        'fur' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'pf' => $faker->text,
     ];
 });

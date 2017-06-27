@@ -9,7 +9,7 @@ class CreateConsultTa extends Migration {
     public static $TABLE_NAME = "consult";
     public static $COLUMNS = array(
         "consult_id", "motive", "actual_sickness", "fc", "fr", "ta"
-        , "tempereture", "weight", "size", "imc", "oximetria", "paraclinicos"
+        , "temperature", "weight", "size", "imc", "oximetria", "paraclinicos"
         , "analisis", "tratamiento", "id_pacient", "consult_date", "examen_fisico"
     );
 

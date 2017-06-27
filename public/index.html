@@ -52,14 +52,17 @@ and open the template in the editor.
         </nav>
 
         <div class="container">
+            <div id="pacient_list">
+
+            </div>
             <form method="post" action="/pacient" class="multipage-form">
                 <div class="row">
                     <div class="col s12">
                         <ul class="tabs">
-                            <li class="tab col s3"><a href="#personal_data">Test 1</a></li>
-                            <li class="tab col s3"><a  href="#test2">Test 2</a></li>
-                            <li class="tab col s3"><a href="#test3">Disabled Tab</a></li>
-                            <li class="tab col s3"><a href="#test4">Test 4</a></li>
+                            <li class="tab col s3"><a href="#personal_data">Datos Personales</a></li>
+                            <li class="tab col s3"><a href="#familiar_past_form">Pasado Familiar</a></li>
+                            <li class="tab col s3"><a href="#clinic_past_form">Pasado Clinico</a></li>
+                            <li class="tab col s3 woman_past disabled"><a href="#woman_past">Solo para mujeres</a></li>
                         </ul>
                     </div>
                     <div id="personal_data" class="red white-text col s12">
@@ -67,79 +70,150 @@ and open the template in the editor.
                         <fieldset>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <select id="doc_type">
+                                    <select id="doc_type" class="validate" required>
                                         <option value="" disabled selected>Seleccione</option>
-                                        <option value="1">Cedula</option>
-                                        <option value="2">Tarjeta</option>
-                                        <option value="3">Cedula Extranjeria</option>
+                                        <option value="Cedula de Ciudadania">Cedula de Ciudadania</option>
+                                        <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
+                                        <option value="Cedula de Extranjeria">Cedula de Extranjeria</option>
                                     </select>
                                     <label>Tipo de Documento</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input placeholder="Ex: 1013642638" id="n_documento" type="text" class="validate">
+                                    <input required placeholder="Ex: 1013642638" id="n_documento" type="text" class="validate">
                                     <label for="n_documento">Numero de Documento</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s6">
-                                    <input placeholder="Ex: Juan Camilo" id="full_name" type="text" class="validate">
+                                    <input required placeholder="Ex: Juan Camilo" id="full_name" type="text" class="validate">
                                     <label for="full_name">Nombres Completos</label>
                                 </div>
                                 <div class="input-field col s6">
-                                    <input placeholder="Ex: Rodriguez Duran" id="last_name" type="text" class="validate">
+                                    <input required placeholder="Ex: Rodriguez Duran" id="last_name" type="text" class="validate">
                                     <label for="last_name">Apellidos</label>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s4">
-                                    <select id="gender">
-                                        <option value="1">Masculino</option>
-                                        <option value="2">Femenino</option>
+                                    <select id="gender" required class="validate">
+                                        <option value="" disabled selected>Seleccione</option>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
                                     </select>
                                     <label>Genero</label>
                                 </div>
                                 <div class="input-field col s4">
-                                    <input id="birthdate" type="date" class="datepicker">
+                                    <input required id="birthdate" type="date" class="datepicker validate">
                                     <label for="birthdate">Fecha de Nacimiento</label>
                                 </div>
                                 <div class="input-field col s4">
-                                    <select id="scholar_level">
-                                        <option value="1">Analfabeta</option>
-                                        <option value="2">Media</option>
-                                        <option value="3">Secundaria</option>
-                                        <option value="4">Universitaria</option>
-                                        <option value="5">Posgrado</option>
+                                    <select required id="scholar_level">
+                                        <option value="" disabled selected>Seleccione</option>
+                                        <option value="Analfabeta">Analfabeta</option>
+                                        <option value="Basica">Basica</option>
+                                        <option value="Media">Media</option>
+                                        <option value="Profesional">Profesional</option>
+                                        <option value="Posgrado">Posgrado</option>
                                     </select>
                                     <label>Escolaridad</label>
                                 </div>
                             </div>
                             <div class="row">                               
                                 <div class="input-field col s4">
-                                    <input placeholder="Ex: 3108650725" id="phone" type="tel">
+                                    <input required placeholder="Ex: 3108650725" id="phone" type="tel" class="validate">
                                     <label for="phone">Telefono</label>
                                 </div>
                                 <div class="input-field col s8">
-                                    <input placeholder="Ex: Calle 13 cra 24" id="address" type="text">
+                                    <input required placeholder="Ex: Calle 13 cra 24" id="address" type="text" class="validate">
                                     <label for="address">Direcci&oacute;n</label>                                   
                                 </div>
                             </div>
                         </fieldset>
                     </div>
-                    <div id="test2" class="amber white-text col s12">
-                        <h2>Second Panel</h2>
-                        <p class="white-text">This is your second panel</p>
+                    <div id="familiar_past_form" class="amber white-text col s12">
+                        <h3>Pasado Familiar</h3>
+                        <fieldset>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <textarea id="family_past" class="materialize-textarea"></textarea>
+                                    <label for="family_past">Pasado familiar</label>
+                                </div>
+                            </div>
+                        </fieldset>
                     </div>
-                    <div id="test3" class="green white-text col s12">
-                        <h2>Third Panel</h2>
-                        <p class="white-text">This is your third panel</p>
+                    <div id="clinic_past_form" class="green white-text col s12">
+                        <h3>Pasado Clinico</h3>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea id="medical_past" class="materialize-textarea"></textarea>
+                                <label for="medical_past">Medicos</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <textarea id="surgical_past" class="materialize-textarea"></textarea>
+                                <label for="surgical_past">Quirurgicos</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <textarea id="allergy_past" class="materialize-textarea"></textarea>
+                                <label for="allergy_past">Alergicos</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <textarea id="toxic_past" class="materialize-textarea"></textarea>
+                                <label for="toxic_past">Toxicos</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <textarea id="traumatic_past" class="materialize-textarea"></textarea>
+                                <label for="traumatic_past">Traumas</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <textarea id="immunological_past" class="materialize-textarea"></textarea>
+                                <label for="immunological_past">Inmunologicos</label>
+                            </div>
+                        </div>
                     </div>
-                    <div id="test4" class="blue white-text col s12">
-                        <h2>Fourth Panel</h2>
-                        <p class="white-text">This is your fourth panel</p>
+                    <div id="woman_past" class="blue white-text col s12">
+                        <h3>Datos Adicionales Mujeres</h3>
+                        <fieldset>
+                            <div class="input-field col s3">
+                                <input required placeholder="Ex: 10" id="menarquia" type="number" class="validate">
+                                <label for="menarquia">Menarquia</label>                                   
+                            </div>
+                            <div class="input-field col s3">
+                                <input required placeholder="Ex: 10-20" id="cycles" type="text" class="validate">
+                                <label for="cycles">Ciclos</label>                                   
+                            </div>
+                            <div class="input-field col s2">
+                                <input required placeholder="Ex: 10" id="gestacion" type="number" class="validate">
+                                <label for="gestacion">Gestacion</label>                                   
+                            </div>
+                            <div class="input-field col s2">
+                                <input required placeholder="Ex: 10" id="partos" type="number" class="validate">
+                                <label for="partos">Partos</label>                                   
+                            </div>
+                            <div class="input-field col s2">
+                                <input required placeholder="Ex: 10" id="abortos" type="number" class="validate">
+                                <label for="abortos">Abortos</label>                                   
+                            </div>
+                            <div class="input-field col s2">
+                                <input required placeholder="Ex: 10" id="ectopicos" type="number" class="validate">
+                                <label for="ectopicos">Ectopicos</label>                                   
+                            </div>
+                            <div class="input-field col s2">
+                                <input required placeholder="Ex: 10" id="cesarias" type="number" class="validate">
+                                <label for="cesarias">Cesarias</label>                                   
+                            </div>
+                            <div class="input-field col s3">
+                                <input required id="fur" type="date" class="datepicker validate">
+                                <label for="fur">Fecha de la Ultima Regla</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <textarea id="pf" class="materialize-textarea"></textarea>
+                                <label for="pf">Planificacion Familiar</label>
+                            </div>
+                        </fieldset>
                     </div>
                 </div>
                 <div class="center">
-                    <input type="submit" class="btn waves-effect white grey-text darken-text-2">
+                    <input type="button" id="create_pacient" class="btn waves-effect white grey-text darken-text-2" value="Crear">
                 </div>
             </form>
         </div>

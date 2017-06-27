@@ -21,12 +21,13 @@ class PacientController extends Controller {
 
     public function create(Request $request) {
         $pacient = Pacient::create($request->all());
+        $pacient->n_documento = $request->input('n_documento');
         return response()->json($pacient, 201);
     }
 
     public function edit(Request $request, $id) {
         $pacient = Pacient::find($id);
-        
+
         $pacient->full_name = $request->full_name;
         $pacient->last_name = $request->last_name;
         $pacient->doc_type = $request->doc_type;
@@ -51,14 +52,14 @@ class PacientController extends Controller {
         $pacient->cesarias = $request->cesarias;
         $pacient->fur = $request->fur;
         $pacient->pf = $request->pf;
-        
+
         return response()->json($pacient, 201);
     }
 
     public function delete($id) {
         $destroy = Pacient::find($id);
         $destroy->delete();
-        return response()->json(["deleted"], 204);
+        return response()->json(["deleted" => TRUE], 204);
     }
 
 }
