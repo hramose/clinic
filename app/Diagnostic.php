@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Diagnostic extends Model {
 
-    protected $table = 'cie10';
+    protected $table = 'diagnostics';
     protected $fillable = [
-        "diagnostic_id"
-        , "description"
+        "consult_id", "diagnostic_id"
     ];
 
 }

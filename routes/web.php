@@ -24,17 +24,17 @@ $app->delete('/pacient/{id}', 'PacientController@delete');
 
 //consults
 $app->get('/consult/{id}', 'ConsultController@show');
-$app->post('/consult/', 'ConsultController@create');
+$app->post('/consult', 'ConsultController@create');
 $app->put('/consult/{id}', 'ConsultController@edit');
 $app->delete('/consult/{id}', 'ConsultController@delete');
-$app->get('/consults/', 'ConsultController@showAll');
+$app->get('/consults', 'ConsultController@showAll');
 
 //history
 $app->get('/consults/{pacientId}', 'ConsultController@showHistory');
 
 //diagnostics and CIE10
-$app->get('/diagnostics/', 'DiagnosticController@showAll');
-$app->get('/diagnostic/', 'DiagnosticController@filter');
+$app->get('/diagnostics', 'DiagnosticController@showAll');
+$app->post('/diagnostic', 'DiagnosticController@filter');
 $app->post('/diagnostic/{consult_id}/{diagnostic_id}', 'DiagnosticController@add');
 $app->delete('/diagnostic/{consult_id}/{diagnostic_id}', 'DiagnosticController@delete');
 

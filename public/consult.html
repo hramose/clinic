@@ -1,0 +1,77 @@
+<form method="post" class="multipage-form">
+    <div class="row" id="pacient-container">
+    </div>
+    <div class="row">
+        <div id="personal_data" class="blue white-text col s12">
+            <h3 class="center">Nueva Consulta</h3>
+            <fieldset>
+                <div class="row">
+                    <div class="input-field col s12 m6">
+                        <textarea id="motive" class="materialize-textarea"></textarea>
+                        <label for="motive">Motivo de Consulta</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <textarea id="actual_sickness" class="materialize-textarea"></textarea>
+                        <label for="actual_sickness">Enfermedad Actual</label>
+                    </div>
+
+                    <div class="input-field col s12 m6">
+                        <input type="text" id="id_pacient" class="autocomplete">
+                        <label for="id_pacient">Paciente</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input required placeholder="Ex: 10" id="fc" type="number" class="validate">
+                        <label for="fc">Frecuencia Cardiaca</label>                                   
+                    </div>
+                    <div class="input-field col s2">
+                        <input required placeholder="Ex: 10" id="fr" type="number" class="validate">
+                        <label for="fr">Frecuencia Respiratoria</label>                                   
+                    </div>
+                    <div class="input-field col s2">
+                        <input required placeholder="Ex: 10" id="ta" type="number" class="validate">
+                        <label for="ta">Tension Arterial</label>                                   
+                    </div>
+                    <div class="input-field col s2">
+                        <input required placeholder="Ex: 10" id="temperature" type="number" class="validate">
+                        <label for="temperature">Temperatura</label>                                   
+                    </div>
+                    <div class="input-field col s2">
+                        <input required placeholder="Ex: 10" id="weight" type="number" class="validate">
+                        <label for="weight">Peso</label>                                   
+                    </div>
+                    <div class="input-field col s2">
+                        <input required placeholder="Ex: 10" id="size" type="number" class="validate">
+                        <label for="size">Talla</label>                                   
+                    </div>
+                    <div class="input-field col s2">
+                        <input required id="imc" type="number" class="validate" disabled step="0.01">
+                        <label for="imc">IMC</label>                                   
+                    </div>
+                    <div class="input-field col s2">
+                        <input required id="oximetria" type="number" class="validate" step="0.01">
+                        <label for="oximetria">Oximetria</label>                                   
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <textarea id="paraclinicos" class="materialize-textarea"></textarea>
+                        <label for="paraclinicos">Paraclinicos</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <textarea id="analisis" class="materialize-textarea"></textarea>
+                        <label for="analisis">Analisis</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <textarea id="tratamiento" class="materialize-textarea"></textarea>
+                        <label for="tratamiento">Tratamiento</label>
+                    </div>
+                    <div class="input-field col s12 m6">
+                        <textarea id="examen_fisico" class="materialize-textarea"></textarea>
+                        <label for="examen_fisico">Examen Fisico</label>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+    <div class="center">
+        <input type="button" id="create_consult" class="btn waves-effect white grey-text darken-text-2" value="Crear">
+    </div>
+</form>
