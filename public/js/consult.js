@@ -1,5 +1,6 @@
 options = [];
 optionsPacient = [];
+consultId = null;
 
 function initConsult() {
     $("#diagnostic_select").on("input", function () {
@@ -52,18 +53,43 @@ function initConsult() {
     $("#weight").change(function () {
         tryCalcIMC();
     });
+
     $("#add_diagnostic").click(function () {
         $("#new-diagnostic").toggleClass("invisible");
     });
+
+    $("#assoc_diagnostic").click(function () {
+        associateDiagnostic();
+    });
 }
+
+function associateDiagnostic() {
+    var diagnosticId = options[$("#diagnostic_select").val()];
+    if (consultId !== null
+            && typeof (diagnosticId) != "undefined") {
+        $.post("/diagnostic/" + consultId + "/" + diagnosticId, null, function (data) {
+            console.log("diagnostic associated?");
+            console.log(data);
+        });
+    } else if (consultId === null) {
+        //add the consult
+        dataConsultFromForm();
+    }
+
+    console.log(diagnosticId);
+}
+
 
 function cleanData(data) {
 //    console.log(data);
     options = [];
     var ret = {};
+    var key, value;
     for (var i = 0; i < data.length; i++) {
-        options[data[i].description] = data[i].code;
-        ret[data[i].description] = null;
+        key = data[i].code + " " + data[i].description;
+        value = data[i].code;
+        options[key] = value;
+        ret[key] = null;
     }
 //    console.log(ret);
     return ret;
@@ -118,5 +144,6 @@ function dataConsultFromForm() {
     console.log(consult);
     $.post("/consult", consult, function (data) {
         console.log(data);
+        consultId = data.id;
     });
 }
