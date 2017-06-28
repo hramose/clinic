@@ -9,6 +9,8 @@ $(document).ready(function () {
         $(".button-collapse").sideNav();
     });
 
+    loadContent({page: "consult.html", type: CONSULT_VIEW});
+//    loadContent({page: "pacient.html", type: PACIENT_VIEW});
 
 });
 

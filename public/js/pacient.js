@@ -2,7 +2,6 @@ function initPacient() {
     $('.carousel.carousel-slider').carousel({
         fullWidth: true
     });
-    $('select').material_select();
     $('.datepicker').pickadate({
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 80, // Creates a dropdown of 15 years to control year
@@ -24,6 +23,8 @@ function initPacient() {
             $(".woman_past").removeClass("disabled");
         }
     });
+
+    $('select').material_select();
 }
 
 

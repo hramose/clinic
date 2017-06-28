@@ -19,6 +19,19 @@ class PacientController extends Controller {
 //        return new Response($pacients,201);
     }
 
+    public function filter(Request $request) {
+        $searchName = $request->input('full_name');
+        $searchLastName = $request->input('last_name');
+        $searchID = $request->input('n_documento');
+
+        $query = Pacient::where('full_name', 'LIKE'
+                        , "%{$searchName}%")
+                ->orWhere('last_name', 'LIKE', "%{$searchLastName}%")
+                ->orWhere('n_documento', 'LIKE', "%{$searchID}%");
+        $cieCodes = $query->get();
+        return response()->json($cieCodes, 201);
+    }
+
     public function create(Request $request) {
         $pacient = Pacient::create($request->all());
         $pacient->n_documento = $request->input('n_documento');

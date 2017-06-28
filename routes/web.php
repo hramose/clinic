@@ -19,6 +19,7 @@ $app->get('/', function () use ($app) {
 $app->get('/pacient/{id}', 'PacientController@show');
 $app->get('/pacients', 'PacientController@showAll');
 $app->post('/pacient', 'PacientController@create');
+$app->post('/pacient/like', 'PacientController@filter');
 $app->put('/pacient/{id}', 'PacientController@edit');
 $app->delete('/pacient/{id}', 'PacientController@delete');
 
@@ -32,9 +33,10 @@ $app->get('/consults', 'ConsultController@showAll');
 //history
 $app->get('/consults/{pacientId}', 'ConsultController@showHistory');
 
-//diagnostics and CIE10
+//CIE10
 $app->get('/diagnostics', 'DiagnosticController@showAll');
 $app->post('/diagnostic', 'DiagnosticController@filter');
+//diagnostics assoc
 $app->post('/diagnostic/{consult_id}/{diagnostic_id}', 'DiagnosticController@add');
 $app->delete('/diagnostic/{consult_id}/{diagnostic_id}', 'DiagnosticController@delete');
 

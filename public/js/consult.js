@@ -1,15 +1,46 @@
+options = [];
+optionsPacient = [];
+
 function initConsult() {
-    $('input.autocomplete').autocomplete({
-        data: {
-            "Apple": null,
-            "Microsoft": null,
-            "Google": 'https://placehold.it/250x250'
-        },
-        limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-        onAutocomplete: function (val) {
-            // Callback function when value is autcompleted.
-        },
-        minLength: 3, // The minimum length of the input for the autocomplete to start. Default: 1.
+    $("#diagnostic_select").on("input", function () {
+        if ($("#diagnostic_select").val().length < 3) {
+            return;
+        }
+        $.post("/diagnostic", {description: $("#diagnostic_select").val()}, function (data) {
+            var completeOptions = cleanData(data);
+            $('input.autocomplete').autocomplete({
+                data: completeOptions,
+                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                onAutocomplete: function (val) {
+                    // Callback function when value is autcompleted.
+                },
+                minLength: 3, // The minimum length of the input for the autocomplete to start. Default: 1.
+            });
+        });
+    });
+
+    $("#id_pacient").on("input", function () {
+        if ($("#id_pacient").val().length < 3) {
+            return;
+        }
+        var sendData = {
+            full_name: $("#id_pacient").val(),
+            last_name: $("#id_pacient").val(),
+            n_documento: $("#id_pacient").val()
+        };
+        console.log(sendData);
+
+        $.post("/pacient/like", sendData, function (data) {
+            var completeOptions = cleanDataPacient(data);
+            $('input.autocomplete').autocomplete({
+                data: completeOptions,
+                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                onAutocomplete: function (val) {
+                    // Callback function when value is autcompleted.
+                },
+                minLength: 3, // The minimum length of the input for the autocomplete to start. Default: 1.
+            });
+        });
     });
 
     $("#create_consult").click(function () {
@@ -21,6 +52,36 @@ function initConsult() {
     $("#weight").change(function () {
         tryCalcIMC();
     });
+    $("#add_diagnostic").click(function () {
+        $("#new-diagnostic").toggleClass("invisible");
+    });
+}
+
+function cleanData(data) {
+//    console.log(data);
+    options = [];
+    var ret = {};
+    for (var i = 0; i < data.length; i++) {
+        options[data[i].description] = data[i].code;
+        ret[data[i].description] = null;
+    }
+//    console.log(ret);
+    return ret;
+}
+
+function cleanDataPacient(data) {
+    console.log(data);
+    optionsPacient = [];
+    var ret = {};
+    var key, value;
+    for (var i = 0; i < data.length; i++) {
+        key = data[i].n_documento + " " + data[i].full_name + " " + data[i].last_name;
+        value = data[i].n_documento;
+        optionsPacient[key] = value;
+        ret[key] = null;
+    }
+    console.log(ret);
+    return ret;
 }
 
 function tryCalcIMC() {
@@ -38,7 +99,7 @@ function dataConsultFromForm() {
     var consult = {
         motive: $("#motive").val(),
         actual_sickness: $("#actual_sickness").val(),
-        id_pacient: $("#id_pacient").val(),
+        id_pacient: optionsPacient[$("#id_pacient").val()],
         fc: $("#fc").val(),
         fr: $("#fr").val(),
         ta: $("#ta").val(),
@@ -55,7 +116,7 @@ function dataConsultFromForm() {
     };
     console.log("binded object");
     console.log(consult);
-//    $.post("/consult", consult, function (data) {
-//        console.log(data);
-//    });
+    $.post("/consult", consult, function (data) {
+        console.log(data);
+    });
 }
