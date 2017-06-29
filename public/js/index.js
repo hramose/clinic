@@ -16,12 +16,16 @@ $(document).ready(function () {
     $.get("navbar.html", null, function (data) {
         $("#navbar-container").append(data);
         $(".button-collapse").sideNav();
+        $(".pacientBtn").click(function () {
+            loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
+        });
+        $(".consultBtn").click(function () {
+            loadContent({page: "consult.html", type: CONSULT_VIEW});
+        });
     });
 
 
-//    loadContent({page: "landing-page.html", type: MAIN_PAGE});
-//    loadContent({page: "consult.html", type: CONSULT_VIEW});
-    loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
+    loadContent({page: "landing-page.html", type: MAIN_PAGE});
 
 });
 
@@ -34,12 +38,18 @@ function loadContent(view) {
     $.get(view.page, null, function (data) {
         $(".container").html(data);
         switch (view.type) {
+            case PACIENT_VIEW:
+                initPacientForm(view.params);
+                break;
             case PACIENT_ADD:
             case PACIENT_EDIT:
                 initPacientForm(view.params);
                 break;
             case PACIENTS_LIST_VIEW:
                 loadPacients();
+                break;
+            case CONSULT_VIEW:
+                initConsultForm(view.params);
                 break;
             case CONSULT_ADD:
             case CONSULT_EDIT:

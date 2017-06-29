@@ -47,7 +47,7 @@ function createPacient() {
 
 function dataBindFromForm(pacient) {
     var $inputB = $('#birthdate').pickadate();
-    var $inputFUR = $('#birthdate').pickadate();
+    var $inputFUR = $('#fur').pickadate();
 
 // Use the picker object directly.
     var pickerB = $inputB.pickadate('picker');
@@ -82,37 +82,39 @@ function dataBindFromForm(pacient) {
 
 function dataBindToForm(pacient) {
     var $inputB = $('#birthdate').pickadate();
-    var $inputFUR = $('#birthdate').pickadate();
+    var $inputFUR = $('#fur').pickadate();
 
 // Use the picker object directly.
     var pickerB = $inputB.pickadate('picker');
     var pickerFUR = $inputFUR.pickadate('picker');
 
-    $("#doc_type").val(pacient.doc_type);
-    $("#n_documento").val(pacient.n_documento);
-    $("#full_name").val(pacient.full_name);
-    $("#last_name").val(pacient.last_name);
-    $("#gender").val(pacient.gender);
+    $("#doc_type").html(pacient.doc_type);
+    $("#n_documento").html(pacient.n_documento);
+    $("#full_name").html(pacient.full_name);
+    $("#last_name").html(pacient.last_name);
+    $("#gender").html(pacient.gender);
     pickerB.set('select', pacient.birthdate);
-    $("#scholar_level").val(pacient.scholar_level);
-    $("#phone").val(pacient.phone);
-    $("#address").val(pacient.address);
-    $("#family_past").val(pacient.family_past);
-    $("#medical_past").val(pacient.medical_past);
-    $("#surgical_past").val(pacient.surgical_past);
-    $("#allergy_past").val(pacient.allergy_past);
-    $("#toxic_past").val(pacient.toxic_past);
-    $("#traumatic_past").val(pacient.traumatic_past);
-    $("#immunological_past").val(pacient.immunological_past);
-    $("#menarquia").val(pacient.menarquia);
-    $("#cycles").val(pacient.cycles);
-    $("#gestacion").val(pacient.gestacion);
-    $("#partos").val(pacient.partos);
-    $("#abortos").val(pacient.abortos);
-    $("#ectopicos").val(pacient.ectopicos);
-    $("#cesarias").val(pacient.cesarias);
-    pickerFUR.set('select', pacient.fur);
-    $("#pf").val(pacient.pf);
+    $("#scholar_level").html(pacient.scholar_level);
+    $("#phone").html(pacient.phone);
+    $("#address").html(pacient.address);
+    $("#family_past").html(pacient.family_past);
+    $("#medical_past").html(pacient.medical_past);
+    $("#surgical_past").html(pacient.surgical_past);
+    $("#allergy_past").html(pacient.allergy_past);
+    $("#toxic_past").html(pacient.toxic_past);
+    $("#traumatic_past").html(pacient.traumatic_past);
+    $("#immunological_past").html(pacient.immunological_past);
+    if (pacient.gender === "Femenino") {
+        $("#menarquia").html(pacient.menarquia);
+        $("#cycles").html(pacient.cycles);
+        $("#gestacion").html(pacient.gestacion);
+        $("#partos").html(pacient.partos);
+        $("#abortos").html(pacient.abortos);
+        $("#ectopicos").html(pacient.ectopicos);
+        $("#cesarias").html(pacient.cesarias);
+        pickerFUR.set('select', pacient.fur);
+        $("#pf").html(pacient.pf);
+    }
 }
 
 function Pacient(json) {
@@ -143,10 +145,10 @@ function Pacient(json) {
         this.fur = json.fur;
         this.pf = json.pf;
 
-        this.getInitials = function () {
-            var FN = this.full_name.toUpperCase().split(" ")[0];
-            var LN = this.last_name.toUpperCase().split(" ")[0];
-            return FN.charAt(0) + "" + LN.charAt(0);
-        };
     }
+    this.getInitials = function () {
+        var FN = this.full_name.toUpperCase().split(" ")[0];
+        var LN = this.last_name.toUpperCase().split(" ")[0];
+        return FN.charAt(0) + "" + LN.charAt(0);
+    };
 }

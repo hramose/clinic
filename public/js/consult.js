@@ -3,6 +3,36 @@ optionsPacient = [];
 consultId = null;
 
 function initConsultForm(consult) {
+    addInputListeners();
+    $("#create_consult").click(function () {
+        dataConsultFromForm();
+    });
+    $("#size").change(function () {
+        tryCalcIMC();
+    });
+    $("#weight").change(function () {
+        tryCalcIMC();
+    });
+
+    $("#add_diagnostic").click(function () {
+        $("#new-diagnostic").toggleClass("invisible");
+    });
+
+    $("#assoc_diagnostic").click(function () {
+        associateDiagnostic();
+    });
+    if (consult && consult !== null) {
+        associateFormConsult(consult);
+    }
+    $("#id_pacient").change(function () {
+        showPacientData();
+    });
+    $.get("pacient.html", null, function (data) {
+        $("#pacient-container").html(data);
+    });
+}
+
+function addInputListeners() {
     $("#diagnostic_select").on("input", function () {
         if ($("#diagnostic_select").val().length < 3) {
             return;
@@ -44,25 +74,15 @@ function initConsultForm(consult) {
         });
     });
 
-    $("#create_consult").click(function () {
-        dataConsultFromForm();
-    });
-    $("#size").change(function () {
-        tryCalcIMC();
-    });
-    $("#weight").change(function () {
-        tryCalcIMC();
-    });
+}
 
-    $("#add_diagnostic").click(function () {
-        $("#new-diagnostic").toggleClass("invisible");
-    });
-
-    $("#assoc_diagnostic").click(function () {
-        associateDiagnostic();
-    });
-    if (consult && consult !== null) {
-        associateFormConsult(consult);
+function showPacientData() {
+    var pacientId = optionsPacient[$("#id_pacient").val()];
+    if (pacientId && pacientId !== null) {
+        $.get("/pacient/" + pacientId, null, function (data) {
+            var pacient = new Pacient(data);
+            dataBindToForm(pacient);
+        });
     }
 }
 

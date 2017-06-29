@@ -65,7 +65,7 @@ function inflatePacientCardContent(pacient) {
     detailsBtn.append("<i class='material-icons'>launch</i>");
 
     $(detailsBtn).click(function () {
-        loadContent({page: "pacient.html", type: PACIENT_VIEW});
+        loadContent({page: "pacient.html", type: PACIENT_VIEW, params: pacient});
     });
 
 
