@@ -1,4 +1,4 @@
-function initPacient() {
+function initPacientForm(pacient) {
     $('.carousel.carousel-slider').carousel({
         fullWidth: true
     });
@@ -8,12 +8,9 @@ function initPacient() {
         max: new Date()
     });
     $('ul.tabs').tabs();
-    $.get("/pacients", null, function (data) {
-        console.log(data);
-        $("#pacient_list").append(inflateList(data));
-    });
+
     $("#create_pacient").click(function () {
-        dataBindFromForm();
+        createPacient();
     });
 
     $("#gender").change(function () {
@@ -24,71 +21,132 @@ function initPacient() {
         }
     });
 
+    $('.modal').modal();
     $('select').material_select();
+    if (pacient && pacient !== null) {
+        dataBindToForm(pacient);
+    }
 }
 
 
-function dataBindFromForm() {
-    var $inputB = $('#birthdate').pickadate();
-    var $inputFUR = $('#birthdate').pickadate();
+function loadPacients() {
+    $.get("/pacients", null, function (data) {
+        console.log(data);
+        $("#pacient_list").append(inflatePacientList(data));
+    });
+}
 
-// Use the picker object directly.
-    var pickerB = $inputB.pickadate('picker');
-    var pickerFUR = $inputFUR.pickadate('picker');
-    var pacient = {
-        doc_type: $("#doc_type").val(),
-        n_documento: $("#n_documento").val(),
-        full_name: $("#full_name").val(),
-        last_name: $("#last_name").val(),
-        gender: $("#gender").val(),
-        birthdate: pickerB.get('select', 'yyyy-mm-dd'),
-        scholar_level: $("#scholar_level").val(),
-        phone: $("#phone").val(),
-        address: $("#address").val(),
-        family_past: $("#family_past").val(),
-        medical_past: $("#medical_past").val(),
-        surgical_past: $("#surgical_past").val(),
-        allergy_past: $("#allergy_past").val(),
-        toxic_past: $("#toxic_past").val(),
-        traumatic_past: $("#traumatic_past").val(),
-        immunological_past: $("#immunological_past").val(),
-        menarquia: $("#menarquia").val(),
-        cycles: $("#cycles").val(),
-        gestacion: $("#gestacion").val(),
-        partos: $("#partos").val(),
-        abortos: $("#abortos").val(),
-        ectopicos: $("#ectopicos").val(),
-        cesarias: $("#cesarias").val(),
-        fur: pickerFUR.get('select', 'yyyy-mm-dd'),
-        pf: $("#pf").val()
-    };
-    console.log("binded object");
+function createPacient() {
+    var pacient = new Pacient();
+    dataBindFromForm(pacient);
     console.log(pacient);
     $.post("/pacient", pacient, function (data) {
         console.log(data);
     });
 }
 
-function inflateList(data) {
-    var container = $("#pacient_list");
-    container.addClass("row");
-    if (data.length === 0) {
-        container.append("No hay pacientes registrados por el momento");
-        return container;
-    }
-    for (var i = 0; i < data.length; i++) {
-        console.log(data[i]);
-        container.append(inflate(data[i]));
-    }
-    return container;
+function dataBindFromForm(pacient) {
+    var $inputB = $('#birthdate').pickadate();
+    var $inputFUR = $('#birthdate').pickadate();
+
+// Use the picker object directly.
+    var pickerB = $inputB.pickadate('picker');
+    var pickerFUR = $inputFUR.pickadate('picker');
+
+    pacient.doc_type = $("#doc_type").val();
+    pacient.n_documento = $("#n_documento").val();
+    pacient.full_name = $("#full_name").val();
+    pacient.last_name = $("#last_name").val();
+    pacient.gender = $("#gender").val();
+    pacient.birthdate = pickerB.get('select', 'yyyy-mm-dd');
+    pacient.scholar_level = $("#scholar_level").val();
+    pacient.phone = $("#phone").val();
+    pacient.address = $("#address").val();
+    pacient.family_past = $("#family_past").val();
+    pacient.medical_past = $("#medical_past").val();
+    pacient.surgical_past = $("#surgical_past").val();
+    pacient.allergy_past = $("#allergy_past").val();
+    pacient.toxic_past = $("#toxic_past").val();
+    pacient.traumatic_past = $("#traumatic_past").val();
+    pacient.immunological_past = $("#immunological_past").val();
+    pacient.menarquia = $("#menarquia").val();
+    pacient.cycles = $("#cycles").val();
+    pacient.gestacion = $("#gestacion").val();
+    pacient.partos = $("#partos").val();
+    pacient.abortos = $("#abortos").val();
+    pacient.ectopicos = $("#ectopicos").val();
+    pacient.cesarias = $("#cesarias").val();
+    pacient.fur = pickerFUR.get('select', 'yyyy-mm-dd');
+    pacient.pf = $("#pf").val();
 }
 
-function inflate(pacient) {
-    var card = $("<div>");
-    card.addClass("card-panel pacient-card");
-    card.addClass("col s12 m6 l3");
-    card.append(pacient.full_name);
-    card.append(pacient.last_name);
-    card.append(pacient.n_documento);
-    return card;
+function dataBindToForm(pacient) {
+    var $inputB = $('#birthdate').pickadate();
+    var $inputFUR = $('#birthdate').pickadate();
+
+// Use the picker object directly.
+    var pickerB = $inputB.pickadate('picker');
+    var pickerFUR = $inputFUR.pickadate('picker');
+
+    $("#doc_type").val(pacient.doc_type);
+    $("#n_documento").val(pacient.n_documento);
+    $("#full_name").val(pacient.full_name);
+    $("#last_name").val(pacient.last_name);
+    $("#gender").val(pacient.gender);
+    pickerB.set('select', pacient.birthdate);
+    $("#scholar_level").val(pacient.scholar_level);
+    $("#phone").val(pacient.phone);
+    $("#address").val(pacient.address);
+    $("#family_past").val(pacient.family_past);
+    $("#medical_past").val(pacient.medical_past);
+    $("#surgical_past").val(pacient.surgical_past);
+    $("#allergy_past").val(pacient.allergy_past);
+    $("#toxic_past").val(pacient.toxic_past);
+    $("#traumatic_past").val(pacient.traumatic_past);
+    $("#immunological_past").val(pacient.immunological_past);
+    $("#menarquia").val(pacient.menarquia);
+    $("#cycles").val(pacient.cycles);
+    $("#gestacion").val(pacient.gestacion);
+    $("#partos").val(pacient.partos);
+    $("#abortos").val(pacient.abortos);
+    $("#ectopicos").val(pacient.ectopicos);
+    $("#cesarias").val(pacient.cesarias);
+    pickerFUR.set('select', pacient.fur);
+    $("#pf").val(pacient.pf);
+}
+
+function Pacient(json) {
+    if (json && json !== null) {
+        this.doc_type = json.doc_type;
+        this.n_documento = json.n_documento;
+        this.full_name = json.full_name;
+        this.last_name = json.last_name;
+        this.gender = json.gender;
+        this.birthdate = json.birthdate;
+        this.scholar_level = json.scholar_level;
+        this.phone = json.phone;
+        this.address = json.address;
+        this.family_past = json.family_past;
+        this.medical_past = json.medical_past;
+        this.surgical_past = json.surgical_past;
+        this.allergy_past = json.allergy_past;
+        this.toxic_past = json.toxic_past;
+        this.traumatic_past = json.traumatic_past;
+        this.immunological_past = json.immunological_past;
+        this.menarquia = json.menarquia;
+        this.cycles = json.cycles;
+        this.gestacion = json.gestacion;
+        this.partos = json.partos;
+        this.abortos = json.abortos;
+        this.ectopicos = json.ectopicos;
+        this.cesarias = json.cesarias;
+        this.fur = json.fur;
+        this.pf = json.pf;
+
+        this.getInitials = function () {
+            var FN = this.full_name.toUpperCase().split(" ")[0];
+            var LN = this.last_name.toUpperCase().split(" ")[0];
+            return FN.charAt(0) + "" + LN.charAt(0);
+        };
+    }
 }

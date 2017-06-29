@@ -2,7 +2,7 @@ options = [];
 optionsPacient = [];
 consultId = null;
 
-function initConsult() {
+function initConsultForm(consult) {
     $("#diagnostic_select").on("input", function () {
         if ($("#diagnostic_select").val().length < 3) {
             return;
@@ -61,6 +61,9 @@ function initConsult() {
     $("#assoc_diagnostic").click(function () {
         associateDiagnostic();
     });
+    if (consult && consult !== null) {
+        associateFormConsult(consult);
+    }
 }
 
 function associateDiagnostic() {
@@ -121,29 +124,69 @@ function tryCalcIMC() {
 }
 
 function dataConsultFromForm() {
-
-    var consult = {
-        motive: $("#motive").val(),
-        actual_sickness: $("#actual_sickness").val(),
-        id_pacient: optionsPacient[$("#id_pacient").val()],
-        fc: $("#fc").val(),
-        fr: $("#fr").val(),
-        ta: $("#ta").val(),
-        temperature: $("#temperature").val(),
-        weight: $("#weight").val(),
-        size: $("#size").val(),
-        imc: $("#imc").val(),
-        oximetria: $("#oximetria").val(),
-        paraclinicos: $("#paraclinicos").val(),
-        analisis: $("#analisis").val(),
-        tratamiento: $("#tratamiento").val(),
-        examen_fisico: $("#examen_fisico").val(),
-        consult_date: new Date().toISOString().slice(0, 10),
-    };
-    console.log("binded object");
+    var consult = new Consult();
+    associateConsultForm(consult);
     console.log(consult);
     $.post("/consult", consult, function (data) {
         console.log(data);
         consultId = data.id;
     });
+}
+
+function associateConsultForm(consult) {
+    consult.motive = $("#motive").val();
+    consult.actual_sickness = $("#actual_sickness").val();
+    consult.id_pacient = optionsPacient[$("#id_pacient").val()];
+    consult.fc = $("#fc").val();
+    consult.fr = $("#fr").val();
+    consult.ta = $("#ta").val();
+    consult.temperature = $("#temperature").val();
+    consult.weight = $("#weight").val();
+    consult.size = $("#size").val();
+    consult.imc = $("#imc").val();
+    consult.oximetria = $("#oximetria").val();
+    consult.paraclinicos = $("#paraclinicos").val();
+    consult.analisis = $("#analisis").val();
+    consult.tratamiento = $("#tratamiento").val();
+    consult.examen_fisico = $("#examen_fisico").val();
+    consult.consult_date = new Date().toISOString().slice(0, 10);
+}
+
+function associateFormConsult(consult) {
+    $("#motive").val(consult.motive);
+    $("#actual_sickness").val(consult.actual_sickness);
+    $("#id_pacient").val(consult.id_pacient);
+    $("#fc").val(consult.fc);
+    $("#fr").val(consult.fr);
+    $("#ta").val(consult.ta);
+    $("#temperature").val(consult.temperature);
+    $("#weight").val(consult.weight);
+    $("#size").val(consult.size);
+    $("#imc").val(consult.imc);
+    $("#oximetria").val(consult.oximetria);
+    $("#paraclinicos").val(consult.paraclinicos);
+    $("#analisis").val(consult.analisis);
+    $("#tratamiento").val(consult.tratamiento);
+    $("#examen_fisico").val(consult.examen_fisico);
+}
+
+function Consult(json) {
+    if (json && json !== null) {
+        this.motive = json.motive;
+        this.actual_sickness = json.actual_sickness;
+        this.id_pacient = json.id_pacient;
+        this.fc = json.fc;
+        this.fr = json.fr;
+        this.ta = json.ta;
+        this.temperature = json.temperature;
+        this.weight = json.weight;
+        this.size = json.size;
+        this.imc = json.imc;
+        this.oximetria = json.oximetria;
+        this.paraclinicos = json.paraclinicos;
+        this.analisis = json.analisis;
+        this.tratamiento = json.tratamiento;
+        this.examen_fisico = json.examen_fisico;
+        this.consult_date = new Date().toISOString().slice(0, 10);
+    }
 }
