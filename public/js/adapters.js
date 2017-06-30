@@ -14,8 +14,8 @@ function inflatePacientList(pacientList) {
 }
 
 function inflatePacientCard(pacient) {
-    var wrapper = $("<div class='col s12 m4'>");
-    var card = $("<div class='card'>");
+    var wrapper = $("<div class='col s12 m3'>");
+    var card = $("<div class='card pacient_card'>");
     var cardImg = inflatePacientCardImage(pacient);
     var cardContent = inflatePacientCardContent(pacient);
     var cardReveal = inflatePacientCardReveal(pacient);
@@ -45,15 +45,15 @@ function inflatePacientCardReveal(pacient) {
 
 function inflatePacientCardContent(pacient) {
     var content = $("<div class='card-content'>");
-    var cardTitle = $("<span class='card-title activator grey-text text-darken-4'>");
-    var editBtn = $("<a class=' left btn-floating btn-small waves-effect waves-light blue'>");
+    var cardTitle = $("<span class='truncate card-title activator grey-text text-darken-4'>");
+    var editBtn = $("<a class='btn-floating btn-small waves-effect waves-light blue'>");
     editBtn.append("<i class='material-icons'>edit</i>");
 
     $(editBtn).click(function () {
         $('#modalEdit').modal('open');
     });
 
-    var deleteBtn = $("<a class='center btn-floating btn-small waves-effect waves-light red'>");
+    var deleteBtn = $("<a class='btn-floating btn-small waves-effect waves-light red'>");
     deleteBtn.append("<i class='material-icons'>delete</i>");
 
     $(deleteBtn).click(function () {
@@ -61,7 +61,7 @@ function inflatePacientCardContent(pacient) {
     });
 
 
-    var detailsBtn = $("<a class='right btn-floating btn-small waves-effect waves-light green'>");
+    var detailsBtn = $("<a class='btn-floating btn-small waves-effect waves-light green'>");
     detailsBtn.append("<i class='material-icons'>launch</i>");
 
     $(detailsBtn).click(function () {
@@ -73,16 +73,20 @@ function inflatePacientCardContent(pacient) {
     cardTitle.append("<i class='material-icons right'>more_vert</i>");
 
     content.append(cardTitle);
-    content.append(editBtn);
-    content.append(deleteBtn);
-    content.append(detailsBtn);
+    var table=$("<table class='center'>");
+    var row=$("<tr>");
+    row.append($("<td>").append(editBtn));
+    row.append($("<td>").append(detailsBtn));
+    row.append($("<td>").append(deleteBtn));
+    table.append(row);
+    content.append(table);
     return content;
 }
 
 function inflatePacientCardImage(pacient) {
-    var div = $("<div class='card-image waves-effect waves-block waves-light'>");
-    var activator = $("<div class='activator center red darken-1 white-text'>");
-    var title = $("<h4>");
+    var div = $("<div  class='card-image waves-effect waves-block waves-light'>");
+    var activator = $("<div style='height:150px;' class='valign-wrapper activator center red darken-1 white-text'>");
+    var title = $("<h4 class='pacient_card_initials'>");
     title.append(pacient.getInitials());
     activator.append(title);
     div.append(activator);

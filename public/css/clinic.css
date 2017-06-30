@@ -45,9 +45,16 @@ and open the template in the editor.
 #personal_data{
     padding: 10px;
 }
-.pacient-card{
-/*    margin-right: 4px;
-    padding: 8px;*/
+.pacient_card{
+    /*    margin-right: 4px;
+        padding: 8px;*/
+    height: 300px;
+}
+.pacient_card .card-content .card-title{
+    font-size: 15px;
+}
+.pacient_card_initials{
+    margin: 0 auto;
 }
 
 /* label color */
@@ -74,4 +81,7 @@ fieldset{
 }
 .invisible{
     display: none;
+}
+.option_btn{
+    margin: 4px;
 }

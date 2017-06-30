@@ -10,22 +10,39 @@ var CONSULT_LIST_VIEW = 204;
 
 var MAIN_PAGE = 301;
 
+var optionsPacient = [];
+
+
 $(document).ready(function () {
     Materialize.updateTextFields();
 
     $.get("navbar.html", null, function (data) {
         $("#navbar-container").append(data);
         $(".button-collapse").sideNav();
-        $(".pacientBtn").click(function () {
+
+        $("#add_pacient_btn").click(function () {
+            loadContent({page: "pacient_edit.html", type: PACIENT_ADD});
+        });
+
+        $(".list_pacient_btn").click(function () {
             loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
         });
-        $(".consultBtn").click(function () {
+
+        $("#look_pacient_btn").click(function () {
+            var pacient = new Pacient(lookedPacients[$("#id_pacient").val()]);
+            loadContent({page: "pacient.html", type: PACIENT_VIEW, params: pacient});
+        });
+
+
+
+        $(".consult_list_btn").click(function () {
             loadContent({page: "consult.html", type: CONSULT_VIEW});
         });
     });
 
 
     loadContent({page: "landing-page.html", type: MAIN_PAGE});
+
 
 });
 
@@ -39,11 +56,11 @@ function loadContent(view) {
         $(".container").html(data);
         switch (view.type) {
             case PACIENT_VIEW:
-                initPacientForm(view.params);
+                initPacientForm(view.params, true);
                 break;
             case PACIENT_ADD:
             case PACIENT_EDIT:
-                initPacientForm(view.params);
+                initPacientForm(view.params, false);
                 break;
             case PACIENTS_LIST_VIEW:
                 loadPacients();

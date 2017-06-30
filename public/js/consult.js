@@ -1,5 +1,4 @@
 options = [];
-optionsPacient = [];
 consultId = null;
 
 function initConsultForm(consult) {
@@ -50,29 +49,7 @@ function addInputListeners() {
         });
     });
 
-    $("#id_pacient").on("input", function () {
-        if ($("#id_pacient").val().length < 3) {
-            return;
-        }
-        var sendData = {
-            full_name: $("#id_pacient").val(),
-            last_name: $("#id_pacient").val(),
-            n_documento: $("#id_pacient").val()
-        };
-        console.log(sendData);
-
-        $.post("/pacient/like", sendData, function (data) {
-            var completeOptions = cleanDataPacient(data);
-            $('input.autocomplete').autocomplete({
-                data: completeOptions,
-                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-                onAutocomplete: function (val) {
-                    // Callback function when value is autcompleted.
-                },
-                minLength: 3, // The minimum length of the input for the autocomplete to start. Default: 1.
-            });
-        });
-    });
+   addPacientListener(optionsPacient);
 
 }
 
@@ -81,7 +58,7 @@ function showPacientData() {
     if (pacientId && pacientId !== null) {
         $.get("/pacient/" + pacientId, null, function (data) {
             var pacient = new Pacient(data);
-            dataBindToForm(pacient);
+            dataBindToView(pacient);
         });
     }
 }

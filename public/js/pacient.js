@@ -1,4 +1,4 @@
-function initPacientForm(pacient) {
+function initPacientForm(pacient, toView) {
     $('.carousel.carousel-slider').carousel({
         fullWidth: true
     });
@@ -20,19 +20,51 @@ function initPacientForm(pacient) {
             $(".woman_past").removeClass("disabled");
         }
     });
-
+    $('.collapsible').collapsible();
     $('.modal').modal();
     $('select').material_select();
     if (pacient && pacient !== null) {
-        dataBindToForm(pacient);
+        if (toView) {
+            dataBindToView(pacient);
+        } else {
+            dataBindToForm(pacient);
+        }
     }
 }
 
 
 function loadPacients() {
+    addPacientListener();
     $.get("/pacients", null, function (data) {
         console.log(data);
         $("#pacient_list").append(inflatePacientList(data));
+    });
+}
+
+
+function addPacientListener() {
+    $("#id_pacient").on("input", function () {
+        if ($("#id_pacient").val().length < 3) {
+            return;
+        }
+        var sendData = {
+            full_name: $("#id_pacient").val(),
+            last_name: $("#id_pacient").val(),
+            n_documento: $("#id_pacient").val()
+        };
+        console.log(sendData);
+
+        $.post("/pacient/like", sendData, function (data) {
+            var completeOptions = cleanDataPacient(data);
+            $('input.autocomplete').autocomplete({
+                data: completeOptions,
+                limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+                onAutocomplete: function (val) {
+                    // Callback function when value is autcompleted.
+                },
+                minLength: 3, // The minimum length of the input for the autocomplete to start. Default: 1.
+            });
+        });
     });
 }
 
@@ -88,12 +120,42 @@ function dataBindToForm(pacient) {
     var pickerB = $inputB.pickadate('picker');
     var pickerFUR = $inputFUR.pickadate('picker');
 
+    $("#doc_type").val(pacient.doc_type);
+    $("#n_documento").val(pacient.n_documento);
+    $("#full_name").val(pacient.full_name);
+    $("#last_name").val(pacient.last_name);
+    $("#gender").val(pacient.gender);
+    pickerB.set('select', pacient.birthdate);
+    $("#scholar_level").val(pacient.scholar_level);
+    $("#phone").val(pacient.phone);
+    $("#address").val(pacient.address);
+    $("#family_past").val(pacient.family_past);
+    $("#medical_past").val(pacient.medical_past);
+    $("#surgical_past").val(pacient.surgical_past);
+    $("#allergy_past").val(pacient.allergy_past);
+    $("#toxic_past").val(pacient.toxic_past);
+    $("#traumatic_past").val(pacient.traumatic_past);
+    $("#immunological_past").val(pacient.immunological_past);
+    if (pacient.gender === "Femenino") {
+        $("#menarquia").val(pacient.menarquia);
+        $("#cycles").val(pacient.cycles);
+        $("#gestacion").val(pacient.gestacion);
+        $("#partos").val(pacient.partos);
+        $("#abortos").val(pacient.abortos);
+        $("#ectopicos").val(pacient.ectopicos);
+        $("#cesarias").val(pacient.cesarias);
+        pickerFUR.set('select', pacient.fur);
+        $("#pf").val(pacient.pf);
+    }
+}
+
+function dataBindToView(pacient) {
     $("#doc_type").html(pacient.doc_type);
     $("#n_documento").html(pacient.n_documento);
     $("#full_name").html(pacient.full_name);
     $("#last_name").html(pacient.last_name);
     $("#gender").html(pacient.gender);
-    pickerB.set('select', pacient.birthdate);
+    $('#birthdate').html(pacient.birthdate);
     $("#scholar_level").html(pacient.scholar_level);
     $("#phone").html(pacient.phone);
     $("#address").html(pacient.address);
@@ -112,7 +174,7 @@ function dataBindToForm(pacient) {
         $("#abortos").html(pacient.abortos);
         $("#ectopicos").html(pacient.ectopicos);
         $("#cesarias").html(pacient.cesarias);
-        pickerFUR.set('select', pacient.fur);
+        $("#fur").html(pacient.fur);
         $("#pf").html(pacient.pf);
     }
 }
