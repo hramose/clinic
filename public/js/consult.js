@@ -4,7 +4,7 @@ consultId = null;
 function initConsultForm(consult) {
     addInputListeners();
     $("#create_consult").click(function () {
-        dataConsultFromForm();
+        createConsult();
     });
     $("#size").change(function () {
         tryCalcIMC();
@@ -49,7 +49,7 @@ function addInputListeners() {
         });
     });
 
-   addPacientListener(optionsPacient);
+    addPacientListener(optionsPacient);
 
 }
 
@@ -73,10 +73,45 @@ function associateDiagnostic() {
         });
     } else if (consultId === null) {
         //add the consult
-        dataConsultFromForm();
+        createConsult(true);
     }
 
     console.log(diagnosticId);
+    console.log(consultId);
+}
+
+function deleteDiagnostic(consultId, diagnosticId) {
+    $.ajax({
+        url: "/diagnostic/" + consultId + "/" + diagnosticId,
+        type: 'DELETE',
+        success: function (result) {
+            // Do something with the result
+            alert(result);
+        }
+    });
+}
+
+function deleteConsult(consult) {
+    $.ajax({
+        url: '/consult/' + consult.consult_id,
+        type: 'DELETE',
+        success: function (result) {
+            // Do something with the result
+            alert(result);
+        }
+    });
+}
+
+function editConsult(consult) {
+    $.ajax({
+        url: '/consult/' + consult.consult_id,
+        type: 'PUT',
+        data: consult,
+        success: function (result) {
+            // Do something with the result
+            alert(result);
+        }
+    });
 }
 
 
@@ -120,13 +155,16 @@ function tryCalcIMC() {
     $("#imc").val(division.toFixed(2));
 }
 
-function dataConsultFromForm() {
+function createConsult(shouldAssoc) {
     var consult = new Consult();
     associateConsultForm(consult);
     console.log(consult);
     $.post("/consult", consult, function (data) {
         console.log(data);
-        consultId = data.id;
+        consultId = data.consult_id;
+        if(shouldAssoc){
+            associateDiagnostic();
+        }
     });
 }
 
@@ -169,6 +207,7 @@ function associateFormConsult(consult) {
 
 function Consult(json) {
     if (json && json !== null) {
+        this.consult_id = json.consult_id;
         this.motive = json.motive;
         this.actual_sickness = json.actual_sickness;
         this.id_pacient = json.id_pacient;

@@ -73,9 +73,35 @@ function createPacient() {
     dataBindFromForm(pacient);
     console.log(pacient);
     $.post("/pacient", pacient, function (data) {
-        console.log(data);
+        alert(data);
+        //TODO: show modal
+        loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
     });
 }
+
+function deletePacient(pacient) {
+    $.ajax({
+        url: '/pacient/' + pacient.n_documento,
+        type: 'DELETE',
+        success: function (result) {
+            // Do something with the result
+            alert(result);
+        }
+    });
+}
+
+function editPacient(pacient) {
+    $.ajax({
+        url: '/pacient/' + pacient.n_documento,
+        type: 'PUT',
+        data: pacient,
+        success: function (result) {
+            // Do something with the result
+            alert(result);
+        }
+    });
+}
+
 
 function dataBindFromForm(pacient) {
     var $inputB = $('#birthdate').pickadate();
@@ -206,9 +232,12 @@ function Pacient(json) {
         this.cesarias = json.cesarias;
         this.fur = json.fur;
         this.pf = json.pf;
-
     }
     this.getInitials = function () {
+        if (typeof (this.full_name) != "string"
+                || typeof (this.last_name) != "string") {
+            return "";
+        }
         var FN = this.full_name.toUpperCase().split(" ")[0];
         var LN = this.last_name.toUpperCase().split(" ")[0];
         return FN.charAt(0) + "" + LN.charAt(0);

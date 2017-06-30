@@ -25,11 +25,12 @@ $(document).ready(function () {
         });
 
         $(".list_pacient_btn").click(function () {
-            loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
+            loadContent({page: "pacient_edit.html", type: PACIENT_ADD});
+//            loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
         });
 
         $("#look_pacient_btn").click(function () {
-            var pacient = new Pacient(lookedPacients[$("#id_pacient").val()]);
+            var pacient = new Pacient(optionsPacient[$("#id_pacient").val()]);
             loadContent({page: "pacient.html", type: PACIENT_VIEW, params: pacient});
         });
 

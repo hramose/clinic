@@ -10,31 +10,33 @@ and open the template in the editor.
 
 /* label color */
 .input-field label {
-    color: #FFFFFF;
+    /*color: #FFFFFF;*/
 }
 /* label focus color */
 .input-field input[type=text]:focus + label {
-    color: #FFFFFF !important;
+    /*color: #FFFFFF !important;*/
 }
 /* label underline focus color */
 .input-field input[type=text]:focus {
-    border-bottom: 1px solid #1565c0 !important;
-    box-shadow: 0 1px 0 0 #1565c0 !important;
+/*    border-bottom: 1px solid #1565c0 !important;
+    box-shadow: 0 1px 0 0 #1565c0 !important;*/
 }
 /* valid color */
 .input-field input[type=text].valid {
-    border-bottom: 1px solid #1565c0;
-    box-shadow: 0 1px 0 0 #1565c0;
+/*    border-bottom: 1px solid #1565c0;
+    box-shadow: 0 1px 0 0 #1565c0;*/
 }
 /* invalid color */
 .input-field input[type=text].invalid {
-    border-bottom: 1px solid #b71c1c;
-    box-shadow: 0 1px 0 0 #b71c1c;
+/*    border-bottom: 1px solid #b71c1c;
+    box-shadow: 0 1px 0 0 #b71c1c;*/
 }
 /* icon prefix focus color */
 .input-field .prefix.active {
-    color: white;
+    /*color: white;*/
 }
+
+
 .multipage-form{
     margin-top: 30px;
     height: 250px;
@@ -62,18 +64,19 @@ and open the template in the editor.
     color: black !important;
 }
 textarea.materialize-textarea{
-    background: rgba(238,238,238,120);
+    background: rgba(238,238,238);
     color: black;
     margin-top: 15px;
 }
 
 textarea.materialize-textarea:focus:not([readonly])+label{
-    color:white !important;
+    /*color:white !important;*/
 }
 
 fieldset{
     border:  none;
     padding: 8px;
+    background: white;
 }
 .container .row .diagnostics{
     margin-left: 20px;
@@ -84,4 +87,7 @@ fieldset{
 }
 .option_btn{
     margin: 4px;
+}
+.content-layout{
+    margin-top: 30px;
 }
