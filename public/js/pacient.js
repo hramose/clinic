@@ -39,6 +39,12 @@ function loadPacients() {
         console.log(data);
         $("#pacient_list").append(inflatePacientList(data));
     });
+    
+//     $("#look_pacient_btn").click(function () {
+//        var pacient = new Pacient(optionsPacient[$("#id_pacient").val()]);
+//        loadContent({page: "pacient.html", type: PACIENT_VIEW, params: pacient});
+//    });
+    
 }
 
 

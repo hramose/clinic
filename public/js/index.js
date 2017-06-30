@@ -15,37 +15,11 @@ var optionsPacient = [];
 
 $(document).ready(function () {
     Materialize.updateTextFields();
-
     $.get("navbar.html", null, function (data) {
         $("#navbar-container").append(data);
         $(".button-collapse").sideNav();
-
-        $("#add_pacient_btn").click(function () {
-            loadContent({page: "pacient_form.html", type: PACIENT_ADD});
-        });
-
-        $(".list_pacient_btn").click(function () {
-            loadContent({page: "pacient_form.html", type: PACIENT_ADD});
-//            loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
-        });
-
-        $("#look_pacient_btn").click(function () {
-            var pacient = new Pacient(optionsPacient[$("#id_pacient").val()]);
-            loadContent({page: "pacient.html", type: PACIENT_VIEW, params: pacient});
-        });
-
-
-
-        $(".consult_list_btn").click(function () {
-//            loadContent({page: "consult.html", type: CONSULT_VIEW});
-            loadContent({page: "consult_form.html", type: CONSULT_VIEW});
-        });
     });
-
-
     loadContent({page: "landing-page.html", type: MAIN_PAGE});
-
-
 });
 
 /**
@@ -57,6 +31,9 @@ function loadContent(view) {
     $.get(view.page, null, function (data) {
         $(".container").html(data);
         switch (view.type) {
+            case MAIN_PAGE:
+                addLandingListeners();
+                break;
             case PACIENT_VIEW:
                 initPacientForm(view.params, true);
                 break;
@@ -75,5 +52,23 @@ function loadContent(view) {
                 initConsultForm(view.params);
                 break;
         }
+    });
+}
+
+function addLandingListeners() {
+    $("#add_pacient_btn").click(function () {
+        loadContent({page: "pacient_form.html", type: PACIENT_ADD});
+    });
+
+    $(".list_pacient_btn").click(function () {
+        loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
+    });
+
+    $("#add_consult_btn").click(function () {
+        loadContent({page: "consult_form.html", type: CONSULT_ADD});
+    });
+
+    $(".list_consult_btn").click(function () {
+        loadContent({page: "consult.html", type: CONSULT_VIEW});
     });
 }
