@@ -26,7 +26,7 @@ function initConsultForm(consult) {
     $("#id_pacient").change(function () {
         showPacientData();
     });
-    $.get("pacient.html", null, function (data) {
+    $.get("pacient_small.html", null, function (data) {
         $("#pacient-container").html(data);
     });
 }
@@ -65,8 +65,8 @@ function showPacientData() {
 
 function associateDiagnostic() {
     var diagnosticId = options[$("#diagnostic_select").val()];
-    if (consultId !== null
-            && typeof (diagnosticId) != "undefined") {
+    if (!(consultId === null
+            || typeof (diagnosticId) == "undefined")) {
         $.post("/diagnostic/" + consultId + "/" + diagnosticId, null, function (data) {
             console.log("diagnostic associated?");
             console.log(data);

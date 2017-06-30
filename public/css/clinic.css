@@ -70,7 +70,7 @@ textarea.materialize-textarea{
 }
 
 textarea.materialize-textarea:focus:not([readonly])+label{
-    /*color:white !important;*/
+    color:gray !important;
 }
 
 fieldset{

@@ -21,11 +21,11 @@ $(document).ready(function () {
         $(".button-collapse").sideNav();
 
         $("#add_pacient_btn").click(function () {
-            loadContent({page: "pacient_edit.html", type: PACIENT_ADD});
+            loadContent({page: "pacient_form.html", type: PACIENT_ADD});
         });
 
         $(".list_pacient_btn").click(function () {
-            loadContent({page: "pacient_edit.html", type: PACIENT_ADD});
+            loadContent({page: "pacient_form.html", type: PACIENT_ADD});
 //            loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
         });
 
@@ -37,7 +37,8 @@ $(document).ready(function () {
 
 
         $(".consult_list_btn").click(function () {
-            loadContent({page: "consult.html", type: CONSULT_VIEW});
+//            loadContent({page: "consult.html", type: CONSULT_VIEW});
+            loadContent({page: "consult_form.html", type: CONSULT_VIEW});
         });
     });
 
