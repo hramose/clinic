@@ -8,7 +8,7 @@ class CIE10 extends Model {
 
     public $timestamps = false;
     protected $table = 'cie10';
-    protected $fillable = ["code", "description"];
+    protected $fillable = ["code", "description","group"];
     protected $primaryKey = "code";
 
 }
