@@ -237,6 +237,21 @@ function dataBindToView(pacient) {
     }
 }
 
+function cleanDataPacient(data) {
+    console.log(data);
+    optionsPacient = [];
+    var ret = {};
+    var key, value;
+    for (var i = 0; i < data.length; i++) {
+        key = data[i].n_documento + " " + data[i].full_name + " " + data[i].last_name;
+        value = data[i].n_documento;
+        optionsPacient[key] = value;
+        ret[key] = null;
+    }
+    console.log(ret);
+    return ret;
+}
+
 function Pacient(json) {
     if (json && json !== null) {
         this.doc_type = json.doc_type;

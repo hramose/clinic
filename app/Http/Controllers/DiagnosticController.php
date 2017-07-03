@@ -23,6 +23,15 @@ class DiagnosticController extends Controller {
         return response()->json($cieCodes, 201);
     }
 
+    public function showDiagnostics($consultId) {
+        $diagnostics = Diagnostic::where("consult_id", $consultId)->get();
+        $ans = [];
+        foreach ($diagnostics as $diagnostic) {
+            array_push($ans, CIE10::find($diagnostic->diagnostic_id));
+        }
+        return response()->json($ans, 201);
+    }
+
     public function add($consultId, $diagnosticId) {
         $diagnostic = Diagnostic::create([
                     "consult_id" => $consultId,

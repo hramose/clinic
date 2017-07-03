@@ -37,7 +37,7 @@ function addInputListeners() {
             return;
         }
         $.post("/diagnostic", {description: $("#diagnostic_select").val()}, function (data) {
-            var completeOptions = cleanData(data);
+            var completeOptions = cleanDiagnosticData(data);
             $('input.autocomplete').autocomplete({
                 data: completeOptions,
                 limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
@@ -79,6 +79,13 @@ function associateDiagnostic() {
 
     console.log(diagnosticId);
     console.log(consultId);
+    refreshDiagnosticList();
+}
+
+function refreshDiagnosticList() {
+    $.get('/diagnostics/' + consultId, null, function (data) {
+        $("#diagnostics-container").html(inflateDiagnosticsList(data));
+    });
 }
 
 function deleteDiagnostic(consultId, diagnosticId) {
@@ -113,37 +120,6 @@ function editConsult(consult) {
             alert(result);
         }
     });
-}
-
-
-function cleanData(data) {
-//    console.log(data);
-    options = [];
-    var ret = {};
-    var key, value;
-    for (var i = 0; i < data.length; i++) {
-        key = data[i].code + " " + data[i].description;
-        value = data[i].code;
-        options[key] = value;
-        ret[key] = null;
-    }
-//    console.log(ret);
-    return ret;
-}
-
-function cleanDataPacient(data) {
-    console.log(data);
-    optionsPacient = [];
-    var ret = {};
-    var key, value;
-    for (var i = 0; i < data.length; i++) {
-        key = data[i].n_documento + " " + data[i].full_name + " " + data[i].last_name;
-        value = data[i].n_documento;
-        optionsPacient[key] = value;
-        ret[key] = null;
-    }
-    console.log(ret);
-    return ret;
 }
 
 function tryCalcIMC() {

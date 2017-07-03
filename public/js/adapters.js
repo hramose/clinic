@@ -97,3 +97,14 @@ function inflatePacientCardImage(pacient) {
     div.append(activator);
     return div;
 }
+
+function inflateDiagnosticsList(diagnostics) {
+    for (var i = 0; i < diagnostics.length; i++) {
+        var diagnostic = new Diagnostic(diagnostics[i]);
+        inflateDiagnosticItem(diagnostic);
+    }
+}
+
+function inflateDiagnosticItem(diagnostic) {
+    return "<div>" + diagnostic.code + "<br />" + diagnostic.description + "</div>";
+}
