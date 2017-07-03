@@ -66,7 +66,8 @@ function showPacientData() {
 function associateDiagnostic() {
     var diagnosticId = options[$("#diagnostic_select").val()];
     if (!(consultId === null
-            || typeof (diagnosticId) == "undefined")) {
+            || typeof (diagnosticId) == "undefined"
+            || typeof (consultId) == "undefined")) {
         $.post("/diagnostic/" + consultId + "/" + diagnosticId, null, function (data) {
             console.log("diagnostic associated?");
             console.log(data);
@@ -161,8 +162,8 @@ function createConsult(shouldAssoc) {
     console.log(consult);
     $.post("/consult", consult, function (data) {
         console.log(data);
-        consultId = data.consult_id;
-        if(shouldAssoc){
+        consultId = data.id;
+        if (shouldAssoc) {
             associateDiagnostic();
         }
     });

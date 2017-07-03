@@ -29,8 +29,8 @@ class CreateConsultTa extends Migration {
             $table->integer(CreateConsultTa::$COLUMNS[6]);
             $table->integer(CreateConsultTa::$COLUMNS[7]);
             $table->integer(CreateConsultTa::$COLUMNS[8]);
-            $table->double(CreateConsultTa::$COLUMNS[9], 4, 4);
-            $table->double(CreateConsultTa::$COLUMNS[10], 2, 2);
+            $table->double(CreateConsultTa::$COLUMNS[9], 8, 2);
+            $table->double(CreateConsultTa::$COLUMNS[10], 8, 2);
             $table->text(CreateConsultTa::$COLUMNS[11]);
             $table->text(CreateConsultTa::$COLUMNS[12]);
             $table->text(CreateConsultTa::$COLUMNS[13]);
@@ -39,7 +39,8 @@ class CreateConsultTa extends Migration {
             $table->text(CreateConsultTa::$COLUMNS[16]);
             $table->foreign(CreateConsultTa::$COLUMNS[14])
                     ->references(CreatePacientsTa::$COLUMNS[0])
-                    ->on(CreatePacientsTa::$TABLE_NAME);
+                    ->on(CreatePacientsTa::$TABLE_NAME)
+                    ->onDelete('cascade');
         });
     }
 

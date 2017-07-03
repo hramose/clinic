@@ -50,7 +50,7 @@ function inflatePacientCardContent(pacient) {
     editBtn.append("<i class='material-icons'>edit</i>");
 
     $(editBtn).click(function () {
-        $('#modalEdit').modal('open');
+        loadContent({page: "pacient_form.html", type: PACIENT_EDIT, params: pacient});
     });
 
     var deleteBtn = $("<a class='btn-floating btn-small waves-effect waves-light red'>");
@@ -58,6 +58,10 @@ function inflatePacientCardContent(pacient) {
 
     $(deleteBtn).click(function () {
         $('#modalDelete').modal('open');
+        $('#delete-btn').unbind("click");
+        $('#delete-btn').click(function () {
+            deletePacient(pacient);
+        });
     });
 
 
@@ -73,8 +77,8 @@ function inflatePacientCardContent(pacient) {
     cardTitle.append("<i class='material-icons right'>more_vert</i>");
 
     content.append(cardTitle);
-    var table=$("<table class='center'>");
-    var row=$("<tr>");
+    var table = $("<table class='center'>");
+    var row = $("<tr>");
     row.append($("<td>").append(editBtn));
     row.append($("<td>").append(detailsBtn));
     row.append($("<td>").append(deleteBtn));

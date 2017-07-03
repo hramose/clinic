@@ -17,6 +17,7 @@ class Pacient extends Model {
         , "cesarias", "fur", "pf"
     ];
     
+    public $incrementing = false;
     protected $primaryKey = "n_documento";
 
 }

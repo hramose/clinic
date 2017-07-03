@@ -31,23 +31,23 @@ class ConsultController extends Controller {
     public function edit(Request $request, $id) {
         $consult = Consult::find($id);
 
-        $consult->motive = $request->motive;
-        $consult->actual_sickness = $request->actual_sickness;
-        $consult->fc = $request->fc;
-        $consult->fr = $request->fr;
-        $consult->ta = $request->ta;
-        $consult->tempereture = $request->tempereture;
-        $consult->weight = $request->weight;
-        $consult->size = $request->size;
-        $consult->imc = $request->imc;
-        $consult->oximetria = $request->oximetria;
-        $consult->paraclinicos = $request->paraclinicos;
-        $consult->analisis = $request->analisis;
-        $consult->tratamiento = $request->tratamiento;
-        $consult->id_pacient = $request->id_pacient;
-        $consult->consult_date = $request->consult_date;
-        $consult->examen_fisico = $request->examen_fisico;
-
+        $consult->motive = $request->input('motive');
+        $consult->actual_sickness = $request->input('actual_sickness');
+        $consult->fc = $request->input('fc');
+        $consult->fr = $request->input('fr');
+        $consult->ta = $request->input('ta');
+        $consult->tempereture = $request->input('tempereture');
+        $consult->weight = $request->input('weight');
+        $consult->size = $request->input('size');
+        $consult->imc = $request->input('imc');
+        $consult->oximetria = $request->input('oximetria');
+        $consult->paraclinicos = $request->input('paraclinicos');
+        $consult->analisis = $request->input('analisis');
+        $consult->tratamiento = $request->input('tratamiento');
+        $consult->id_pacient = $request->input('id_pacient');
+        $consult->consult_date = $request->input('consult_date');
+        $consult->examen_fisico = $request->input('examen_fisico');
+        $consult->save();
         return response()->json($consult, 201);
     }
 

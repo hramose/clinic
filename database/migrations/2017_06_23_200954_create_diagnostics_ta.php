@@ -24,11 +24,13 @@ class CreateDiagnosticsTa extends Migration
             
             $table->foreign(CreateDiagnosticsTa::$COLUMNS[0])
                     ->references(CreateConsultTa::$COLUMNS[0])
-                    ->on(CreateConsultTa::$TABLE_NAME);
+                    ->on(CreateConsultTa::$TABLE_NAME)
+                    ->onDelete('cascade');
             
             $table->foreign(CreateDiagnosticsTa::$COLUMNS[1])
                     ->references(CreateCie10Ta::$COLUMNS[0])
-                    ->on(CreateCie10Ta::$TABLE_NAME);
+                    ->on(CreateCie10Ta::$TABLE_NAME)
+                    ->onDelete('cascade');
         });
     }
 

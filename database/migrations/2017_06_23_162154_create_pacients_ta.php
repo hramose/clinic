@@ -31,7 +31,7 @@ class CreatePacientsTa extends Migration {
             $table->date(CreatePacientsTa::$COLUMNS[5]);
             $table->enum(CreatePacientsTa::$COLUMNS[6], ["Analfabeta", "Basica", "Media", "Profesional", "Posgrado"]);
             $table->string(CreatePacientsTa::$COLUMNS[7], 10);
-            $table->string(CreatePacientsTa::$COLUMNS[8], 30);
+            $table->string(CreatePacientsTa::$COLUMNS[8], 50);
             $table->text(CreatePacientsTa::$COLUMNS[9]);
             $table->text(CreatePacientsTa::$COLUMNS[10]);
             $table->text(CreatePacientsTa::$COLUMNS[11]);

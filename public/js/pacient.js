@@ -9,9 +9,6 @@ function initPacientForm(pacient, toView) {
     });
     $('ul.tabs').tabs();
 
-    $("#create_pacient").click(function () {
-        createPacient();
-    });
 
     $("#gender").change(function () {
         if ($("#gender").val() === 'Masculino') {
@@ -28,7 +25,15 @@ function initPacientForm(pacient, toView) {
             dataBindToView(pacient);
         } else {
             dataBindToForm(pacient);
+            $("#create_pacient").html("Editar");
+            $("#create_pacient").click(function () {
+                editPacient(pacient);
+            });
         }
+    } else {
+        $("#create_pacient").click(function () {
+            createPacient();
+        });
     }
 }
 
@@ -39,12 +44,6 @@ function loadPacients() {
         console.log(data);
         $("#pacient_list").append(inflatePacientList(data));
     });
-    
-//     $("#look_pacient_btn").click(function () {
-//        var pacient = new Pacient(optionsPacient[$("#id_pacient").val()]);
-//        loadContent({page: "pacient.html", type: PACIENT_VIEW, params: pacient});
-//    });
-    
 }
 
 
@@ -78,10 +77,20 @@ function createPacient() {
     var pacient = new Pacient();
     dataBindFromForm(pacient);
     console.log(pacient);
-    $.post("/pacient", pacient, function (data) {
-        alert(data);
-        //TODO: show modal
-        loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
+
+    $.ajax({
+        url: "/pacient",
+        type: 'POST',
+        data: pacient,
+        success: function (data) {
+            console.log("retrived");
+            console.log(data);
+            //TODO: show modal
+            loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
+        },
+        error: function (res) {
+            alert(res);
+        }
     });
 }
 
@@ -90,8 +99,11 @@ function deletePacient(pacient) {
         url: '/pacient/' + pacient.n_documento,
         type: 'DELETE',
         success: function (result) {
-            // Do something with the result
-            alert(result);
+            //TODO: show modal
+            loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
+        },
+        error: function (res) {
+            alert(res);
         }
     });
 }
@@ -103,7 +115,10 @@ function editPacient(pacient) {
         data: pacient,
         success: function (result) {
             // Do something with the result
-            alert(result);
+            alert("Editado con exito");
+        },
+        error: function (res) {
+            alert(res);
         }
     });
 }
@@ -179,6 +194,8 @@ function dataBindToForm(pacient) {
         pickerFUR.set('select', pacient.fur);
         $("#pf").val(pacient.pf);
     }
+    // re-initialize material-select
+    $('select').material_select();
 }
 
 function dataBindToView(pacient) {

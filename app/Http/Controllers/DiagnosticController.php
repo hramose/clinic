@@ -33,9 +33,8 @@ class DiagnosticController extends Controller {
 
     public function delete($consultId, $diagnosticId) {
         $diagnostic = Diagnostic::where("consult_id", $consultId)
-                        ->where("diagnostic_id", $diagnosticId)->get();
-        $diagnostic->delete();
-        return response()->json(["deleted" => TRUE], 201);
+                        ->where("diagnostic_id", $diagnosticId)->delete();
+        return response()->json($diagnostic, 201);
     }
 
 }

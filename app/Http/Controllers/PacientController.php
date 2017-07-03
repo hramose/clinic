@@ -9,7 +9,7 @@ use App\Pacient;
 class PacientController extends Controller {
 
     public function show($id) {
-        $pacient = Pacient::find($id);
+        $pacient = Pacient::where('n_documento', $id)->first();
         return response()->json($pacient, 201);
     }
 
@@ -34,45 +34,43 @@ class PacientController extends Controller {
 
     public function create(Request $request) {
         $pacient = Pacient::create($request->all());
-        $pacient->n_documento = $request->input('n_documento');
         return response()->json($pacient, 201);
     }
 
     public function edit(Request $request, $id) {
-        $pacient = Pacient::find($id);
+        $pacient = Pacient::where('n_documento', $id)->get()[0];
+        $pacient->full_name = $request->input('full_name');
+        $pacient->last_name = $request->input('last_name');
+        $pacient->doc_type = $request->input('doc_type');
+        $pacient->gender = $request->input('gender');
+        $pacient->birthdate = $request->input('birthdate');
+        $pacient->scholar_level = $request->input('scholar_level');
+        $pacient->phone = $request->input('phone');
+        $pacient->address = $request->input('address');
+        $pacient->family_past = $request->input('family_past');
+        $pacient->medical_past = $request->input('medical_past');
+        $pacient->surgical_past = $request->input('surgical_past');
+        $pacient->allergy_past = $request->input('allergy_past');
+        $pacient->toxic_past = $request->input('toxic_past');
+        $pacient->traumatic_past = $request->input('traumatic_past');
+        $pacient->immunological_past = $request->input('immunological_past');
+        $pacient->menarquia = $request->input('menarquia');
+        $pacient->cycles = $request->input('cycles');
+        $pacient->gestacion = $request->input('gestacion');
+        $pacient->partos = $request->input('partos');
+        $pacient->abortos = $request->input('abortos');
+        $pacient->ectopicos = $request->input('ectopicos');
+        $pacient->cesarias = $request->input('cesarias');
+        $pacient->fur = $request->input('fur');
+        $pacient->pf = $request->input('pf');
 
-        $pacient->full_name = $request->full_name;
-        $pacient->last_name = $request->last_name;
-        $pacient->doc_type = $request->doc_type;
-        $pacient->gender = $request->gender;
-        $pacient->birthdate = $request->birthdate;
-        $pacient->scholar_level = $request->scholar_level;
-        $pacient->phone = $request->phone;
-        $pacient->address = $request->address;
-        $pacient->family_past = $request->family_past;
-        $pacient->medical_past = $request->medical_past;
-        $pacient->surgical_past = $request->surgical_past;
-        $pacient->allergy_past = $request->allergy_past;
-        $pacient->toxic_past = $request->toxic_past;
-        $pacient->traumatic_past = $request->traumatic_past;
-        $pacient->immunological_past = $request->immunological_past;
-        $pacient->menarquia = $request->menarquia;
-        $pacient->cycles = $request->cycles;
-        $pacient->gestacion = $request->gestacion;
-        $pacient->partos = $request->partos;
-        $pacient->abortos = $request->abortos;
-        $pacient->ectopicos = $request->ectopicos;
-        $pacient->cesarias = $request->cesarias;
-        $pacient->fur = $request->fur;
-        $pacient->pf = $request->pf;
-
+        $pacient->save();
         return response()->json($pacient, 201);
     }
 
     public function delete($id) {
-        $destroy = Pacient::find($id);
-        $destroy->delete();
-        return response()->json(["deleted" => TRUE], 204);
+        $destroy = Pacient::where('n_documento', $id)->delete();
+        return response()->json(['delete' => TRUE], 204);
     }
 
 }

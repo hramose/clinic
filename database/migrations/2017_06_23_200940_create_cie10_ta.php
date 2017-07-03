@@ -8,7 +8,7 @@ class CreateCie10Ta extends Migration {
 
     public static $TABLE_NAME = "cie10";
     public static $COLUMNS = array(
-        "code", "description","group"
+        "code", "description","group_cie"
     );
 
     /**
