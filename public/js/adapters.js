@@ -60,6 +60,7 @@ function inflatePacientCardContent(pacient) {
         $('#modalDelete').modal('open');
         $('#delete-btn').unbind("click");
         $('#delete-btn').click(function () {
+            $('#modalDelete').modal('close');
             deletePacient(pacient);
         });
     });
@@ -73,15 +74,15 @@ function inflatePacientCardContent(pacient) {
     });
 
 
-    cardTitle.append(pacient.full_name + " " + pacient.last_name);
+    cardTitle.append(pacient.full_name + " <br /> " + pacient.last_name);
     cardTitle.append("<i class='material-icons right'>more_vert</i>");
 
     content.append(cardTitle);
     var table = $("<table class='center'>");
     var row = $("<tr>");
-    row.append($("<td>").append(editBtn));
-    row.append($("<td>").append(detailsBtn));
-    row.append($("<td>").append(deleteBtn));
+    row.append($("<td class='center'>").append(editBtn));
+    row.append($("<td class='center'>").append(detailsBtn));
+    row.append($("<td class='center'>").append(deleteBtn));
     table.append(row);
     content.append(table);
     return content;

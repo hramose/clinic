@@ -27,6 +27,7 @@ function initPacientForm(pacient, toView) {
             dataBindToForm(pacient);
             $("#create_pacient").html("Editar");
             $("#create_pacient").click(function () {
+                dataBindFromForm(pacient);
                 editPacient(pacient);
             });
         }
@@ -89,7 +90,8 @@ function createPacient() {
             loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
         },
         error: function (res) {
-            alert(res);
+            console.log(res);
+            alert("Error en la creación");
         }
     });
 }
@@ -103,7 +105,8 @@ function deletePacient(pacient) {
             loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
         },
         error: function (res) {
-            alert(res);
+            console.log(res);
+            alert("Error eliminado a " + pacient.full_name);
         }
     });
 }
@@ -116,9 +119,15 @@ function editPacient(pacient) {
         success: function (result) {
             // Do something with the result
             alert("Editado con exito");
+            //TODO: show modal
+            loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
         },
         error: function (res) {
-            alert(res);
+            console.log(res);
+            alert("Error en la edicion de "
+                    + pacient.family_past
+                    + " seguramente el numero de identificacion ya existe : "
+                    + pacient.n_documento);
         }
     });
 }

@@ -18,18 +18,18 @@ and open the template in the editor.
 }
 /* label underline focus color */
 .input-field input[type=text]:focus {
-/*    border-bottom: 1px solid #1565c0 !important;
-    box-shadow: 0 1px 0 0 #1565c0 !important;*/
+    /*    border-bottom: 1px solid #1565c0 !important;
+        box-shadow: 0 1px 0 0 #1565c0 !important;*/
 }
 /* valid color */
 .input-field input[type=text].valid {
-/*    border-bottom: 1px solid #1565c0;
-    box-shadow: 0 1px 0 0 #1565c0;*/
+    /*    border-bottom: 1px solid #1565c0;
+        box-shadow: 0 1px 0 0 #1565c0;*/
 }
 /* invalid color */
 .input-field input[type=text].invalid {
-/*    border-bottom: 1px solid #b71c1c;
-    box-shadow: 0 1px 0 0 #b71c1c;*/
+    /*    border-bottom: 1px solid #b71c1c;
+        box-shadow: 0 1px 0 0 #b71c1c;*/
 }
 /* icon prefix focus color */
 .input-field .prefix.active {
@@ -50,13 +50,18 @@ and open the template in the editor.
 .pacient_card{
     /*    margin-right: 4px;
         padding: 8px;*/
-    height: 300px;
+    height: 320px;
+    margin: 10px;
 }
 .pacient_card .card-content .card-title{
-    font-size: 15px;
+    font-size: 14px;
 }
 .pacient_card_initials{
     margin: 0 auto;
+}
+
+.menu-card{
+    margin: 10px;
 }
 
 /* label color */
