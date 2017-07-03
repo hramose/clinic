@@ -31,7 +31,7 @@ $app->delete('/consult/{id}', 'ConsultController@delete');
 $app->get('/consults', 'ConsultController@showAll');
 
 //history
-$app->get('/consults/{pacientId}', 'ConsultController@showHistory');
+$app->get('/consults/{pacientId}', 'ConsultController@history');
 
 //CIE10
 $app->get('/diagnostics', 'DiagnosticController@showAll');

@@ -13,5 +13,6 @@ class Consult extends Model {
         , "temperature", "weight", "size", "imc", "oximetria", "paraclinicos"
         , "analisis", "tratamiento", "id_pacient", "consult_date", "examen_fisico"
     ];
+    protected $primaryKey = "consult_id";
 
 }

@@ -46,3 +46,26 @@ $factory->define(App\Pacient::class, function (Faker\Generator $faker) {
         'pf' => $faker->text,
     ];
 });
+
+$factory->define(App\Consult::class, function (Faker\Generator $faker) {
+    $w = $faker->numberBetween(10, 180);
+    $s = $faker->numberBetween(10, 260);
+    return [
+        'motive' => $faker->text,
+        'actual_sickness' => $faker->text,
+        'fc' => $faker->numberBetween(10, 60),
+        'fr' => $faker->numberBetween(10, 60),
+        'ta' => $faker->numberBetween(10, 60),
+        'temperature' => $faker->numberBetween(36, 42),
+        'weight' => $w,
+        'size' => $s,
+        'imc' => $w / (($s / 100) * ($s / 100)),
+        'oximetria' => $faker->numberBetween(10, 100),
+        'paraclinicos' => $faker->text,
+        'analisis' => $faker->text,
+        'tratamiento' => $faker->text,
+        'id_pacient' => 0,
+        'consult_date' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'examen_fisico' => $faker->text
+    ];
+});
