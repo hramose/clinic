@@ -126,7 +126,7 @@ function inflateConsultList(consultList) {
     var container = $("#consults_list");
     container.addClass("row");
     if (consultList.length === 0) {
-        container.append("No hay consultas registradas por el momento");
+        container.html("No hay consultas registradas por el momento");
         return container;
     }
     for (var i = 0; i < consultList.length; i++) {
@@ -216,4 +216,14 @@ function inflateConsultCardImage(consult) {
     activator.append(title);
     div.append(activator);
     return div;
+}
+
+
+function inflateHistory(navHistory) {
+    var html = "<nav><div class='nav-wrapper blue darken-3'><div class='col s12'>";
+    for (var i = 0; i < navHistory.length; i++) {
+        html += "<a  class='breadcrumb'>" + getViewTypeString(navHistory[i].type) + "</a>";
+    }
+    html += "</div></div></nav>";
+    return html;
 }

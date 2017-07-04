@@ -8,10 +8,12 @@ var CONSULT_ADD = 202;
 var CONSULT_EDIT = 203;
 var CONSULT_LIST_VIEW = 204;
 
+
 var MAIN_PAGE = 301;
 
 var optionsPacient = [];
 
+var navHistory = [];
 
 $(document).ready(function () {
     Materialize.updateTextFields();
@@ -28,6 +30,11 @@ $(document).ready(function () {
  * @returns {undefined}
  */
 function loadContent(view) {
+    navHistory.push(view);
+    refreshContent(view);
+}
+
+function refreshContent(view) {
     $.get(view.page, null, function (data) {
         $(".container").html(data);
         switch (view.type) {
@@ -56,6 +63,7 @@ function loadContent(view) {
                 break;
         }
     });
+    $("#return-options").html(inflateHistory(navHistory));
 }
 
 function addLandingListeners() {
@@ -74,4 +82,42 @@ function addLandingListeners() {
     $(".list_consult_btn").click(function () {
         loadContent({page: "consults_list.html", type: CONSULT_LIST_VIEW});
     });
+
+    $(".history_btn").click(function () {
+        loadContent({page: "consults_list.html", type: CONSULT_LIST_VIEW});
+    });
+
+    $("#backBtn").click(function () {
+        if (navHistory.length < 2) {
+            //MUST BE landing-page
+            return;
+        }
+        navHistory.pop();
+        refreshContent(navHistory[navHistory.length - 1]);
+    });
+
+}
+
+function getViewTypeString(type) {
+    switch (type) {
+        case MAIN_PAGE:
+            return "Inicio";
+        case PACIENT_VIEW:
+            return "Paciente";
+        case PACIENT_ADD:
+            return "Nuevo Paciente";
+        case PACIENT_EDIT:
+            return "Editar Paciente";
+        case PACIENTS_LIST_VIEW:
+            return "Listar Pacientes";
+        case CONSULT_VIEW:
+            return "Consulta";
+        case CONSULT_LIST_VIEW:
+            return "Consultas";
+        case CONSULT_ADD:
+            return "Nueva Consulta";
+        case CONSULT_EDIT:
+            return "Editar Consulta";
+    }
+    return "";
 }
