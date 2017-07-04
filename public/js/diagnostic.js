@@ -48,12 +48,14 @@ function associateDiagnostic() {
 }
 
 function deleteDiagnostic(consultId, diagnosticId) {
+    if (consultId === null) {
+        return;
+    }
     $.ajax({
         url: "/diagnostic/" + consultId + "/" + diagnosticId,
         type: 'DELETE',
         success: function (result) {
-            // Do something with the result
-            alert(result);
+            refreshDiagnosticList(consultId);
         }
     });
 }

@@ -99,14 +99,30 @@ function inflatePacientCardImage(pacient) {
 }
 
 function inflateDiagnosticsList(diagnostics) {
-    var div = $("<div>");
+    var ul = $(" <ul class='collection'>");
     for (var i = 0; i < diagnostics.length; i++) {
         var diagnostic = new Diagnostic(diagnostics[i]);
-        div.append(inflateDiagnosticItem(diagnostic));
+        ul.append(inflateDiagnosticItem(diagnostic));
     }
-    return div;
+    return ul;
 }
 
 function inflateDiagnosticItem(diagnostic) {
-    return "<div>" + diagnostic.code + "<br />" + diagnostic.description + "</div>";
+    var li = $("<li class='collection-item'>");
+    var badge = $("<span class='badge red'>");
+    badge.append("borrar");
+
+//    var removeBtn = $("<a class='btn-floating btn-small waves-effect waves-light red'>");
+//    removeBtn.append("<i class='material-icons'>delete</i>");
+
+    $(badge).click(function () {
+        deleteDiagnostic(consultId, diagnostic.code);
+    });
+
+
+
+    li.append(diagnostic.code + " " + diagnostic.description);
+    li.append(badge);
+//    li.append(removeBtn);
+    return li;
 }

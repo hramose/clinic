@@ -96,3 +96,6 @@ fieldset{
 .content-layout{
     margin-top: 30px;
 }
+.badge{
+    cursor: pointer;
+}
