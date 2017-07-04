@@ -26,18 +26,19 @@ function initPacientForm(pacient, toView) {
         } else {
             dataBindToForm(pacient);
             $("#create_pacient").html("Editar");
-            $("#create_pacient").click(function () {
+            $("#pacient-form").on('submit', function () {
                 dataBindFromForm(pacient);
                 editPacient(pacient);
+                return false;
             });
         }
     } else {
-        $("#create_pacient").click(function () {
+        $("#pacient-form").on('submit', function () {
             createPacient();
+            return false;
         });
     }
 }
-
 
 function loadPacients() {
     addPacientListener();
@@ -288,5 +289,6 @@ function Pacient(json) {
         var FN = this.full_name.toUpperCase().split(" ")[0];
         var LN = this.last_name.toUpperCase().split(" ")[0];
         return FN.charAt(0) + "" + LN.charAt(0);
-    };
+    }
+    ;
 }

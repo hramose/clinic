@@ -99,10 +99,12 @@ function inflatePacientCardImage(pacient) {
 }
 
 function inflateDiagnosticsList(diagnostics) {
+    var div = $("<div>");
     for (var i = 0; i < diagnostics.length; i++) {
         var diagnostic = new Diagnostic(diagnostics[i]);
-        inflateDiagnosticItem(diagnostic);
+        div.append(inflateDiagnosticItem(diagnostic));
     }
+    return div;
 }
 
 function inflateDiagnosticItem(diagnostic) {

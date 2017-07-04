@@ -1,4 +1,4 @@
-<form method="post" class="multipage-form content-layout">
+<form id="pacient-form" method="post" action="index.html" name="pacient-form" class="multipage-form content-layout">
     <div class="row">
         <div class="col s12">
             <ul class="tabs">
@@ -12,7 +12,7 @@
             <fieldset>
                 <div class="row">
                     <div class="input-field col s12 m6">
-                        <select id="doc_type" class="validate" required>
+                        <select name="doc_type" id="doc_type" class="validate" required>
                             <option value="" disabled selected>Seleccione</option>
                             <option value="Cedula de Ciudadania">Cedula de Ciudadania</option>
                             <option value="Tarjeta de Identidad">Tarjeta de Identidad</option>
@@ -21,27 +21,27 @@
                         <label>Tipo de Documento</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input required placeholder="Ex: 1013642638" id="n_documento" type="text" class="validate">
+                        <input name="n_documento" required placeholder="Ex: 1013642638" id="n_documento" type="text" class="validate">
                         <label class="active" for="n_documento">Numero de Documento</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m6">
-                        <input required placeholder="Ex: Juan Camilo" id="full_name" type="text" class="validate">
+                        <input name="full_name" required placeholder="Ex: Juan Camilo" id="full_name" type="text" class="validate">
                         <label class="active" for="full_name">Nombres Completos</label>
                     </div>
                     <div class="input-field col s12 m6">
-                        <input required placeholder="Ex: Rodriguez Duran" id="last_name" type="text" class="validate">
+                        <input name="last_name" required placeholder="Ex: Rodriguez Duran" id="last_name" type="text" class="validate">
                         <label class="active" for="last_name">Apellidos</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12 m4">
-                        <input required id="birthdate" type="date" class="datepicker validate">
+                        <input name="birthdate" required id="birthdate" type="date" class="datepicker validate">
                         <label class="active" for="birthdate">Fecha de Nacimiento</label>
                     </div>
                     <div class="input-field col s6 m4">
-                        <select id="gender" required class="validate">
+                        <select name="gender" id="gender" required class="validate">
                             <option value="" disabled selected>Seleccione</option>
                             <option value="Masculino">Masculino</option>
                             <option value="Femenino">Femenino</option>
@@ -49,7 +49,7 @@
                         <label>Genero</label>
                     </div>
                     <div class="input-field col s6 m4">
-                        <select required id="scholar_level">
+                        <select name="scholar_level" required id="scholar_level">
                             <option value="" disabled selected>Seleccione</option>
                             <option value="Analfabeta">Analfabeta</option>
                             <option value="Basica">Basica</option>
@@ -62,11 +62,11 @@
                 </div>
                 <div class="row">                               
                     <div class="input-field col s6 m4">
-                        <input required placeholder="Ex: 3108650725" id="phone" type="tel" class="validate">
+                        <input name="phone" required placeholder="Ex: 3108650725" id="phone" type="tel" class="validate">
                         <label class="active" for="phone">Telefono</label>
                     </div>
                     <div class="input-field col s6 m8">
-                        <input required placeholder="Ex: Calle 13 cra 24" id="address" type="text" class="validate">
+                        <input name="address" required placeholder="Ex: Calle 13 cra 24" id="address" type="text" class="validate">
                         <label class="active" for="address">Direcci&oacute;n</label>                                   
                     </div>
                 </div>
@@ -76,7 +76,7 @@
             <fieldset>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="family_past" class="materialize-textarea"></textarea>
+                        <textarea name="family_past" id="family_past" class="materialize-textarea"></textarea>
                         <label class="active" for="family_past">Pasado familiar</label>
                     </div>
                 </div>
@@ -86,27 +86,27 @@
             <fieldset>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="medical_past" class="materialize-textarea"></textarea>
+                        <textarea name="medical_past" id="medical_past" class="materialize-textarea"></textarea>
                         <label class="active" for="medical_past">Medicos</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="surgical_past" class="materialize-textarea"></textarea>
+                        <textarea name="surgical_past" id="surgical_past" class="materialize-textarea"></textarea>
                         <label class="active" for="surgical_past">Quirurgicos</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="allergy_past" class="materialize-textarea"></textarea>
+                        <textarea name="allergy_past" id="allergy_past" class="materialize-textarea"></textarea>
                         <label class="active" for="allergy_past">Alergicos</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="toxic_past" class="materialize-textarea"></textarea>
+                        <textarea name="toxic_past" id="toxic_past" class="materialize-textarea"></textarea>
                         <label class="active" for="toxic_past">Toxicos</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="traumatic_past" class="materialize-textarea"></textarea>
+                        <textarea name="traumatic_past" id="traumatic_past" class="materialize-textarea"></textarea>
                         <label class="active" for="traumatic_past">Traumas</label>
                     </div>
                     <div class="input-field col s12">
-                        <textarea id="immunological_past" class="materialize-textarea"></textarea>
+                        <textarea name="immunological_past" id="immunological_past" class="materialize-textarea"></textarea>
                         <label class="active" for="immunological_past">Inmunologicos</label>
                     </div>
                 </div>
@@ -116,43 +116,43 @@
             <fieldset>
                 <div class="row">
                     <div class="input-field col s12 m3">
-                        <input required id="fur" type="date" class="datepicker validate">
+                        <input name="fur" id="fur" type="date" class="datepicker validate">
                         <label class="active" for="fur">Fecha de la Ultima Regla</label>
                     </div>
                     <div class="input-field col s12 m3">
-                        <input required placeholder="Ex: 10" id="menarquia" type="number" class="validate">
+                        <input name="menarquia" placeholder="Ex: 10" id="menarquia" type="number" class="validate">
                         <label class="active" for="menarquia">Menarquia</label>                                   
                     </div>
                     <div class="input-field col s12 m2">
-                        <input required placeholder="Ex: 10-20" id="cycles" type="text" class="validate">
+                        <input name="cycles"  placeholder="Ex: 10-20" id="cycles" type="text" class="validate">
                         <label class="active" for="cycles">Ciclos</label>                                   
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s4 m2">
-                        <input required placeholder="Ex: 10" id="gestacion" type="number" class="validate">
+                        <input name="gestacion"  placeholder="Ex: 10" id="gestacion" type="number" class="validate">
                         <label class="active" for="gestacion">Gestacion</label>                                   
                     </div>
                     <div class="input-field col s4 m2">
-                        <input required placeholder="Ex: 10" id="partos" type="number" class="validate">
+                        <input name="partos"  placeholder="Ex: 10" id="partos" type="number" class="validate">
                         <label class="active" for="partos">Partos</label>                                   
                     </div>
                     <div class="input-field col s4 m2">
-                        <input required placeholder="Ex: 10" id="abortos" type="number" class="validate">
+                        <input name="abortos" placeholder="Ex: 10" id="abortos" type="number" class="validate">
                         <label class="active" for="abortos">Abortos</label>                                   
                     </div>
                     <div class="input-field col s4 m2">
-                        <input required placeholder="Ex: 10" id="ectopicos" type="number" class="validate">
+                        <input name="ectopicos" placeholder="Ex: 10" id="ectopicos" type="number" class="validate">
                         <label class="active" for="ectopicos">Ectopicos</label>                                   
                     </div>
                     <div class="input-field col s4 m2">
-                        <input required placeholder="Ex: 10" id="cesarias" type="number" class="validate">
+                        <input name="cesarias" placeholder="Ex: 10" id="cesarias" type="number" class="validate">
                         <label class="active" for="cesarias">Cesarias</label>                                   
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <textarea id="pf" class="materialize-textarea"></textarea>
+                        <textarea name="pf" id="pf" class="materialize-textarea"></textarea>
                         <label class="active" for="pf">Planificacion Familiar</label>
                     </div>
                 </div>
@@ -160,6 +160,6 @@
         </div>
     </div>
     <div class="center">
-        <button type="submit" id="create_pacient" class="btn waves-effect white grey-text darken-text-2">Crear</button>
+        <button type="submit" name="create_pacient" id="create_pacient" class="btn waves-effect white grey-text darken-text-2">Crear</button>
     </div>
 </form>
