@@ -1,88 +1,79 @@
-
-<div class="row" id="pacient-container"></div>
 <div class="row">
-    <div id="personal_data" class="blue white-text col s12">
-        <h3 class="center">Nueva Consulta</h3>
+    <div id="personal_data" class="col s12">
+        <h3 id="form-header-text" class="center">Ver Consulta: </h3>
         <fieldset>
             <div class="row">
-                <div class="input-field col s12 m6">
-                    <textarea id="motive" class="materialize-textarea"></textarea>
-                    <label class="active" for="motive">Motivo de Consulta</label>
+                <div class=" col s12 m6">
+                    <label class="active">Motivo de Consulta</label>
+                    <p id="motive" class="materialize-p"></p>
                 </div>
-                <div class="input-field col s12 m6">
-                    <textarea id="actual_sickness" class="materialize-textarea"></textarea>
-                    <label class="active" for="actual_sickness">Enfermedad Actual</label>
+                <div class=" col s12 m6">
+                    <label class="active">Enfermedad Actual</label>
+                    <p id="actual_sickness" class="materialize-p"></p>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s12 m6">
-                    <input type="text" id="id_pacient" class="autocomplete">
-                    <label class="active" for="id_pacient">Paciente</label>
+                <div class=" col s12 m6">
+                    <label class="active">Paciente</label>
+                    <p id="id_pacient"></p>
+                    <div id="pacient-container"></div>
                 </div>
-                <div class="input-field col s2">
-                    <input required placeholder="Ex: 10" id="fc" 
-                           type="number" class="validate">
-                    <label class="active" for="fc">Frecuencia Cardiaca</label>                                   
+                <div class=" col s2">
+                    <label class="active">Frecuencia Cardiaca</label>                                   
+                    <p id="fc"></p>
                 </div>
-                <div class="input-field col s2">
-                    <input required placeholder="Ex: 10" id="fr" 
-                           type="number" class="validate">
-                    <label class="active" for="fr">Frecuencia Respiratoria</label>                                   
+                <div class=" col s2">
+                    <label class="active">Frecuencia Respiratoria</label>                                   
+                    <p id="fr"></p>
                 </div>
-                <div class="input-field col s2">
-                    <input required placeholder="Ex: 10" id="ta" 
-                           type="number" class="validate">
-                    <label class="active" for="ta">Tension Arterial</label>                                   
+                <div class=" col s2">
+                    <label class="active">Tension Arterial</label>                                   
+                    <p id="ta"></p>
                 </div>
-                <div class="input-field col s2">
-                    <input required placeholder="Ex: 10" id="temperature" 
-                           type="number" min="10" max="50" class="validate">
-                    <label class="active" for="temperature">Temperatura</label>                                   
+                <div class=" col s2">
+                    <label class="active">Temperatura</label>                                   
+                    <p id="temperature"></p>
                 </div>
-                <div class="input-field col s2">
-                    <input required placeholder="Ex: 10" id="weight" 
-                           type="number" min="1" max="500" class="validate">
-                    <label class="active" for="weight">Peso</label>                                   
+                <div class=" col s2">
+                    <label class="active" >Peso</label>                                   
+                    <p id="weight"></p>
                 </div>
-                <div class="input-field col s2">
-                    <input required placeholder="Ex: 10" id="size" 
-                           type="number" min="1" max="250" class="validate">
-                    <label class="active" for="size">Talla</label>                                   
+                <div class=" col s2">
+                    <label class="active" >Talla</label>                                   
+                    <p id="size"></p>
                 </div>
-                <div class="input-field col s2">
-                    <input required id="imc" type="number" 
-                           class="validate" disabled step="0.01">
-                    <label class="active" for="imc">IMC</label>                                   
+                <div class=" col s2">
+                    <label class="active" >IMC</label>                                   
+                    <p id="imc"></p>
                 </div>
-                <div class="input-field col s2">
-                    <input required id="oximetria" type="number" 
-                           class="validate" step="0.01">
-                    <label class="active" for="oximetria">Oximetria</label>                                   
+                <div class=" col s2">
+                    <label class="active" >Oximetria</label>                                   
+                    <p id="oximetria"></p>
                 </div>
             </div>
 
             <div class="row">
-                <div class="input-field col s12 m6">
-                    <textarea id="paraclinicos" class="materialize-textarea"></textarea>
-                    <label class="active" for="paraclinicos">Paraclinicos</label>
+                <div class=" col s12 m6">
+                    <label class="active" >Paraclinicos</label>
+                    <p id="paraclinicos" class="materialize-p"></p>
                 </div>
-                <div class="input-field col s12 m6">
-                    <textarea id="analisis" class="materialize-textarea"></textarea>
-                    <label class="active" for="analisis">Analisis</label>
+                <div class=" col s12 m6">
+                    <label class="active" >Analisis</label>
+                    <p id="analisis" class="materialize-p"></p>
                 </div>
-                <div class="input-field col s12 m6">
-                    <textarea id="tratamiento" class="materialize-textarea"></textarea>
-                    <label class="active" for="tratamiento">Tratamiento</label>
+                <div class=" col s12 m6">
+                    <label class="active" >Tratamiento</label>
+                    <p id="tratamiento" class="materialize-p"></p>
                 </div>
-                <div class="input-field col s12 m6">
-                    <textarea id="examen_fisico" class="materialize-textarea"></textarea>
-                    <label class="active" for="examen_fisico">Examen Fisico</label>
+                <div class=" col s12 m6">
+                    <label class="active" >Examen Fisico</label>
+                    <p id="examen_fisico" class="materialize-p"></p>
                 </div>
             </div>
         </fieldset>
         <div class="row diagnostics">
             <h4>Diagnosticos</h4>
             <div id="diagnostics-container"></div>
-         </div>
+        </div>
     </div>
 </div>

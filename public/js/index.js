@@ -45,7 +45,10 @@ function loadContent(view) {
                 loadPacients();
                 break;
             case CONSULT_VIEW:
-                initConsultForm(view.params);
+                bindConsultToView(view.params);
+                break;
+            case CONSULT_LIST_VIEW:
+                loadConsults();
                 break;
             case CONSULT_ADD:
             case CONSULT_EDIT:
@@ -69,6 +72,6 @@ function addLandingListeners() {
     });
 
     $(".list_consult_btn").click(function () {
-        loadContent({page: "consult.html", type: CONSULT_VIEW});
+        loadContent({page: "consults_list.html", type: CONSULT_LIST_VIEW});
     });
 }

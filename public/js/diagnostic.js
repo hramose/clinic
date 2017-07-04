@@ -13,12 +13,12 @@ function cleanDiagnosticData(data) {
     return ret;
 }
 
-function refreshDiagnosticList(consultId) {
+function refreshDiagnosticList(consultId, editable) {
     if (consultId === null) {
         return;
     }
     $.get('/diagnostics/' + consultId, null, function (data) {
-        $("#diagnostics-container").html(inflateDiagnosticsList(data));
+        $("#diagnostics-container").html(inflateDiagnosticsList(data, editable));
     });
 }
 
@@ -35,7 +35,7 @@ function associateDiagnostic() {
             console.log("diagnostic associated?");
             console.log(data);
             $("#diagnostic_select").val("");
-            refreshDiagnosticList(consultId);
+            refreshDiagnosticList(consultId, true);
         });
     } else if (consultId === null) {
         //add the consult
@@ -55,7 +55,7 @@ function deleteDiagnostic(consultId, diagnosticId) {
         url: "/diagnostic/" + consultId + "/" + diagnosticId,
         type: 'DELETE',
         success: function (result) {
-            refreshDiagnosticList(consultId);
+            refreshDiagnosticList(consultId, true);
         }
     });
 }

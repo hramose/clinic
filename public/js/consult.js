@@ -11,7 +11,7 @@ function initConsultForm(consult) {
             return false;
         }
         var consult = new Consult();
-        associateConsultForm(consult);
+        associateFormToConsult(consult);
         consult.consult_id = consultId;
         editConsult(consult);
     });
@@ -33,18 +33,20 @@ function initConsultForm(consult) {
         var pacientId = optionsPacient[$("#id_pacient").val()];
         showPacientData(pacientId);
     });
-    if (consult && consult !== null) {
-        associateFormConsult(consult);
-        $.get("pacient.html", null, function (data) {
-            $("#pacient-container").html(data);
-        });
 
+    if (consult && consult !== null) {
+        associateConsultToForm(consult);
+        $("#form-header-text").html("Editar Consulta");
+        $("#create_consult").html("Guardar <i class='material-icons right'>save</i>");
         refreshDiagnosticList(consult.consult_id);
-    } else {
-        $.get("pacient_small.html", null, function (data) {
-            $("#pacient-container").html(data);
-        });
+        showPacientData(consult.id_pacient);
+
     }
+
+    $.get("pacient_small.html", null, function (data) {
+        $("#pacient-container").html(data);
+    });
+
 }
 
 function addInputListeners() {
@@ -74,6 +76,8 @@ function showPacientData(pacientId) {
         $.get("/pacient/" + pacientId, null, function (data) {
             var pacient = new Pacient(data);
             dataBindToView(pacient);
+            var key = pacient.n_documento + " " + pacient.full_name + " " + pacient.last_name;
+            optionsPacient[key] = pacient.n_documento;
         });
     }
 }
@@ -84,8 +88,16 @@ function deleteConsult(consult) {
         type: 'DELETE',
         success: function (result) {
             // Do something with the result
-            alert(result);
+            alert("Borrado Exitosamente");
+            loadContent({page: "consults_list.html", type: CONSULT_LIST_VIEW});
         }
+    });
+}
+
+function loadConsults() {
+    $.get("/consults", null, function (data) {
+        console.log(data);
+        $("#consults_list").append(inflateConsultList(data));
     });
 }
 
@@ -113,7 +125,7 @@ function tryCalcIMC() {
 
 function createConsult(shouldAssoc) {
     var consult = new Consult();
-    associateConsultForm(consult);
+    associateFormToConsult(consult);
     console.log(consult);
     $.post("/consult", consult, function (data) {
         console.log(data);
@@ -124,7 +136,7 @@ function createConsult(shouldAssoc) {
     });
 }
 
-function associateConsultForm(consult) {
+function associateFormToConsult(consult) {
     consult.motive = $("#motive").val();
     consult.actual_sickness = $("#actual_sickness").val();
     consult.id_pacient = optionsPacient[$("#id_pacient").val()];
@@ -143,7 +155,7 @@ function associateConsultForm(consult) {
     consult.consult_date = new Date().toISOString().slice(0, 10);
 }
 
-function associateFormConsult(consult) {
+function associateConsultToForm(consult) {
     $("#motive").val(consult.motive);
     $("#actual_sickness").val(consult.actual_sickness);
     $("#id_pacient").val(consult.id_pacient);
@@ -159,9 +171,14 @@ function associateFormConsult(consult) {
     $("#analisis").val(consult.analisis);
     $("#tratamiento").val(consult.tratamiento);
     $("#examen_fisico").val(consult.examen_fisico);
+    consultId = consult.consult_id;
 }
 
 function bindConsultToView(consult) {
+    $.get("pacient-print.html", null, function (data) {
+        $("#pacient-container").html(data);
+    });
+    $("#form-header-text").append(consult.consult_id);
     $("#motive").html(consult.motive);
     $("#actual_sickness").html(consult.actual_sickness);
     $("#id_pacient").html(consult.id_pacient);
@@ -178,6 +195,8 @@ function bindConsultToView(consult) {
     $("#tratamiento").html(consult.tratamiento);
     $("#examen_fisico").html(consult.examen_fisico);
     showPacientData(consult.id_pacient);
+    consultId = consult.consult_id;
+    refreshDiagnosticList(consult.consult_id,false);
 }
 
 function Consult(json) {
