@@ -18,9 +18,9 @@ class CreateCie10Ta extends Migration {
      */
     public function up() {
         Schema::create(CreateCie10Ta::$TABLE_NAME, function(Blueprint $table) {
-            $table->string(CreateCie10Ta::$COLUMNS[0],8);
+            $table->string(CreateCie10Ta::$COLUMNS[0],12);
             $table->text(CreateCie10Ta::$COLUMNS[1]);
-            $table->string(CreateCie10Ta::$COLUMNS[2],8)->nullable();
+            $table->string(CreateCie10Ta::$COLUMNS[2],12)->nullable();
             $table->primary(CreateCie10Ta::$COLUMNS[0]);
         });
     }

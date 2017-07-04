@@ -37,7 +37,7 @@ $app->get('/consults/{pacientId}', 'ConsultController@history');
 $app->get('/diagnostics', 'DiagnosticController@showAll');
 $app->post('/diagnostic', 'DiagnosticController@filter');
 //diagnostics assoc
-$app->post('/diagnostics/{consultId}', 'DiagnosticController@showDiagnostics');
+$app->get('/diagnostics/{consultId}', 'DiagnosticController@showDiagnostics');
 $app->post('/diagnostic/{consultId}/{diagnosticId}', 'DiagnosticController@add');
 $app->delete('/diagnostic/{consultId}/{diagnosticId}', 'DiagnosticController@delete');
 
