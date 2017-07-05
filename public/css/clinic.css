@@ -100,3 +100,6 @@ fieldset{
     cursor: pointer;
     color: whitesmoke;
 }
+.clinic-history{
+    padding: 0 15px;
+}

@@ -90,7 +90,7 @@ function inflatePacientCardContent(pacient) {
 
 function inflatePacientCardImage(pacient) {
     var div = $("<div  class='card-image waves-effect waves-block waves-light'>");
-    var activator = $("<div style='height:150px;' class='valign-wrapper activator center red darken-1 white-text'>");
+    var activator = $("<div style='height:150px;' class='valign-wrapper activator center light-blue darken-1 white-text'>");
     var title = $("<h4 class='pacient_card_initials'>");
     title.append(pacient.getInitials());
     activator.append(title);
@@ -210,7 +210,7 @@ function inflateConsultCardContent(consult) {
 
 function inflateConsultCardImage(consult) {
     var div = $("<div  class='card-image waves-effect waves-block waves-light'>");
-    var activator = $("<div style='height:150px;' class='valign-wrapper activator center red darken-1 white-text'>");
+    var activator = $("<div style='height:150px;' class='valign-wrapper activator center blue darken-1 white-text'>");
     var title = $("<h4 class='pacient_card_initials'>");
     title.append(consult.motive);
     activator.append(title);
@@ -220,7 +220,7 @@ function inflateConsultCardImage(consult) {
 
 
 function inflateHistory(navHistory) {
-    var html = "<nav><div class='nav-wrapper blue darken-3'><div class='col s12'>";
+    var html = "<nav><div class='nav-wrapper clinic-history blue darken-3'><div class='col s12'>";
     for (var i = 0; i < navHistory.length; i++) {
         html += "<a  class='breadcrumb'>" + getViewTypeString(navHistory[i].type) + "</a>";
     }

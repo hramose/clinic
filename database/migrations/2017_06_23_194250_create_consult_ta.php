@@ -25,7 +25,7 @@ class CreateConsultTa extends Migration {
             $table->text(CreateConsultTa::$COLUMNS[2]);
             $table->integer(CreateConsultTa::$COLUMNS[3]);
             $table->integer(CreateConsultTa::$COLUMNS[4]);
-            $table->integer(CreateConsultTa::$COLUMNS[5]);
+            $table->string(CreateConsultTa::$COLUMNS[5], 10);
             $table->integer(CreateConsultTa::$COLUMNS[6]);
             $table->integer(CreateConsultTa::$COLUMNS[7]);
             $table->integer(CreateConsultTa::$COLUMNS[8]);
@@ -34,7 +34,7 @@ class CreateConsultTa extends Migration {
             $table->text(CreateConsultTa::$COLUMNS[11]);
             $table->text(CreateConsultTa::$COLUMNS[12]);
             $table->text(CreateConsultTa::$COLUMNS[13]);
-            $table->string(CreateConsultTa::$COLUMNS[14],15);
+            $table->string(CreateConsultTa::$COLUMNS[14], 15);
             $table->date(CreateConsultTa::$COLUMNS[15]);
             $table->text(CreateConsultTa::$COLUMNS[16]);
             $table->foreign(CreateConsultTa::$COLUMNS[14])

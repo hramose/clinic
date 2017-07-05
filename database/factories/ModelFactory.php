@@ -55,7 +55,7 @@ $factory->define(App\Consult::class, function (Faker\Generator $faker) {
         'actual_sickness' => $faker->text,
         'fc' => $faker->numberBetween(10, 60),
         'fr' => $faker->numberBetween(10, 60),
-        'ta' => $faker->numberBetween(10, 60),
+        'ta' => $faker->numberBetween(10, 60) . "-" . $faker->numberBetween(10, 60),
         'temperature' => $faker->numberBetween(36, 42),
         'weight' => $w,
         'size' => $s,
