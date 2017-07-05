@@ -1,79 +1,118 @@
 <div class="row">
     <div id="personal_data" class="col s12">
         <h3 id="form-header-text" class="center">Ver Consulta: </h3>
-        <fieldset>
-            <div class="row">
-                <div class=" col s12 m6">
-                    <label class="active">Motivo de Consulta</label>
-                    <p id="motive" class="materialize-p"></p>
-                </div>
-                <div class=" col s12 m6">
-                    <label class="active">Enfermedad Actual</label>
-                    <p id="actual_sickness" class="materialize-p"></p>
-                </div>
+        <div class="row">
+            <div class=" col s12 m6">
+                <label class="active">Motivo de Consulta</label>
+                <p id="motive" class="materialize-p"></p>
             </div>
-            <div class="row">
-                <div class=" col s12 m6">
-                    <label class="active">Paciente</label>
-                    <p id="id_pacient"></p>
-                    <div id="pacient-container"></div>
-                </div>
-                <div class=" col s2">
-                    <label class="active">Frecuencia Cardiaca</label>                                   
-                    <p id="fc"></p>
-                </div>
-                <div class=" col s2">
-                    <label class="active">Frecuencia Respiratoria</label>                                   
-                    <p id="fr"></p>
-                </div>
-                <div class=" col s2">
-                    <label class="active">Tension Arterial</label>                                   
-                    <p id="ta"></p>
-                </div>
-                <div class=" col s2">
-                    <label class="active">Temperatura</label>                                   
-                    <p id="temperature"></p>
-                </div>
-                <div class=" col s2">
-                    <label class="active" >Peso</label>                                   
-                    <p id="weight"></p>
-                </div>
-                <div class=" col s2">
-                    <label class="active" >Talla</label>                                   
-                    <p id="size"></p>
-                </div>
-                <div class=" col s2">
-                    <label class="active" >IMC</label>                                   
-                    <p id="imc"></p>
-                </div>
-                <div class=" col s2">
-                    <label class="active" >Oximetria</label>                                   
-                    <p id="oximetria"></p>
-                </div>
+            <div class=" col s12 m6">
+                <label class="active">Enfermedad Actual</label>
+                <p id="actual_sickness" class="materialize-p"></p>
             </div>
+        </div>
+        <div class="row">
+            <div class=" col s12 m6">
+                <label class="active">Paciente</label>
+                <p id="id_pacient"></p>
+                <div id="pacient-container"></div>
+            </div>
+            <div class=" col s2">
+                <label class="active">Frecuencia Cardiaca</label>                                   
+                <p id="fc"></p>
+            </div>
+            <div class=" col s2">
+                <label class="active">Frecuencia Respiratoria</label>                                   
+                <p id="fr"></p>
+            </div>
+            <div class=" col s2">
+                <label class="active">Tension Arterial</label>                                   
+                <p id="ta"></p>
+            </div>
+            <div class=" col s2">
+                <label class="active">Temperatura</label>                                   
+                <p id="temperature"></p>
+            </div>
+            <div class=" col s2">
+                <label class="active" >Peso</label>                                   
+                <p id="weight"></p>
+            </div>
+            <div class=" col s2">
+                <label class="active" >Talla</label>                                   
+                <p id="size"></p>
+            </div>
+            <div class=" col s2">
+                <label class="active" >IMC</label>                                   
+                <p id="imc"></p>
+            </div>
+            <div class=" col s2">
+                <label class="active" >Oximetria</label>                                   
+                <p id="oximetria"></p>
+            </div>
+        </div>
 
-            <div class="row">
-                <div class=" col s12 m6">
-                    <label class="active" >Paraclinicos</label>
-                    <p id="paraclinicos" class="materialize-p"></p>
-                </div>
-                <div class=" col s12 m6">
-                    <label class="active" >Analisis</label>
-                    <p id="analisis" class="materialize-p"></p>
-                </div>
-                <div class=" col s12 m6">
-                    <label class="active" >Tratamiento</label>
-                    <p id="tratamiento" class="materialize-p"></p>
-                </div>
-                <div class=" col s12 m6">
-                    <label class="active" >Examen Fisico</label>
-                    <p id="examen_fisico" class="materialize-p"></p>
-                </div>
+        <div class="row">
+            <div class=" col s12 m6">
+                <label class="active" >Paraclinicos</label>
+                <p id="paraclinicos" class="materialize-p"></p>
             </div>
-        </fieldset>
+            <div class=" col s12 m6">
+                <label class="active" >Analisis</label>
+                <p id="analisis" class="materialize-p"></p>
+            </div>
+            <div class=" col s12 m6">
+                <label class="active" >Tratamiento</label>
+                <p id="tratamiento" class="materialize-p"></p>
+            </div>
+            <div class=" col s12 m6">
+                <label class="active" >Examen Fisico</label>
+                <p id="examen_fisico" class="materialize-p"></p>
+            </div>
+        </div>
         <div class="row diagnostics">
             <h4>Diagnosticos</h4>
             <div id="diagnostics-container"></div>
+        </div>
+
+        <!--only for women-->
+        <div class="woman_past col s12 m6">
+            <ul class="collection with-header">
+                <li class="collection-header center">
+                    <h4>Datos Adicionales Mujeres</h4>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="col s6">Fecha de la Ultima Regla</span>
+                    <span id="fur" class="col s6"></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="col s6">Menarquia</span>
+                    <span id="menarquia" class="col s6"></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="col s6">Ciclos</span>
+                    <span id="cycles" class="col s6"></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="col s6">Gestacion</span>
+                    <span id="gestacion" class="col s6"></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="col s6">Partos</span>
+                    <span id="partos" class="col s6"></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="col s6">Abortos</span>
+                    <span id="abortos" class="col s6"></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="col s6">Ectopicos</span>
+                    <span id="ectopicos" class="col s6"></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="col s6">Cesarias</span>
+                    <span id="cesarias" class="col s6"></span>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

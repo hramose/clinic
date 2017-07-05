@@ -9,14 +9,6 @@ function initPacientForm(pacient, toView) {
     });
     $('ul.tabs').tabs();
 
-
-    $("#gender").change(function () {
-        if ($("#gender").val() === 'Masculino') {
-            $(".woman_past").addClass("disabled");
-        } else {
-            $(".woman_past").removeClass("disabled");
-        }
-    });
     $('.collapsible').collapsible();
     $('.modal').modal();
     $('select').material_select();
@@ -136,12 +128,9 @@ function editPacient(pacient) {
 
 function dataBindFromForm(pacient) {
     var $inputB = $('#birthdate').pickadate();
-    var $inputFUR = $('#fur').pickadate();
 
 // Use the picker object directly.
     var pickerB = $inputB.pickadate('picker');
-    var pickerFUR = $inputFUR.pickadate('picker');
-
     pacient.doc_type = $("#doc_type").val();
     pacient.n_documento = $("#n_documento").val();
     pacient.full_name = $("#full_name").val();
@@ -158,15 +147,6 @@ function dataBindFromForm(pacient) {
     pacient.toxic_past = $("#toxic_past").val();
     pacient.traumatic_past = $("#traumatic_past").val();
     pacient.immunological_past = $("#immunological_past").val();
-    pacient.menarquia = $("#menarquia").val();
-    pacient.cycles = $("#cycles").val();
-    pacient.gestacion = $("#gestacion").val();
-    pacient.partos = $("#partos").val();
-    pacient.abortos = $("#abortos").val();
-    pacient.ectopicos = $("#ectopicos").val();
-    pacient.cesarias = $("#cesarias").val();
-    pacient.fur = pickerFUR.get('select', 'yyyy-mm-dd');
-    pacient.pf = $("#pf").val();
 }
 
 function dataBindToForm(pacient) {
@@ -193,17 +173,6 @@ function dataBindToForm(pacient) {
     $("#toxic_past").val(pacient.toxic_past);
     $("#traumatic_past").val(pacient.traumatic_past);
     $("#immunological_past").val(pacient.immunological_past);
-    if (pacient.gender === "Femenino") {
-        $("#menarquia").val(pacient.menarquia);
-        $("#cycles").val(pacient.cycles);
-        $("#gestacion").val(pacient.gestacion);
-        $("#partos").val(pacient.partos);
-        $("#abortos").val(pacient.abortos);
-        $("#ectopicos").val(pacient.ectopicos);
-        $("#cesarias").val(pacient.cesarias);
-        pickerFUR.set('select', pacient.fur);
-        $("#pf").val(pacient.pf);
-    }
     // re-initialize material-select
     $('select').material_select();
 }

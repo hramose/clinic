@@ -1,8 +1,17 @@
-options = [];
-consultId = null;
+var options = [];
+var consultId = null;
+var $inputFUR = null;
+var pickerFUR = null;
+
 
 function initConsultForm(consult) {
     addInputListeners();
+
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 80, // Creates a dropdown of 15 years to control year
+        max: new Date()
+    });
 
     $("#consult-form").on("submit", function (e) {
         if (consultId === null || !optionsPacient[$("#id_pacient").val()]) {
@@ -47,6 +56,9 @@ function initConsultForm(consult) {
         $("#pacient-container").html(data);
     });
 
+    $inputFUR = $('#fur').pickadate();
+    pickerFUR = $inputFUR.pickadate('picker');
+
 }
 
 function addInputListeners() {
@@ -78,12 +90,31 @@ function showPacientData(pacientId, consult) {
             dataBindToView(pacient);
             var key = pacient.n_documento + " " + pacient.full_name + " " + pacient.last_name;
             optionsPacient[key] = pacient.n_documento;
+            if (pacient.gender === 'Masculino') {
+                $("#woman_past").addClass("invisible");
+                cleanWomanInputs();
+            } else {
+                $("#woman_past").removeClass("invisible");
+            }
             if (consult !== null) {
                 showWomenDataToView(pacient, consult);
             }
         });
     }
 }
+
+function cleanWomanInputs() {
+    $("#menarquia").val("");
+    $("#cycles").val("");
+    $("#gestacion").val("");
+    $("#partos").val("");
+    $("#abortos").val("");
+    $("#ectopicos").val("");
+    $("#cesarias").val("");
+    pickerFUR.set("");
+    $("#pf").val("");
+}
+
 function showWomenDataToView(pacient, consult) {
     if (pacient.gender === "Femenino") {
         $("#menarquia").html(consult.menarquia);
@@ -169,6 +200,17 @@ function associateFormToConsult(consult) {
     consult.tratamiento = $("#tratamiento").val();
     consult.examen_fisico = $("#examen_fisico").val();
     consult.consult_date = new Date().toISOString().slice(0, 10);
+
+    consult.menarquia = $("#menarquia").val();
+    consult.cycles = $("#cycles").val();
+    consult.gestacion = $("#gestacion").val();
+    consult.partos = $("#partos").val();
+    consult.abortos = $("#abortos").val();
+    consult.ectopicos = $("#ectopicos").val();
+    consult.cesarias = $("#cesarias").val();
+    consult.fur = pickerFUR.get('select', 'yyyy-mm-dd');
+    consult.pf = $("#pf").val();
+
 }
 
 function associateConsultToForm(consult) {
@@ -188,6 +230,16 @@ function associateConsultToForm(consult) {
     $("#tratamiento").val(consult.tratamiento);
     $("#examen_fisico").val(consult.examen_fisico);
     consultId = consult.consult_id;
+
+    $("#menarquia").val(consult.menarquia);
+    $("#cycles").val(consult.cycles);
+    $("#gestacion").val(consult.gestacion);
+    $("#partos").val(consult.partos);
+    $("#abortos").val(consult.abortos);
+    $("#ectopicos").val(consult.ectopicos);
+    $("#cesarias").val(consult.cesarias);
+    pickerFUR.set('select', consult.fur);
+    $("#pf").val(consult.pf);
 }
 
 function bindConsultToView(consult) {

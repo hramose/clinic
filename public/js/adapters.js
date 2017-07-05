@@ -58,6 +58,11 @@ function inflatePacientCardContent(pacient) {
 
     $(deleteBtn).click(function () {
         $('#modalDelete').modal('open');
+        $.get("pacient_small.html", null, function (data) {
+            $("#pacient-sumary-delete").html(data);
+            dataBindToView(pacient);
+        });
+
         $('#delete-btn').unbind("click");
         $('#delete-btn').click(function () {
             $('#modalDelete').modal('close');
