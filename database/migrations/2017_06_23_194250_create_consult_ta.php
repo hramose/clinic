@@ -11,6 +11,8 @@ class CreateConsultTa extends Migration {
         "consult_id", "motive", "actual_sickness", "fc", "fr", "ta"
         , "temperature", "weight", "size", "imc", "oximetria", "paraclinicos"
         , "analisis", "tratamiento", "id_pacient", "consult_date", "examen_fisico"
+        , "menarquia", "cycles", "gestacion", "partos", "abortos", "ectopicos"
+        , "cesarias", "fur", "pf"
     );
 
     /**
@@ -37,6 +39,18 @@ class CreateConsultTa extends Migration {
             $table->string(CreateConsultTa::$COLUMNS[14], 15);
             $table->date(CreateConsultTa::$COLUMNS[15]);
             $table->text(CreateConsultTa::$COLUMNS[16]);
+
+            $table->integer(CreateConsultTa::$COLUMNS[17])->nullable();
+            $table->string(CreateConsultTa::$COLUMNS[18], 20)->nullable();
+            $table->integer(CreateConsultTa::$COLUMNS[19])->nullable();
+            $table->integer(CreateConsultTa::$COLUMNS[20])->nullable();
+            $table->integer(CreateConsultTa::$COLUMNS[21])->nullable();
+            $table->integer(CreateConsultTa::$COLUMNS[22])->nullable();
+            $table->integer(CreateConsultTa::$COLUMNS[23])->nullable();
+            $table->date(CreateConsultTa::$COLUMNS[24])->nullable();
+            $table->text(CreateConsultTa::$COLUMNS[25]);
+
+
             $table->foreign(CreateConsultTa::$COLUMNS[14])
                     ->references(CreatePacientsTa::$COLUMNS[0])
                     ->on(CreatePacientsTa::$TABLE_NAME)

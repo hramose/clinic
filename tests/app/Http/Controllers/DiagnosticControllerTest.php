@@ -3,6 +3,10 @@
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use App\CIE10;
 
+/* * *
+ * for CIE10 Test must execute cie10.sql first
+ */
+
 class DiagnosticControllerTest extends TestCase {
 
     use DatabaseTransactions;
@@ -56,9 +60,9 @@ class DiagnosticControllerTest extends TestCase {
 
         $this->get("/diagnostics/" . $consult->consult_id);
         $this->seeStatusCode(201);
-        $this->seeJson(["code"=>$diagnostic1->code]);
-        $this->seeJson(["code"=>$diagnostic2->code]);
-        $this->seeJson(["code"=>$diagnostic3->code]);
+        $this->seeJson(["code" => $diagnostic1->code]);
+        $this->seeJson(["code" => $diagnostic2->code]);
+        $this->seeJson(["code" => $diagnostic3->code]);
     }
 
     public static function checkJson($consul, $diagnostic) {

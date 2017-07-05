@@ -7,6 +7,8 @@ class ConsultTableTest extends TestCase {
         "consult_id", "motive", "actual_sickness", "fc", "fr", "ta"
         , "temperature", "weight", "size", "imc", "oximetria", "paraclinicos"
         , "analisis", "tratamiento", "id_pacient", "consult_date", "examen_fisico"
+        , "menarquia", "cycles", "gestacion", "partos", "abortos", "ectopicos"
+        , "cesarias", "fur", "pf"
     );
 
     public function testTable() {

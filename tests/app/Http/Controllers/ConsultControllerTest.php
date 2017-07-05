@@ -98,7 +98,16 @@ class ConsultControllerTest extends TestCase {
             'tratamiento' => $consult->tratamiento,
             'id_pacient' => "" . $consult->id_pacient,
             'consult_date' => $consult->consult_date,
-            'examen_fisico' => $consult->examen_fisico
+            'examen_fisico' => $consult->examen_fisico,
+            'menarquia' => $consult->menarquia,
+            'cycles' => $consult->cycles,
+            'gestacion' => $consult->gestacion,
+            'partos' => $consult->partos,
+            'abortos' => $consult->abortos,
+            'ectopicos' => $consult->ectopicos,
+            'cesarias' => $consult->cesarias,
+            'fur' => $consult->fur,
+            'pf' => $consult->pf
         ];
     }
 

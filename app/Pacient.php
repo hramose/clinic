@@ -13,8 +13,6 @@ class Pacient extends Model {
         , "doc_type", "gender", "birthdate", "scholar_level", "phone"
         , "address", "family_past", "medical_past", "surgical_past"
         , "allergy_past", "toxic_past", "traumatic_past", "immunological_past"
-        , "menarquia", "cycles", "gestacion", "partos", "abortos", "ectopicos"
-        , "cesarias", "fur", "pf"
     ];
     
     public $incrementing = false;

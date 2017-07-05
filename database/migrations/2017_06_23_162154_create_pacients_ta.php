@@ -11,8 +11,7 @@ class CreatePacientsTa extends Migration {
         "n_documento", "full_name", "last_name", "doc_type", "gender"
         , "birthdate", "scholar_level", "phone", "address", "family_past"
         , "medical_past", "surgical_past", "allergy_past", "toxic_past"
-        , "traumatic_past", "immunological_past", "menarquia", "cycles"
-        , "gestacion", "partos", "abortos", "ectopicos", "cesarias", "fur", "pf"
+        , "traumatic_past", "immunological_past"
     );
 
     /**
@@ -39,15 +38,6 @@ class CreatePacientsTa extends Migration {
             $table->text(CreatePacientsTa::$COLUMNS[13]);
             $table->text(CreatePacientsTa::$COLUMNS[14]);
             $table->text(CreatePacientsTa::$COLUMNS[15]);
-            $table->integer(CreatePacientsTa::$COLUMNS[16])->nullable();
-            $table->string(CreatePacientsTa::$COLUMNS[17], 20)->nullable();
-            $table->integer(CreatePacientsTa::$COLUMNS[18])->nullable();
-            $table->integer(CreatePacientsTa::$COLUMNS[19])->nullable();
-            $table->integer(CreatePacientsTa::$COLUMNS[20])->nullable();
-            $table->integer(CreatePacientsTa::$COLUMNS[21])->nullable();
-            $table->integer(CreatePacientsTa::$COLUMNS[22])->nullable();
-            $table->date(CreatePacientsTa::$COLUMNS[23])->nullable();
-            $table->text(CreatePacientsTa::$COLUMNS[24]);
         });
     }
 

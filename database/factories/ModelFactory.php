@@ -34,16 +34,7 @@ $factory->define(App\Pacient::class, function (Faker\Generator $faker) {
         'allergy_past' => $faker->text,
         'toxic_past' => $faker->text,
         'traumatic_past' => $faker->text,
-        'immunological_past' => $faker->text,
-        'menarquia' => 15,
-        'cycles' => '30/25',
-        'gestacion' => 12,
-        'partos' => 0,
-        'abortos' => 2,
-        'ectopicos' => 0,
-        'cesarias' => 0,
-        'fur' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'pf' => $faker->text,
+        'immunological_past' => $faker->text
     ];
 });
 
@@ -66,6 +57,15 @@ $factory->define(App\Consult::class, function (Faker\Generator $faker) {
         'tratamiento' => $faker->text,
         'id_pacient' => 0,
         'consult_date' => $faker->date($format = 'Y-m-d', $max = 'now'),
-        'examen_fisico' => $faker->text
+        'examen_fisico' => $faker->text,
+        'menarquia' => 15,
+        'cycles' => '30/25',
+        'gestacion' => 12,
+        'partos' => 0,
+        'abortos' => 2,
+        'ectopicos' => 0,
+        'cesarias' => 0,
+        'fur' => $faker->date($format = 'Y-m-d', $max = 'now'),
+        'pf' => $faker->text,
     ];
 });

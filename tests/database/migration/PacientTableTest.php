@@ -6,9 +6,8 @@ class PacientTableTest extends TestCase {
     protected $COLUMNS = array("n_documento", "full_name",
         "last_name", "doc_type", "gender",
         "birthdate", "scholar_level", "phone", "address", "family_past"
-        , "medical_past", "surgical_past", "allergy_past", "toxic_past",
-        "traumatic_past", "immunological_past", "menarquia", "cycles",
-        "gestacion", "partos", "abortos", "ectopicos", "cesarias", "fur", "pf"
+        , "medical_past", "surgical_past", "allergy_past", "toxic_past"
+        , "traumatic_past", "immunological_past"
     );
 
     public function testTable() {
