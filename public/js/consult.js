@@ -31,7 +31,7 @@ function initConsultForm(consult) {
     });
     $("#id_pacient").change(function () {
         var pacientId = optionsPacient[$("#id_pacient").val()];
-        showPacientData(pacientId);
+        showPacientData(pacientId, null);
     });
 
     if (consult && consult !== null) {
@@ -39,7 +39,7 @@ function initConsultForm(consult) {
         $("#form-header-text").html("Editar Consulta");
         $("#create_consult").html("Guardar <i class='material-icons right'>save</i>");
         refreshDiagnosticList(consult.consult_id);
-        showPacientData(consult.id_pacient);
+        showPacientData(consult.id_pacient, consult);
 
     }
 
@@ -71,14 +71,30 @@ function addInputListeners() {
 
 }
 
-function showPacientData(pacientId) {
+function showPacientData(pacientId, consult) {
     if (pacientId && pacientId !== null) {
         $.get("/pacient/" + pacientId, null, function (data) {
             var pacient = new Pacient(data);
             dataBindToView(pacient);
             var key = pacient.n_documento + " " + pacient.full_name + " " + pacient.last_name;
             optionsPacient[key] = pacient.n_documento;
+            if (consult !== null) {
+                showWomenDataToView(pacient, consult);
+            }
         });
+    }
+}
+function showWomenDataToView(pacient, consult) {
+    if (pacient.gender === "Femenino") {
+        $("#menarquia").html(consult.menarquia);
+        $("#cycles").html(consult.cycles);
+        $("#gestacion").html(consult.gestacion);
+        $("#partos").html(consult.partos);
+        $("#abortos").html(consult.abortos);
+        $("#ectopicos").html(consult.ectopicos);
+        $("#cesarias").html(consult.cesarias);
+        $("#fur").html(consult.fur);
+        $("#pf").html(consult.pf);
     }
 }
 
@@ -194,9 +210,10 @@ function bindConsultToView(consult) {
     $("#analisis").html(consult.analisis);
     $("#tratamiento").html(consult.tratamiento);
     $("#examen_fisico").html(consult.examen_fisico);
-    showPacientData(consult.id_pacient);
+    showPacientData(consult.id_pacient, consult);
     consultId = consult.consult_id;
-    refreshDiagnosticList(consult.consult_id,false);
+    refreshDiagnosticList(consult.consult_id, false);
+
 }
 
 function Consult(json) {
@@ -218,5 +235,14 @@ function Consult(json) {
         this.tratamiento = json.tratamiento;
         this.examen_fisico = json.examen_fisico;
         this.consult_date = new Date().toISOString().slice(0, 10);
+        this.menarquia = json.menarquia;
+        this.cycles = json.cycles;
+        this.gestacion = json.gestacion;
+        this.partos = json.partos;
+        this.abortos = json.abortos;
+        this.ectopicos = json.ectopicos;
+        this.cesarias = json.cesarias;
+        this.fur = json.fur;
+        this.pf = json.pf;
     }
 }

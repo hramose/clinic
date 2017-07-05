@@ -1,0 +1,36 @@
+1. sudo apt-get install jenkins //cambiar y añadir paquetes al deb
+
+1.1 composer require apigen/apigen --dev
+
+2. sudo chown -R $USER $HOME/.composer
+3. composer require --dev phpunit/phpunit ^6.1
+4. composer global require "squizlabs/php_codesniffer=*"
+5. composer require --dev phploc/phploc
+6.  add: 
+{
+    "require": {
+
+        "pdepend/pdepend" : "2.5.0",
+        "phpmd/phpmd": "@stable"
+    }
+}
+7. composer require --dev sebastian/phpcpd
+8. get http://phpdox.de/releases/phpdox.phar
+    chmod +x phpdox.phar
+    mv phpdox.phar /usr/local/bin/phpdox
+    phpdox --version
+8.1 create phpdox.xml:
+<?xml version="1.0" encoding="utf-8" ?>
+<phpdox xmlns="http://xml.phpdox.net/config">
+  <project name="Example" source="${basedir}/src" workdir="${basedir}/build/api/xml">
+    <collector backend="parser" />
+    <generator output="${basedir}/build/api">
+      <build engine="html" output="html"/>
+    </generator>
+  </project>
+</phpdox>
+
+9. copy build.xml
+10. copy phpdox.xml
+11. copy phpunit.xml
+12. copy phpmd.xml

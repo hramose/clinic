@@ -225,17 +225,6 @@ function dataBindToView(pacient) {
     $("#toxic_past").html(pacient.toxic_past);
     $("#traumatic_past").html(pacient.traumatic_past);
     $("#immunological_past").html(pacient.immunological_past);
-    if (pacient.gender === "Femenino") {
-        $("#menarquia").html(pacient.menarquia);
-        $("#cycles").html(pacient.cycles);
-        $("#gestacion").html(pacient.gestacion);
-        $("#partos").html(pacient.partos);
-        $("#abortos").html(pacient.abortos);
-        $("#ectopicos").html(pacient.ectopicos);
-        $("#cesarias").html(pacient.cesarias);
-        $("#fur").html(pacient.fur);
-        $("#pf").html(pacient.pf);
-    }
 }
 
 function cleanDataPacient(data) {
@@ -271,15 +260,6 @@ function Pacient(json) {
         this.toxic_past = json.toxic_past;
         this.traumatic_past = json.traumatic_past;
         this.immunological_past = json.immunological_past;
-        this.menarquia = json.menarquia;
-        this.cycles = json.cycles;
-        this.gestacion = json.gestacion;
-        this.partos = json.partos;
-        this.abortos = json.abortos;
-        this.ectopicos = json.ectopicos;
-        this.cesarias = json.cesarias;
-        this.fur = json.fur;
-        this.pf = json.pf;
     }
     this.getInitials = function () {
         if (typeof (this.full_name) != "string"
@@ -289,6 +269,5 @@ function Pacient(json) {
         var FN = this.full_name.toUpperCase().split(" ")[0];
         var LN = this.last_name.toUpperCase().split(" ")[0];
         return FN.charAt(0) + "" + LN.charAt(0);
-    }
-    ;
+    };
 }

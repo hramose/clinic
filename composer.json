@@ -1,5 +1,5 @@
 {
-    "name": "laravel/lumen",
+    "name": "Clinic",
     "description": "Clinict history support",
     "keywords": ["Nydia", "Clinic", "Pacient"],
     "license": "MIT",
@@ -12,10 +12,10 @@
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "phpunit/phpunit": "~5.0",
-        "phpunit/phpunit-skeleton-generator": "*",
         "mockery/mockery": "~0.9",
         "phpmd/phpmd": "@stable",
-        "pdepend/pdepend": "2.4.1"
+        "pdepend/pdepend": "2.5.0",
+        "sebastian/phpcpd": "^3.0"
     },
     "autoload": {
         "psr-4": {
