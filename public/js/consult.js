@@ -38,10 +38,12 @@ function initConsultForm(consult) {
     $("#assoc_diagnostic").click(function () {
         associateDiagnostic();
     });
+
     $("#id_pacient").change(function () {
         var pacientId = optionsPacient[$("#id_pacient").val()];
         showPacientData(pacientId, null);
     });
+
 
     if (consult && consult !== null) {
         associateConsultToForm(consult);
@@ -49,7 +51,6 @@ function initConsultForm(consult) {
         $("#create_consult").html("Guardar <i class='material-icons right'>save</i>");
         refreshDiagnosticList(consult.consult_id);
         showPacientData(consult.id_pacient, consult);
-
     }
 
     $.get("pacient_small.html", null, function (data) {
@@ -79,7 +80,7 @@ function addInputListeners() {
         });
     });
 
-    addPacientListener(optionsPacient);
+    addPacientListener();
 
 }
 
@@ -97,7 +98,7 @@ function showPacientData(pacientId, consult) {
                 $("#woman_past").removeClass("invisible");
             }
             if (consult !== null) {
-                showWomenDataToView(pacient, consult);
+                showWomenDataToView(consult);
             }
         });
     }
@@ -115,8 +116,8 @@ function cleanWomanInputs() {
     $("#pf").val("");
 }
 
-function showWomenDataToView(pacient, consult) {
-    if (pacient.gender === "Femenino") {
+function showWomenDataToView(consult) {
+    if (consult.pacient_gender === "Femenino") {
         $("#menarquia").html(consult.menarquia);
         $("#cycles").html(consult.cycles);
         $("#gestacion").html(consult.gestacion);
@@ -142,9 +143,21 @@ function deleteConsult(consult) {
 }
 
 function loadConsults() {
+    addPacientListener();
     $.get("/consults", null, function (data) {
         console.log(data);
         $("#consults_list").append(inflateConsultList(data));
+    });
+
+    $("#look_history_btn").click(function () {
+        var selectedID = optionsPacient[$("#id_pacient").val()];
+        if (typeof (selectedID) == "undefined") {
+            return;
+        }
+        $.get("/consults/" + selectedID, null, function (data) {
+            $("#consults_list").html("");
+            $("#consults_list").append(inflateConsultList(data));
+        });
     });
 }
 
@@ -243,10 +256,8 @@ function associateConsultToForm(consult) {
 }
 
 function bindConsultToView(consult) {
-    $.get("pacient-print.html", null, function (data) {
-        $("#pacient-container").html(data);
-    });
-    $("#form-header-text").append(consult.consult_id);
+    $("#form-header-text").append(" " + consult.consult_id);
+    $("#form-header-text").append("<br />Fecha: " + consult.consult_date);
     $("#motive").html(consult.motive);
     $("#actual_sickness").html(consult.actual_sickness);
     $("#id_pacient").html(consult.id_pacient);
@@ -262,10 +273,36 @@ function bindConsultToView(consult) {
     $("#analisis").html(consult.analisis);
     $("#tratamiento").html(consult.tratamiento);
     $("#examen_fisico").html(consult.examen_fisico);
-    showPacientData(consult.id_pacient, consult);
-    consultId = consult.consult_id;
+    bindPacientDataInConsult(consult);
     refreshDiagnosticList(consult.consult_id, false);
+}
 
+function bindPacientDataInConsult(consult) {
+    $("#doc_type").html(consult.pacient_doc_type);
+    $("#n_documento").html(consult.pacient_n_documento);
+    $("#full_name").html(consult.pacient_full_name);
+    $("#last_name").html(consult.pacient_last_name);
+    $("#gender").html(consult.pacient_gender);
+    $('#birthdate').html(consult.pacient_birthdate);
+    $("#scholar_level").html(consult.pacient_scholar_level);
+    $("#phone").html(consult.pacient_phone);
+    $("#address").html(consult.pacient_address);
+    $("#family_past").html(consult.pacient_family_past);
+    $("#medical_past").html(consult.pacient_medical_past);
+    $("#surgical_past").html(consult.pacient_surgical_past);
+    $("#allergy_past").html(consult.pacient_allergy_past);
+    $("#toxic_past").html(consult.pacient_toxic_past);
+    $("#traumatic_past").html(consult.pacient_traumatic_past);
+    $("#immunological_past").html(consult.pacient_immunological_past);
+    if (consult.pacient_gender === 'Masculino') {
+        $("#woman_past").addClass("invisible");
+        $("#pacient-main-data").removeClass("m6");
+    } else {
+        $("#woman_past").removeClass("invisible");
+    }
+    if (consult !== null) {
+        showWomenDataToView(consult);
+    }
 }
 
 function Consult(json) {
@@ -296,5 +333,32 @@ function Consult(json) {
         this.cesarias = json.cesarias;
         this.fur = json.fur;
         this.pf = json.pf;
+        if (typeof (json.n_documento) != "undefined") {
+            this.pacient_doc_type = json.doc_type;
+            this.pacient_n_documento = json.n_documento;
+            this.pacient_full_name = json.full_name;
+            this.pacient_last_name = json.last_name;
+            this.pacient_gender = json.gender;
+            this.pacient_birthdate = json.birthdate;
+            this.pacient_scholar_level = json.scholar_level;
+            this.pacient_phone = json.phone;
+            this.pacient_address = json.address;
+            this.pacient_family_past = json.family_past;
+            this.pacient_medical_past = json.medical_past;
+            this.pacient_surgical_past = json.surgical_past;
+            this.pacient_allergy_past = json.allergy_past;
+            this.pacient_toxic_past = json.toxic_past;
+            this.pacient_traumatic_past = json.traumatic_past;
+            this.pacient_immunological_past = json.immunological_past;
+        }
+        this.getInitials = function () {
+            if (typeof (this.pacient_full_name) != "string"
+                    || typeof (this.pacient_last_name) != "string") {
+                return "";
+            }
+            var FN = this.pacient_full_name.toUpperCase().split(" ")[0];
+            var LN = this.pacient_last_name.toUpperCase().split(" ")[0];
+            return FN.charAt(0) + "" + LN.charAt(0);
+        };
     }
 }

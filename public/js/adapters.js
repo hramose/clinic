@@ -160,7 +160,11 @@ function inflateConsultCardReveal(consult) {
     var div = $("<div class='card-reveal'>");
     var span = $("<span class='card-title grey-text text-darken-4'>");
 
-    span.append(consult.motive);
+    span.append(consult.pacient_full_name + " "
+            + consult.pacient_last_name
+            + " <br />fecha: " + consult.consult_date
+            + " <br />motivo: " + consult.motive
+            + " <br />id: " + consult.consult_id);
     span.append("<i class='material-icons right'>close</i>");
 
     div.append(span);
@@ -199,7 +203,8 @@ function inflateConsultCardContent(consult) {
     });
 
 
-    cardTitle.append(consult.actual_sickness + " <br /> " + consult.consult_id);
+    cardTitle.append("doc: " + consult.id_pacient
+            + " <br />" + consult.consult_date);
     cardTitle.append("<i class='material-icons right'>more_vert</i>");
 
     content.append(cardTitle);
@@ -217,7 +222,7 @@ function inflateConsultCardImage(consult) {
     var div = $("<div  class='card-image waves-effect waves-block waves-light'>");
     var activator = $("<div style='height:150px;' class='valign-wrapper activator center blue darken-1 white-text'>");
     var title = $("<h4 class='pacient_card_initials'>");
-    title.append(consult.motive);
+    title.append(consult.getInitials());
     activator.append(title);
     div.append(activator);
     return div;

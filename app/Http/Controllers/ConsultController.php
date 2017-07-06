@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Consult;
+use Illuminate\Support\Facades;
 
 class ConsultController extends Controller {
 
@@ -14,12 +15,21 @@ class ConsultController extends Controller {
     }
 
     public function showAll() {
-        $history = Consult::all();
+        $history = \DB::table('consult')
+                ->select('*')
+                ->join('pacient', 'pacient.n_documento', '=', 'id_pacient')
+                ->orderBy('pacient.full_name', 'desc')
+                ->get();
         return response()->json($history, 201);
     }
 
     public function history($pacientId) {
-        $history = Consult::where("id_pacient", $pacientId)->get();
+        $history = \DB::table('consult')
+                ->select('*')
+                ->join('pacient', 'pacient.n_documento', '=', 'id_pacient')
+                ->where("id_pacient", $pacientId)
+                ->orderBy('pacient.full_name', 'desc')
+                ->get();
         return response()->json($history, 201);
     }
 

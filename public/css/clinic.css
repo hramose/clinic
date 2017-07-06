@@ -47,11 +47,11 @@ and open the template in the editor.
 #personal_data{
     padding: 10px;
 }
-.pacient_card{
-    /*    margin-right: 4px;
-        padding: 8px;*/
-    height: 320px;
+.pacient_card, .consult_card{
     margin: 10px;
+}
+.pacient_card{ 
+    height: 320px;
 }
 .pacient_card .card-content .card-title{
     font-size: 14px;
@@ -102,4 +102,15 @@ fieldset{
 }
 .clinic-history{
     padding: 0 15px;
+}
+.prop-name{
+    font-weight: bold;
+}
+
+
+@media print {
+    .not-printable{
+        display: none;
+    }
+
 }

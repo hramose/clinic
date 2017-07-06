@@ -38,6 +38,22 @@ function loadPacients() {
         console.log(data);
         $("#pacient_list").append(inflatePacientList(data));
     });
+    $("#look_pacient_btn").click(function () {
+        var selectedID = optionsPacient[$("#id_pacient").val()];
+        if (typeof (selectedID) == "undefined") {
+            alert("no se selecciono correctamente");
+            return;
+        }
+        var sendData = {
+            full_name: selectedID,
+            last_name: selectedID,
+            n_documento: selectedID
+        };
+        $.post("/pacient/like", sendData, function (data) {
+            $("#pacient_list").html("");
+            $("#pacient_list").append(inflatePacientList(data));
+        });
+    });
 }
 
 

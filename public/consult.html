@@ -1,118 +1,216 @@
-<div class="row">
-    <div id="personal_data" class="col s12">
-        <h3 id="form-header-text" class="center">Ver Consulta: </h3>
-        <div class="row">
-            <div class=" col s12 m6">
-                <label class="active">Motivo de Consulta</label>
-                <p id="motive" class="materialize-p"></p>
-            </div>
-            <div class=" col s12 m6">
-                <label class="active">Enfermedad Actual</label>
-                <p id="actual_sickness" class="materialize-p"></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class=" col s12 m6">
-                <label class="active">Paciente</label>
-                <p id="id_pacient"></p>
-                <div id="pacient-container"></div>
-            </div>
-            <div class=" col s2">
-                <label class="active">Frecuencia Cardiaca</label>                                   
-                <p id="fc"></p>
-            </div>
-            <div class=" col s2">
-                <label class="active">Frecuencia Respiratoria</label>                                   
-                <p id="fr"></p>
-            </div>
-            <div class=" col s2">
-                <label class="active">Tension Arterial</label>                                   
-                <p id="ta"></p>
-            </div>
-            <div class=" col s2">
-                <label class="active">Temperatura</label>                                   
-                <p id="temperature"></p>
-            </div>
-            <div class=" col s2">
-                <label class="active" >Peso</label>                                   
-                <p id="weight"></p>
-            </div>
-            <div class=" col s2">
-                <label class="active" >Talla</label>                                   
-                <p id="size"></p>
-            </div>
-            <div class=" col s2">
-                <label class="active" >IMC</label>                                   
-                <p id="imc"></p>
-            </div>
-            <div class=" col s2">
-                <label class="active" >Oximetria</label>                                   
-                <p id="oximetria"></p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class=" col s12 m6">
-                <label class="active" >Paraclinicos</label>
-                <p id="paraclinicos" class="materialize-p"></p>
-            </div>
-            <div class=" col s12 m6">
-                <label class="active" >Analisis</label>
-                <p id="analisis" class="materialize-p"></p>
-            </div>
-            <div class=" col s12 m6">
-                <label class="active" >Tratamiento</label>
-                <p id="tratamiento" class="materialize-p"></p>
-            </div>
-            <div class=" col s12 m6">
-                <label class="active" >Examen Fisico</label>
-                <p id="examen_fisico" class="materialize-p"></p>
-            </div>
-        </div>
-        <div class="row diagnostics">
-            <h4>Diagnosticos</h4>
-            <div id="diagnostics-container"></div>
-        </div>
-
-        <!--only for women-->
-        <div class="woman_past col s12 m6">
+<div id="personal_data">
+    <h4 id="form-header-text" class="center">Ver Consulta</h4>
+    <div class="row">
+        <div id="pacient-main-data" class="col s12 m6">
             <ul class="collection with-header">
                 <li class="collection-header center">
-                    <h4>Datos Adicionales Mujeres</h4>
+                    <h5>Datos Personales</h5>
                 </li>
                 <li class="col s12 collection-item">
-                    <span class="col s6">Fecha de la Ultima Regla</span>
+                    <span class="prop-name col s6">Tipo de Documento</span>
+                    <span id="doc_type" class="col s6"></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="prop-name col s6" >Numero de Documento</span>
+                    <span id="n_documento" class="col s6"  ></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="prop-name col s6" >Nombres Completos</span>
+                    <span id="full_name" class="col s6" ></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="prop-name col s6" >Apellidos</span>
+                    <span id="last_name" class="col s6" ></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="prop-name col s6">Genero</span>
+                    <span id="gender" class="col s6"></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="prop-name col s6" >Telefono</span>
+                    <span id="phone" class="col s6" ></span>
+                </li>
+
+                <li class="col s12 collection-item">
+                    <span class="prop-name col s6">Fecha de Nacimiento</span>
+                    <span id="birthdate" class="col s6"></span>
+                </li>
+
+                <li class="col s12 collection-item">
+                    <span class="prop-name col s6" >Escolaridad</span>
+                    <span id="scholar_level" class="col s6"></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="prop-name col s6">Direcci&oacute;n</span>                                   
+                    <address id="address" class="col s6"></address>
+                </li>
+            </ul>
+        </div>
+
+
+        <div id="woman_past" class="col s12 m6 invisible">
+            <ul class="collection with-header">
+                <li class="collection-header center">
+                    <h5>Datos Mujeres</h5>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="prop-name col s6">Fecha de la Ultima Regla</span>
                     <span id="fur" class="col s6"></span>
                 </li>
                 <li class="col s12 collection-item">
-                    <span class="col s6">Menarquia</span>
-                    <span id="menarquia" class="col s6"></span>
+                    <span class="prop-name col s6" >Menarquia</span>
+                    <span id="menarquia" class="col s6"  ></span>
                 </li>
                 <li class="col s12 collection-item">
-                    <span class="col s6">Ciclos</span>
-                    <span id="cycles" class="col s6"></span>
+                    <span class="prop-name col s6" >Ciclos</span>
+                    <span id="cycles" class="col s6" ></span>
                 </li>
                 <li class="col s12 collection-item">
-                    <span class="col s6">Gestacion</span>
-                    <span id="gestacion" class="col s6"></span>
+                    <span class="prop-name col s6" >Gestacion</span>
+                    <span id="gestacion" class="col s6" ></span>
                 </li>
                 <li class="col s12 collection-item">
-                    <span class="col s6">Partos</span>
+                    <span class="prop-name col s6">Partos</span>
                     <span id="partos" class="col s6"></span>
                 </li>
                 <li class="col s12 collection-item">
-                    <span class="col s6">Abortos</span>
-                    <span id="abortos" class="col s6"></span>
+                    <span class="prop-name col s6" >Abortos</span>
+                    <span id="abortos" class="col s6" ></span>
                 </li>
+
                 <li class="col s12 collection-item">
-                    <span class="col s6">Ectopicos</span>
+                    <span class="prop-name col s6">Ectopicos</span>
                     <span id="ectopicos" class="col s6"></span>
                 </li>
+
                 <li class="col s12 collection-item">
-                    <span class="col s6">Cesarias</span>
+                    <span class="prop-name col s6" >Ces&aacute;reas</span>
                     <span id="cesarias" class="col s6"></span>
                 </li>
+                <li class="col s12 collection-item">
+                    <span class="prop-name col s6">Planificacion Familiar</span>                                   
+                    <address id="pf" class="col s6"></address>
+                </li>
             </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <ul class="collection">
+                <li class="col s12 collection-item">
+                    <span class="prop-name col s12" >Motivo de Consulta</span>
+                    <span id="motive" class="col s12"></span>
+                </li>
+                <li class="col s12 collection-item">
+                    <span class="prop-name col s12" >Enfermedad Actual</span>
+                    <span id="actual_sickness" class="col s12"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row col s12">
+        <div class="col s12">
+            <ul class="collection with-header">
+                <li class="collection-header center">
+                    <h5>Historia Clinica</h5>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s12">Pasado familiar</span>
+                    <span id="family_past" class="col s12"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s12">Medicos</span>
+                    <span id="medical_past" class="col s12"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s12">Quirurgicos</span>
+                    <span id="surgical_past" class="col s12"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s12">Alergicos</span>
+                    <span id="allergy_past" class="col s12"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s6">Toxicos</span>
+                    <span id="toxic_past" class="col s12"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s6">Traumas</span>
+                    <span id="traumatic_past" class="col s12"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s12">Inmunologicos</span>
+                    <span id="immunological_past" class="col s12"></span>
+                </li>
+            </ul> 
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12 m6">
+            <ul class="collection with-header">
+                <li class="collection-header center">
+                    <h5>Examen Fisico</h5>
+                </li>
+                <li class="collection-item col s12">
+                    <span id="examen_fisico" class="col s12"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s6">Frecuencia Cardiaca</span>
+                    <span id="fc" class="col s6"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s6">Frecuencia Respiratoria</span>
+                    <span id="fr" class="col s6"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s6">Tension Arterial</span>
+                    <span id="ta" class="col s6"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s6">Peso</span>
+                    <span id="weight" class="col s6"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s6">Talla</span>
+                    <span id="size" class="col s6"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s6">IMC</span>
+                    <span id="imc" class="col s6"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s6">Oximetria</span>
+                    <span id="oximetria" class="col s6"></span>
+                </li>
+            </ul> 
+        </div>
+
+
+        <div class="col s12 m6">
+            <ul class="collection">
+                <li class="collection-item col s12">
+                    <span class="prop-name col s12">Paraclinicos</span>
+                    <span id="paraclinicos" class="col s12"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s12">Analisis</span>
+                    <span id="analisis" class="col s12"></span>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s12">Tratamiento</span>
+                    <span id="tratamiento" class="col s12"></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <h5>Diagnosticos</h5>
+            <div id="diagnostics-container"></div>
         </div>
     </div>
 </div>
