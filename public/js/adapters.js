@@ -114,7 +114,7 @@ function inflateDiagnosticsList(diagnostics, editable) {
 
 function inflateDiagnosticItem(diagnostic, editable) {
     var li = $("<li class='collection-item'>");
-    var badge = $("<span class='badge red'>");
+    var badge = $("<span class='white-text badge red'>");
     badge.append("borrar");
     $(badge).click(function () {
         deleteDiagnostic(consultId, diagnostic.code);

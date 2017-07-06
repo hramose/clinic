@@ -136,7 +136,6 @@ function deleteConsult(consult) {
         type: 'DELETE',
         success: function (result) {
             // Do something with the result
-            alert("Borrado Exitosamente");
             loadContent({page: "consults_list.html", type: CONSULT_LIST_VIEW});
         }
     });
