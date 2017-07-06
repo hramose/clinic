@@ -14,7 +14,8 @@ function initConsultForm(consult) {
     });
 
     $("#consult-form").on("submit", function (e) {
-        if (consultId === null || !optionsPacient[$("#id_pacient").val()]) {
+        if (consultId === null
+                || !optionsPacient[$("#id_pacient").val()]) {
             alert("Ha ocurrido un error y la consulta no ha sido guardada");
             e.preventDefault();
             return false;
@@ -43,22 +44,18 @@ function initConsultForm(consult) {
         var pacientId = optionsPacient[$("#id_pacient").val()];
         showPacientData(pacientId, null);
     });
+    $inputFUR = $('#fur').pickadate();
+    pickerFUR = $inputFUR.pickadate('picker');
 
 
     if (consult && consult !== null) {
         associateConsultToForm(consult);
         $("#form-header-text").html("Editar Consulta");
         $("#create_consult").html("Guardar <i class='material-icons right'>save</i>");
-        refreshDiagnosticList(consult.consult_id);
+        refreshDiagnosticList(consult.consult_id, true);
         showPacientData(consult.id_pacient, consult);
+        Materialize.updateTextFields();
     }
-
-    $.get("pacient_small.html", null, function (data) {
-        $("#pacient-container").html(data);
-    });
-
-    $inputFUR = $('#fur').pickadate();
-    pickerFUR = $inputFUR.pickadate('picker');
 
 }
 
@@ -86,20 +83,23 @@ function addInputListeners() {
 
 function showPacientData(pacientId, consult) {
     if (pacientId && pacientId !== null) {
-        $.get("/pacient/" + pacientId, null, function (data) {
-            var pacient = new Pacient(data);
-            dataBindToView(pacient);
-            var key = pacient.n_documento + " " + pacient.full_name + " " + pacient.last_name;
-            optionsPacient[key] = pacient.n_documento;
-            if (pacient.gender === 'Masculino') {
-                $("#woman_past").addClass("invisible");
-                cleanWomanInputs();
-            } else {
-                $("#woman_past").removeClass("invisible");
-            }
-            if (consult !== null) {
-                showWomenDataToView(consult);
-            }
+        $.get("pacient_small.html", null, function (data) {
+            $("#pacient-container").html(data);
+            $.get("/pacient/" + pacientId, null, function (data) {
+                var pacient = new Pacient(data);
+                dataBindToView(pacient);
+                var key = pacient.n_documento + " " + pacient.full_name + " " + pacient.last_name;
+                optionsPacient[key] = pacient.n_documento;
+                if (pacient.gender === 'Masculino') {
+                    $("#woman_past").addClass("invisible");
+                    cleanWomanInputs();
+                } else {
+                    $("#woman_past").removeClass("invisible");
+                }
+                if (consult !== null) {
+                    showWomenDataToView(consult);
+                }
+            });
         });
     }
 }
@@ -212,7 +212,6 @@ function associateFormToConsult(consult) {
     consult.tratamiento = $("#tratamiento").val();
     consult.examen_fisico = $("#examen_fisico").val();
     consult.consult_date = new Date().toISOString().slice(0, 10);
-
     consult.menarquia = $("#menarquia").val();
     consult.cycles = $("#cycles").val();
     consult.gestacion = $("#gestacion").val();
@@ -222,13 +221,14 @@ function associateFormToConsult(consult) {
     consult.cesarias = $("#cesarias").val();
     consult.fur = pickerFUR.get('select', 'yyyy-mm-dd');
     consult.pf = $("#pf").val();
-
 }
 
 function associateConsultToForm(consult) {
     $("#motive").val(consult.motive);
     $("#actual_sickness").val(consult.actual_sickness);
-    $("#id_pacient").val(consult.id_pacient);
+    $("#id_pacient").val(consult.pacient_n_documento + " "
+                        + consult.pacient_full_name + " "
+                        + consult.pacient_last_name);
     $("#fc").val(consult.fc);
     $("#fr").val(consult.fr);
     $("#ta").val(consult.ta);
@@ -242,16 +242,17 @@ function associateConsultToForm(consult) {
     $("#tratamiento").val(consult.tratamiento);
     $("#examen_fisico").val(consult.examen_fisico);
     consultId = consult.consult_id;
-
-    $("#menarquia").val(consult.menarquia);
-    $("#cycles").val(consult.cycles);
-    $("#gestacion").val(consult.gestacion);
-    $("#partos").val(consult.partos);
-    $("#abortos").val(consult.abortos);
-    $("#ectopicos").val(consult.ectopicos);
-    $("#cesarias").val(consult.cesarias);
-    pickerFUR.set('select', consult.fur);
-    $("#pf").val(consult.pf);
+    if (consult.pacient_gender != "Masculino") {
+        $("#menarquia").val(consult.menarquia);
+        $("#cycles").val(consult.cycles);
+        $("#gestacion").val(consult.gestacion);
+        $("#partos").val(consult.partos);
+        $("#abortos").val(consult.abortos);
+        $("#ectopicos").val(consult.ectopicos);
+        $("#cesarias").val(consult.cesarias);
+        pickerFUR.set('select', consult.fur);
+        $("#pf").val(consult.pf);
+    }
 }
 
 function bindConsultToView(consult) {
