@@ -54,6 +54,7 @@ function initConsultForm(consult) {
         $("#create_consult").html("Guardar <i class='material-icons right'>save</i>");
         refreshDiagnosticList(consult.consult_id, true);
         showPacientData(consult.id_pacient, consult);
+        $("#id_pacient").attr("disabled", true);
         Materialize.updateTextFields();
     }
 
@@ -227,8 +228,8 @@ function associateConsultToForm(consult) {
     $("#motive").val(consult.motive);
     $("#actual_sickness").val(consult.actual_sickness);
     $("#id_pacient").val(consult.pacient_n_documento + " "
-                        + consult.pacient_full_name + " "
-                        + consult.pacient_last_name);
+            + consult.pacient_full_name + " "
+            + consult.pacient_last_name);
     $("#fc").val(consult.fc);
     $("#fr").val(consult.fr);
     $("#ta").val(consult.ta);
