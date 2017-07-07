@@ -15,7 +15,6 @@ class DiagnosticController extends Controller {
     }
 
     public function filter(Request $request) {
-//        $cieCodes = CIE10::where('description', $request->input('description'))->get();
         $search = $request->input('description');
         $cieCodes = CIE10::where('description', 'LIKE'
                         , "%{$search}%")->get();

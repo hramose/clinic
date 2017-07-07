@@ -35,13 +35,12 @@ function initPacientForm(pacient, toView) {
 function loadPacients() {
     addPacientListener();
     $.get("/pacients", null, function (data) {
-        console.log(data);
         $("#pacient_list").append(inflatePacientList(data));
     });
     $("#look_pacient_btn").click(function () {
         var selectedID = optionsPacient[$("#id_pacient").val()];
         if (typeof (selectedID) == "undefined") {
-            alert("no se selecciono correctamente");
+            displayMessage("no se selecciono correctamente");
             return;
         }
         var sendData = {
@@ -67,7 +66,6 @@ function addPacientListener() {
             last_name: $("#id_pacient").val(),
             n_documento: $("#id_pacient").val()
         };
-        console.log(sendData);
 
         $.post("/pacient/like", sendData, function (data) {
             var completeOptions = cleanDataPacient(data);
@@ -86,21 +84,16 @@ function addPacientListener() {
 function createPacient() {
     var pacient = new Pacient();
     dataBindFromForm(pacient);
-    console.log(pacient);
-
     $.ajax({
         url: "/pacient",
         type: 'POST',
         data: pacient,
         success: function (data) {
-            console.log("retrived");
-            console.log(data);
             //TODO: show modal
             loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
         },
         error: function (res) {
-            console.log(res);
-            alert("Error en la creación");
+            displayMessage("Error en la creación");
         }
     });
 }
@@ -114,8 +107,7 @@ function deletePacient(pacient) {
             loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
         },
         error: function (res) {
-            console.log(res);
-            alert("Error eliminado a " + pacient.full_name);
+            displayMessage("Error eliminado a " + pacient.full_name);
         }
     });
 }
@@ -127,13 +119,11 @@ function editPacient(pacient) {
         data: pacient,
         success: function (result) {
             // Do something with the result
-            alert("Editado con exito");
-            //TODO: show modal
+            displayMessage("Editado con exito");
             loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
         },
         error: function (res) {
-            console.log(res);
-            alert("Error en la edicion de "
+            displayMessage("Error en la edicion de "
                     + pacient.family_past
                     + " seguramente el numero de identificacion ya existe : "
                     + pacient.n_documento);
@@ -167,11 +157,7 @@ function dataBindFromForm(pacient) {
 
 function dataBindToForm(pacient) {
     var $inputB = $('#birthdate').pickadate();
-    var $inputFUR = $('#fur').pickadate();
-
-// Use the picker object directly.
     var pickerB = $inputB.pickadate('picker');
-    var pickerFUR = $inputFUR.pickadate('picker');
 
     $("#doc_type").val(pacient.doc_type);
     $("#n_documento").val(pacient.n_documento);
@@ -213,7 +199,6 @@ function dataBindToView(pacient) {
 }
 
 function cleanDataPacient(data) {
-    console.log(data);
     optionsPacient = [];
     var ret = {};
     var key, value;
@@ -223,7 +208,6 @@ function cleanDataPacient(data) {
         optionsPacient[key] = value;
         ret[key] = null;
     }
-    console.log(ret);
     return ret;
 }
 
@@ -245,14 +229,14 @@ function Pacient(json) {
         this.toxic_past = json.toxic_past;
         this.traumatic_past = json.traumatic_past;
         this.immunological_past = json.immunological_past;
+        this.getInitials = function () {
+            if (typeof (this.full_name) != "string"
+                    || typeof (this.last_name) != "string") {
+                return "";
+            }
+            var FN = this.full_name.toUpperCase().split(" ")[0];
+            var LN = this.last_name.toUpperCase().split(" ")[0];
+            return FN.charAt(0) + "" + LN.charAt(0);
+        };
     }
-    this.getInitials = function () {
-        if (typeof (this.full_name) != "string"
-                || typeof (this.last_name) != "string") {
-            return "";
-        }
-        var FN = this.full_name.toUpperCase().split(" ")[0];
-        var LN = this.last_name.toUpperCase().split(" ")[0];
-        return FN.charAt(0) + "" + LN.charAt(0);
-    };
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Pacient;
 
 class PacientController extends Controller {
@@ -16,7 +15,6 @@ class PacientController extends Controller {
     public function showAll() {
         $pacients = Pacient::all();
         return response()->json($pacients, 201);
-//        return new Response($pacients,201);
     }
 
     public function filter(Request $request) {
@@ -92,9 +90,8 @@ class PacientController extends Controller {
         return response()->json($pacient, 201);
     }
 
-    public
-            function delete($id) {
-        $destroy = Pacient::where('n_documento', $id)->delete();
+    public function delete($id) {
+        Pacient::where('n_documento', $id)->delete();
         return response()->json(['delete' => TRUE], 204);
     }
 

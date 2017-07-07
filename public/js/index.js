@@ -61,6 +61,8 @@ function refreshContent(view) {
             case CONSULT_EDIT:
                 initConsultForm(view.params);
                 break;
+            default:
+                break;
         }
     });
     $("#return-options").html(inflateHistory(navHistory));
@@ -118,6 +120,12 @@ function getViewTypeString(type) {
             return "Nueva Consulta";
         case CONSULT_EDIT:
             return "Editar Consulta";
+        default:
+            return "";
     }
-    return "";
+}
+
+function displayMessage(message) {
+    $("modal-message").modal('open');
+    $("#message-content").html(message);
 }

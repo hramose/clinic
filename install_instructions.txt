@@ -3,5 +3,6 @@
 3. composer global require "laravel/lumen-installer"
 4. composer update
 5. php artisan migrate
+5.1 run the cie10.sql script
 6. phpunit or vendor/bin/phpunit
 7. finally run: php -S localhost:8000 -t public

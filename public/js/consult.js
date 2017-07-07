@@ -16,7 +16,7 @@ function initConsultForm(consult) {
     $("#consult-form").on("submit", function (e) {
         if (consultId === null
                 || !optionsPacient[$("#id_pacient").val()]) {
-            alert("Ha ocurrido un error y la consulta no ha sido guardada");
+            displayMessage("Ha ocurrido un error y la consulta no ha sido guardada");
             e.preventDefault();
             return false;
         }
@@ -70,9 +70,6 @@ function addInputListeners() {
             $('input.autocomplete').autocomplete({
                 data: completeOptions,
                 limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-                onAutocomplete: function (val) {
-                    // Callback function when value is autcompleted.
-                },
                 minLength: 3, // The minimum length of the input for the autocomplete to start. Default: 1.
             });
         });
@@ -135,8 +132,7 @@ function deleteConsult(consult) {
     $.ajax({
         url: '/consult/' + consult.consult_id,
         type: 'DELETE',
-        success: function (result) {
-            // Do something with the result
+        success: function () {
             loadContent({page: "consults_list.html", type: CONSULT_LIST_VIEW});
         }
     });
@@ -145,7 +141,6 @@ function deleteConsult(consult) {
 function loadConsults() {
     addPacientListener();
     $.get("/consults", null, function (data) {
-        console.log(data);
         $("#consults_list").append(inflateConsultList(data));
     });
 
@@ -166,9 +161,8 @@ function editConsult(consult) {
         url: '/consult/' + consult.consult_id,
         type: 'PUT',
         data: consult,
-        success: function (result) {
-            // TODO: make it beauty
-            alert("Creado exitosamente");
+        success: function () {
+            displayMessage("Creado exitosamente");
         }
     });
 }
@@ -186,9 +180,7 @@ function tryCalcIMC() {
 function createConsult(shouldAssoc) {
     var consult = new Consult();
     associateFormToConsult(consult);
-    console.log(consult);
     $.post("/consult", consult, function (data) {
-        console.log(data);
         consultId = data.consult_id;
         if (shouldAssoc) {
             associateDiagnostic();

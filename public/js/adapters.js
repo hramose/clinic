@@ -6,7 +6,6 @@ function inflatePacientList(pacientList) {
         return container;
     }
     for (var i = 0; i < pacientList.length; i++) {
-        console.log(pacientList[i]);
         var pacient = new Pacient(pacientList[i]);
         container.append(inflatePacientCard(pacient));
     }
