@@ -1,6 +1,6 @@
 <?php
 
-class CIE_10TableTest extends TestCase {
+class Cie_10TableTest extends TestCase {
 
     protected $TABLE_NAME = "cie10";
     protected $COLUMNS = array(

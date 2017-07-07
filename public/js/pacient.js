@@ -88,11 +88,10 @@ function createPacient() {
         url: "/pacient",
         type: 'POST',
         data: pacient,
-        success: function (data) {
-            //TODO: show modal
+        success: function () {
             loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
         },
-        error: function (res) {
+        error: function () {
             displayMessage("Error en la creación");
         }
     });
@@ -102,11 +101,10 @@ function deletePacient(pacient) {
     $.ajax({
         url: '/pacient/' + pacient.n_documento,
         type: 'DELETE',
-        success: function (result) {
-            //TODO: show modal
+        success: function () {
             loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
         },
-        error: function (res) {
+        error: function () {
             displayMessage("Error eliminado a " + pacient.full_name);
         }
     });
@@ -117,12 +115,11 @@ function editPacient(pacient) {
         url: '/pacient/' + pacient.n_documento,
         type: 'PUT',
         data: pacient,
-        success: function (result) {
-            // Do something with the result
+        success: function () {
             displayMessage("Editado con exito");
             loadContent({page: "pacients_list.html", type: PACIENTS_LIST_VIEW});
         },
-        error: function (res) {
+        error: function () {
             displayMessage("Error en la edicion de "
                     + pacient.family_past
                     + " seguramente el numero de identificacion ya existe : "
@@ -134,8 +131,6 @@ function editPacient(pacient) {
 
 function dataBindFromForm(pacient) {
     var $inputB = $('#birthdate').pickadate();
-
-// Use the picker object directly.
     var pickerB = $inputB.pickadate('picker');
     pacient.doc_type = $("#doc_type").val();
     pacient.n_documento = $("#n_documento").val();

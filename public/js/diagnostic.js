@@ -1,5 +1,4 @@
 function cleanDiagnosticData(data) {
-//    console.log(data);
     options = [];
     var ret = {};
     var key, value;
@@ -9,7 +8,6 @@ function cleanDiagnosticData(data) {
         options[key] = value;
         ret[key] = null;
     }
-//    console.log(ret);
     return ret;
 }
 
@@ -24,7 +22,7 @@ function refreshDiagnosticList(consultId, editable) {
 
 function associateDiagnostic() {
     if (!optionsPacient[$("#id_pacient").val()]) {
-        alert("seleccione un paciente");
+        displayMessage("seleccione un paciente");
         return;
     }
     var diagnosticId = options[$("#diagnostic_select").val()];
@@ -32,8 +30,6 @@ function associateDiagnostic() {
             || typeof (diagnosticId) == "undefined"
             || typeof (consultId) == "undefined")) {
         $.post("/diagnostic/" + consultId + "/" + diagnosticId, null, function (data) {
-            console.log("diagnostic associated?");
-            console.log(data);
             $("#diagnostic_select").val("");
             refreshDiagnosticList(consultId, true);
         });
@@ -41,10 +37,6 @@ function associateDiagnostic() {
         //add the consult
         createConsult(true);
     }
-
-    console.log(diagnosticId);
-    console.log(consultId);
-
 }
 
 function deleteDiagnostic(consultId, diagnosticId) {
@@ -54,7 +46,7 @@ function deleteDiagnostic(consultId, diagnosticId) {
     $.ajax({
         url: "/diagnostic/" + consultId + "/" + diagnosticId,
         type: 'DELETE',
-        success: function (result) {
+        success: function () {
             refreshDiagnosticList(consultId, true);
         }
     });
