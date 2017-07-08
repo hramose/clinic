@@ -316,7 +316,7 @@ function Consult(json) {
         this.analisis = json.analisis;
         this.tratamiento = json.tratamiento;
         this.examen_fisico = json.examen_fisico;
-        this.consult_date = new Date().toISOString().slice(0, 10);
+        this.consult_date = new Date().toLocaleDateString().slice(0, 10);
         this.menarquia = json.menarquia;
         this.cycles = json.cycles;
         this.gestacion = json.gestacion;
