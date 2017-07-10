@@ -29,7 +29,7 @@ function associateDiagnostic() {
     if (!(consultId === null
             || typeof (diagnosticId) == "undefined"
             || typeof (consultId) == "undefined")) {
-        $.post("/diagnostic/" + consultId + "/" + diagnosticId, null, function (data) {
+        $.post("/diagnostic/" + consultId + "/" + diagnosticId, null, function () {
             $("#diagnostic_select").val("");
             refreshDiagnosticList(consultId, true);
         });

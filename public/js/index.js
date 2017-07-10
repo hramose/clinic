@@ -126,6 +126,6 @@ function getViewTypeString(type) {
 }
 
 function displayMessage(message) {
-    $("modal-message").modal('open');
+    $("#modal-message").modal('open');
     $("#message-content").html(message);
 }

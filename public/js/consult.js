@@ -214,14 +214,19 @@ function associateFormToConsult(consult) {
     consult.cesarias = $("#cesarias").val();
     consult.fur = pickerFUR.get('select', 'yyyy-mm-dd');
     consult.pf = $("#pf").val();
+    consult.consult_date = new Date().toLocaleDateString().slice(0, 10)+"";
+
 }
 
 function associateConsultToForm(consult) {
     $("#motive").val(consult.motive);
     $("#actual_sickness").val(consult.actual_sickness);
-    $("#id_pacient").val(consult.pacient_n_documento + " "
+    $("#id_pacient").val(
+            consult.pacient_n_documento
+            + " "
             + consult.pacient_full_name + " "
-            + consult.pacient_last_name);
+            + consult.pacient_last_name
+            );
     $("#fc").val(consult.fc);
     $("#fr").val(consult.fr);
     $("#ta").val(consult.ta);
@@ -301,6 +306,7 @@ function bindPacientDataInConsult(consult) {
 function Consult(json) {
     if (json && json !== null) {
         this.consult_id = json.consult_id;
+        this.consult_date = json.consult_date;
         this.motive = json.motive;
         this.actual_sickness = json.actual_sickness;
         this.id_pacient = json.id_pacient;
@@ -316,7 +322,6 @@ function Consult(json) {
         this.analisis = json.analisis;
         this.tratamiento = json.tratamiento;
         this.examen_fisico = json.examen_fisico;
-        this.consult_date = new Date().toLocaleDateString().slice(0, 10);
         this.menarquia = json.menarquia;
         this.cycles = json.cycles;
         this.gestacion = json.gestacion;
