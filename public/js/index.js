@@ -21,6 +21,9 @@ $(document).ready(function () {
         $("#navbar-container").append(data);
         $(".button-collapse").sideNav();
     });
+    $("#validate_password").click(function () {
+        $("#pass_request").hide();
+    });
     loadContent({page: "landing-page.html", type: MAIN_PAGE});
 });
 
@@ -36,7 +39,7 @@ function loadContent(view) {
 
 function refreshContent(view) {
     $.get(view.page, null, function (data) {
-        $(".container").html(data);
+        $("#main_container").html(data);
         switch (view.type) {
             case MAIN_PAGE:
                 addLandingListeners();

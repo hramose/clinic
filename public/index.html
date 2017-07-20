@@ -32,7 +32,18 @@ and open the template in the editor.
         <div id="navbar-container" class="not-printable"></div>
         <div id="return-options" class="not-printable" hidden></div>
         <a id="backBtn" class="center not-printable col s12 m4 blue darken-3 option_btn waves-effect waves-light btn"><i class="material-icons left">skip_previous</i>Volver</a>    
-        <div class="container white"></div>
+
+        <div class="container invisible" id="pass_request">
+            <div class="row">
+                <div class="input-field col s12">
+                    <label class="active" for="pass">Contrase&ntilde;a de Ingreso:</label>
+                    <input name="pass" id="pass" type="password" class="validate">
+                    <button id="validate_password">Validar</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="main_container" class="container white"></div>
         <!-- Modal Structure -->
         <div id="modal-message" class="modal">
             <div class="modal-content">
