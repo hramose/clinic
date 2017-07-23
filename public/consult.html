@@ -1,7 +1,7 @@
 <div id="personal_data">
     <h4 id="form-header-text" class="center">Ver Consulta</h4>
     <div class="row">
-        <div id="pacient-main-data" class="col s12 m6">
+        <div id="pacient-main-data" class="col s12">
             <ul class="collection with-header">
                 <li class="collection-header center">
                     <h5>Identificaci&oacute;n personal</h5>
@@ -45,54 +45,7 @@
                     <address id="address" class="col s6"></address>
                 </li>
             </ul>
-        </div>
-
-
-        <div id="woman_past" class="col s12 m6 invisible">
-            <ul class="collection with-header">
-                <li class="collection-header center">
-                    <h5>Antecedentes G/O</h5>
-                </li>
-                <li class="col s12 collection-item">
-                    <span class="prop-name col s6">Fecha de la Ultima Regla</span>
-                    <span id="fur" class="col s6"></span>
-                </li>
-                <li class="col s12 collection-item">
-                    <span class="prop-name col s6" >Menarquia</span>
-                    <span id="menarquia" class="col s6"  ></span>
-                </li>
-                <li class="col s12 collection-item">
-                    <span class="prop-name col s6" >Ciclos</span>
-                    <span id="cycles" class="col s6" ></span>
-                </li>
-                <li class="col s12 collection-item">
-                    <span class="prop-name col s6" >Gestacion</span>
-                    <span id="gestacion" class="col s6" ></span>
-                </li>
-                <li class="col s12 collection-item">
-                    <span class="prop-name col s6">Partos</span>
-                    <span id="partos" class="col s6"></span>
-                </li>
-                <li class="col s12 collection-item">
-                    <span class="prop-name col s6" >Abortos</span>
-                    <span id="abortos" class="col s6" ></span>
-                </li>
-
-                <li class="col s12 collection-item">
-                    <span class="prop-name col s6">Ectopicos</span>
-                    <span id="ectopicos" class="col s6"></span>
-                </li>
-
-                <li class="col s12 collection-item">
-                    <span class="prop-name col s6" >Ces&aacute;reas</span>
-                    <span id="cesarias" class="col s6"></span>
-                </li>
-                <li class="col s12 collection-item">
-                    <span class="prop-name col s6">Planificacion Familiar</span>                                   
-                    <address id="pf" class="col s6"></address>
-                </li>
-            </ul>
-        </div>
+        </div>        
     </div>
 
     <div class="row">
@@ -117,32 +70,86 @@
                     <h5>Historia Clinica</h5>
                 </li>
                 <li class="collection-item col s12">
-                    <span class="prop-name col s12">Pasado familiar</span>
+                    <ul class="collection with-header">
+                        <li class="collection-header center">
+                            <h5>Antecedentes Personales</h5>
+                        </li>
+                        <li class="collection-item col s12">
+                            <span class="prop-name col s12">Medicos</span>
+                            <span id="medical_past" class="col s12"></span>
+                        </li>
+                        <li class="collection-item col s12">
+                            <span class="prop-name col s12">Quirurgicos</span>
+                            <span id="surgical_past" class="col s12"></span>
+                        </li>
+                        <li class="collection-item col s12">
+                            <span class="prop-name col s12">Alergicos</span>
+                            <span id="allergy_past" class="col s12"></span>
+                        </li>
+                        <li class="collection-item col s12">
+                            <span class="prop-name col s6">Toxicos</span>
+                            <span id="toxic_past" class="col s12"></span>
+                        </li>
+                        <li class="collection-item col s12">
+                            <span class="prop-name col s6">Traumas</span>
+                            <span id="traumatic_past" class="col s12"></span>
+                        </li>
+                        <li class="collection-item col s12">
+                            <span class="prop-name col s12">Inmunologicos</span>
+                            <span id="immunological_past" class="col s12"></span>
+                        </li>
+                    </ul>
+                </li>
+                <li class="collection-item col s12">
+                    <div id="woman_past" class="col s12 invisible">
+                        <ul class="collection with-header">
+                            <li class="collection-header center">
+                                <h5>Antecedentes G/O</h5>
+                            </li>
+                            <li class="col s12 collection-item">
+                                <span class="prop-name col s6">Fecha de la Ultima Regla</span>
+                                <span id="fur" class="col s6"></span>
+                            </li>
+                            <li class="col s12 collection-item">
+                                <span class="prop-name col s6" >Menarquia</span>
+                                <span id="menarquia" class="col s6"  ></span>
+                            </li>
+                            <li class="col s12 collection-item">
+                                <span class="prop-name col s6" >Ciclos</span>
+                                <span id="cycles" class="col s6" ></span>
+                            </li>
+                            <li class="col s12 collection-item">
+                                <span class="prop-name col s6" >Gestacion</span>
+                                <span id="gestacion" class="col s6" ></span>
+                            </li>
+                            <li class="col s12 collection-item">
+                                <span class="prop-name col s6">Partos</span>
+                                <span id="partos" class="col s6"></span>
+                            </li>
+                            <li class="col s12 collection-item">
+                                <span class="prop-name col s6" >Abortos</span>
+                                <span id="abortos" class="col s6" ></span>
+                            </li>
+
+                            <li class="col s12 collection-item">
+                                <span class="prop-name col s6">Ectopicos</span>
+                                <span id="ectopicos" class="col s6"></span>
+                            </li>
+
+                            <li class="col s12 collection-item">
+                                <span class="prop-name col s6" >Ces&aacute;reas</span>
+                                <span id="cesarias" class="col s6"></span>
+                            </li>
+                            <li class="col s12 collection-item">
+                                <span class="prop-name col s6">Planificacion Familiar</span>                                   
+                                <address id="pf" class="col s6"></address>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="collection-item col s12">
+                    <span class="prop-name col s12">Antecedentes Familiares</span>
                     <span id="family_past" class="col s12"></span>
-                </li>
-                <li class="collection-item col s12">
-                    <span class="prop-name col s12">Medicos</span>
-                    <span id="medical_past" class="col s12"></span>
-                </li>
-                <li class="collection-item col s12">
-                    <span class="prop-name col s12">Quirurgicos</span>
-                    <span id="surgical_past" class="col s12"></span>
-                </li>
-                <li class="collection-item col s12">
-                    <span class="prop-name col s12">Alergicos</span>
-                    <span id="allergy_past" class="col s12"></span>
-                </li>
-                <li class="collection-item col s12">
-                    <span class="prop-name col s6">Toxicos</span>
-                    <span id="toxic_past" class="col s12"></span>
-                </li>
-                <li class="collection-item col s12">
-                    <span class="prop-name col s6">Traumas</span>
-                    <span id="traumatic_past" class="col s12"></span>
-                </li>
-                <li class="collection-item col s12">
-                    <span class="prop-name col s12">Inmunologicos</span>
-                    <span id="immunological_past" class="col s12"></span>
                 </li>
             </ul> 
         </div>
@@ -153,9 +160,6 @@
             <ul class="collection with-header">
                 <li class="collection-header center">
                     <h5>Examen Fisico</h5>
-                </li>
-                <li class="collection-item col s12">
-                    <span id="examen_fisico" class="col s12"></span>
                 </li>
                 <li class="collection-item col s12">
                     <span class="prop-name col s6">Frecuencia Cardiaca</span>
@@ -185,15 +189,12 @@
                     <span class="prop-name col s6">Oximetria</span>
                     <span id="oximetria" class="col s6"></span>
                 </li>
+
+                <li class="collection-item col s12">
+                    <span id="examen_fisico" class="col s12"></span>
+                </li>
             </ul> 
         </div>
-
-        <div class="col s12 m6">
-            <h5>Diagnosticos</h5>
-            <div id="diagnostics-container"></div>
-        </div>
-    </div>
-    <div class="row">
         <div class="col s12 m6">
             <ul class="collection">
                 <li class="collection-item col s12">
@@ -205,10 +206,20 @@
                     <span id="analisis" class="col s12"></span>
                 </li>
                 <li class="collection-item col s12">
+                    <h5>Diagnosticos</h5>
+                    <div id="diagnostics-container"></div>
+                </li>
+                <li class="collection-item col s12">
                     <span class="prop-name col s12">Tratamiento</span>
                     <span id="tratamiento" class="col s12"></span>
                 </li>
             </ul>
         </div>
     </div>
+    <!--    <div class="row">
+            <div class="col s12 m6">
+                <h5>Diagnosticos</h5>
+                <div id="diagnostics-container"></div>
+            </div>
+        </div>-->
 </div>
