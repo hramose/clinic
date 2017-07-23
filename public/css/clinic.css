@@ -107,6 +107,10 @@ fieldset{
     font-weight: bold;
 }
 
+.main-title{
+    font-weight: bold;
+    font-size: 36px;
+}
 
 @media print {
     .not-printable{
