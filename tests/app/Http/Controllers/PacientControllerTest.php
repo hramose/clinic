@@ -17,7 +17,6 @@ class PacientControllerTest extends TestCase {
 
     public function testGetPacient() {
         $pacient = factory('App\Pacient')->create();
-//        echo "route requested " . '/pacient/' . $pacient->n_documento . " fin---";
         $this->get('/pacient/' . $pacient->n_documento);
         $this->seeStatusCode(201);
         $this->seeJson(PacientControllerTest::checkJson($pacient));
@@ -34,7 +33,8 @@ class PacientControllerTest extends TestCase {
     public function testEditPacient() {
         $update = [
             "full_name" => "Juan Carlos",
-            "address" => "Calle Falsa 123"
+            "address" => "Calle Falsa 123",
+            "civil_state" => "Union Libre"
         ];
         $pacient = factory('App\Pacient')->create();
         $this->put('/pacient/' . $pacient->n_documento, $update);

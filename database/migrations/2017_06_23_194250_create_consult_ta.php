@@ -27,7 +27,7 @@ class CreateConsultTa extends Migration {
             $table->text(CreateConsultTa::$COLUMNS[2]);
             $table->integer(CreateConsultTa::$COLUMNS[3]);
             $table->integer(CreateConsultTa::$COLUMNS[4]);
-            $table->string(CreateConsultTa::$COLUMNS[5], 10);
+            $table->string(CreateConsultTa::$COLUMNS[5], 10)->nullable();
             $table->integer(CreateConsultTa::$COLUMNS[6]);
             $table->integer(CreateConsultTa::$COLUMNS[7]);
             $table->integer(CreateConsultTa::$COLUMNS[8]);

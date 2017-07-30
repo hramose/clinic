@@ -33,7 +33,7 @@ $factory->define(App\Pacient::class, function (Faker\Generator $faker) {
         'surgical_past' => $faker->text,
         'allergy_past' => $faker->text,
         'toxic_past' => $faker->text,
-        'civil_state' => "Viudo",
+        'civil_state' => 'Soltero',
         'traumatic_past' => $faker->text,
         'immunological_past' => $faker->text
     ];
