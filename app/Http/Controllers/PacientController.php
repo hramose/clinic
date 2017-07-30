@@ -84,7 +84,9 @@ class PacientController extends Controller {
         }if (null !== $request->input('fur')) {
             $pacient->fur = $request->input('fur');
         }if (null !== $request->input('pf')) {
-            $pacient->pf = $request->input('pf');
+            $pacient->pf = $request->input('civil_state');
+        }if (null !== $request->input('civil_state')) {
+            $pacient->civil_state = $request->input('civil_state');
         }
         $pacient->save();
         return response()->json($pacient, 201);

@@ -148,6 +148,7 @@ function dataBindFromForm(pacient) {
     pacient.toxic_past = $("#toxic_past").val();
     pacient.traumatic_past = $("#traumatic_past").val();
     pacient.immunological_past = $("#immunological_past").val();
+    pacient.civil_state = $("#civil_state").val();
 }
 
 function dataBindToForm(pacient) {
@@ -159,7 +160,7 @@ function dataBindToForm(pacient) {
     $("#full_name").val(pacient.full_name);
     $("#last_name").val(pacient.last_name);
     $("#gender").val(pacient.gender);
-    pickerB.set('select', pacient.birthdate);
+    pickerB.set('select', pacient.birthdate, {format: 'yyyy-mm-dd'});
     $("#scholar_level").val(pacient.scholar_level);
     $("#phone").val(pacient.phone);
     $("#address").val(pacient.address);
@@ -170,6 +171,7 @@ function dataBindToForm(pacient) {
     $("#toxic_past").val(pacient.toxic_past);
     $("#traumatic_past").val(pacient.traumatic_past);
     $("#immunological_past").val(pacient.immunological_past);
+    $("#civil_state").val(pacient.civil_state);
     // re-initialize material-select
     $('select').material_select();
 }
@@ -191,6 +193,7 @@ function dataBindToView(pacient) {
     $("#toxic_past").html(pacient.toxic_past);
     $("#traumatic_past").html(pacient.traumatic_past);
     $("#immunological_past").html(pacient.immunological_past);
+    $("#civil_state").html(pacient.civil_state);
 }
 
 function cleanDataPacient(data) {
@@ -223,6 +226,7 @@ function Pacient(json) {
         this.allergy_past = json.allergy_past;
         this.toxic_past = json.toxic_past;
         this.traumatic_past = json.traumatic_past;
+        this.civil_state = json.civil_state;
         this.immunological_past = json.immunological_past;
         this.getInitials = function () {
             if (typeof (this.full_name) != "string"

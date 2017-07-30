@@ -11,7 +11,7 @@ class CreatePacientsTa extends Migration {
         "n_documento", "full_name", "last_name", "doc_type", "gender"
         , "birthdate", "scholar_level", "phone", "address", "family_past"
         , "medical_past", "surgical_past", "allergy_past", "toxic_past"
-        , "traumatic_past", "immunological_past"
+        , "traumatic_past", "immunological_past","civil_state"
     );
 
     /**
@@ -38,6 +38,7 @@ class CreatePacientsTa extends Migration {
             $table->text(CreatePacientsTa::$COLUMNS[13]);
             $table->text(CreatePacientsTa::$COLUMNS[14]);
             $table->text(CreatePacientsTa::$COLUMNS[15]);
+            $table->enum(CreatePacientsTa::$COLUMNS[16], ["Soltero", "Union Libre", "Casado", "Divorciado", "Viudo"]);
         });
     }
 

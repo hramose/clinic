@@ -34,7 +34,7 @@
                         <div class="row">
                             <div class="input-field col s4 m2">
                                 <input name="gestacion"  placeholder="Ex: 10" id="gestacion" type="number" class="validate">
-                                <label class="active" for="gestacion">Gestacion</label>                                   
+                                <label class="active" for="gestacion">Gestaci&oacute;n</label>                                   
                             </div>
                             <div class="input-field col s4 m2">
                                 <input name="partos"  placeholder="Ex: 10" id="partos" type="number" class="validate">
@@ -83,7 +83,7 @@
                         <label class="active" for="fr">Frecuencia Respiratoria (x minuto)</label>                                   
                     </div>
                     <div class="input-field col s2">
-                        <input required placeholder="Ex: 10-20" id="ta" 
+                        <input placeholder="Ex: 10-20" id="ta" 
                                type="text" class="validate">
                         <label class="active" for="ta">Tension Arterial</label>                                   
                     </div>
@@ -124,6 +124,12 @@
                         <label class="active" for="paraclinicos">Paraclinicos</label>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="input-field col s12 m12">
+                        <textarea required id="analisis" class="materialize-textarea"></textarea>
+                        <label class="active" for="analisis">Analisis</label>
+                    </div>
+                </div>
                 <div class="row diagnostics">
                     <h4>Diagnosticos</h4>
                     <div id="diagnostics-container"></div>
@@ -139,11 +145,7 @@
                     <a id="add_diagnostic" class="right btn-floating btn-medium waves-effect waves-light red"><i class="material-icons">add</i></a>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 m6">
-                        <textarea required id="analisis" class="materialize-textarea"></textarea>
-                        <label class="active" for="analisis">Analisis</label>
-                    </div>
-                    <div class="input-field col s12 m6">
+                    <div class="input-field col s12 m12">
                         <textarea required id="tratamiento" class="materialize-textarea"></textarea>
                         <label class="active" for="tratamiento">Conducta Medica</label>
                     </div>
@@ -157,6 +159,5 @@
             Crear
             <i class="material-icons right">send</i>
         </button>
-
     </div>
 </form>

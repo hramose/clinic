@@ -7,7 +7,7 @@ class PacientTableTest extends TestCase {
         "last_name", "doc_type", "gender",
         "birthdate", "scholar_level", "phone", "address", "family_past"
         , "medical_past", "surgical_past", "allergy_past", "toxic_past"
-        , "traumatic_past", "immunological_past"
+        , "traumatic_past", "immunological_past","civil_state"
     );
 
     public function testTable() {

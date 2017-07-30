@@ -67,7 +67,8 @@ class PacientControllerTest extends TestCase {
             'allergy_past' => $pacient->allergy_past,
             'toxic_past' => $pacient->toxic_past,
             'traumatic_past' => $pacient->traumatic_past,
-            'immunological_past' => $pacient->immunological_past
+            'immunological_past' => $pacient->immunological_past,
+            'civil_state' => $pacient->civil_state
         ];
     }
 

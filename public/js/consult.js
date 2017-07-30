@@ -190,7 +190,7 @@ function createConsult(shouldAssoc) {
 
 function associateFormToConsult(consult) {
     consult.consult_date = (new Date().toLocaleDateString().slice(0, 10) + "")
-                            .replaceAll("/", "-");
+            .replaceAll("/", "-");
     consult.motive = $("#motive").val();
     consult.actual_sickness = $("#actual_sickness").val();
     consult.id_pacient = optionsPacient[$("#id_pacient").val()];
@@ -249,7 +249,7 @@ function associateConsultToForm(consult) {
         $("#abortos").val(consult.abortos);
         $("#ectopicos").val(consult.ectopicos);
         $("#cesarias").val(consult.cesarias);
-        pickerFUR.set('select', consult.fur);
+        pickerFUR.set('select', consult.fur, {format: 'yyyy-mm-dd'});
         $("#pf").val(consult.pf);
     }
 }

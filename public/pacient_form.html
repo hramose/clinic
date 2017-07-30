@@ -35,11 +35,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12 m4">
+                    <div class="input-field col s12 m3">
                         <input name="birthdate" required id="birthdate" type="date" class="datepicker validate">
                         <label class="active" for="birthdate">Fecha de Nacimiento</label>
                     </div>
-                    <div class="input-field col s6 m4">
+                    <div class="input-field col s6 m3">
                         <select name="gender" id="gender" required class="validate">
                             <option value="" disabled selected>Seleccione</option>
                             <option value="Masculino">Masculino</option>
@@ -47,7 +47,7 @@
                         </select>
                         <label>Sexo</label>
                     </div>
-                    <div class="input-field col s6 m4">
+                    <div class="input-field col s6 m3">
                         <select name="scholar_level" required id="scholar_level">
                             <option value="" disabled selected>Seleccione</option>
                             <option value="Analfabeta">Analfabeta</option>
@@ -57,6 +57,17 @@
                             <option value="Posgrado">Posgrado</option>
                         </select>
                         <label>Escolaridad</label>
+                    </div>
+                    <div class="input-field col s6 m3">
+                        <select name="civil_state" required id="civil_state">
+                            <option value="" disabled selected>Seleccione</option>
+                            <option value="Soltero">Soltero</option>
+                            <option value="Union Libre">Basica</option>
+                            <option value="Casado">Casado</option>
+                            <option value="Divorciado">Divorciado</option>
+                            <option value="Viudo">Viudo</option>
+                        </select>
+                        <label>Estado Civil</label>
                     </div>
                 </div>
                 <div class="row">                               
@@ -76,7 +87,7 @@
                 <div class="row">
                     <div class="input-field col s12">
                         <textarea name="family_past" id="family_past" class="materialize-textarea"></textarea>
-                        <label class="active" for="family_past">Pasado familiar</label>
+                        <label class="active" for="family_past">Antecedentes</label>
                     </div>
                 </div>
             </fieldset>

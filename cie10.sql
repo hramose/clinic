@@ -1,3 +1,4 @@
+USE clinic;
 INSERT INTO clinic.cie10 (code, description, group_cie) VALUES 
  ('A00','Colera','I1'),
  ('A000','Colera debido a vibrio cholerae o1, biotipo cholerae',NULL),
