@@ -112,7 +112,9 @@ fieldset{
     font-weight: bold;
     font-size: 36px;
 }
-
+.divider-title{
+    margin-bottom: 64px;
+}
 @media print {
     .not-printable{
         display: none;
