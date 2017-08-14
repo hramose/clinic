@@ -293,6 +293,7 @@ function bindPacientDataInConsult(consult) {
     $("#toxic_past").html(consult.pacient_toxic_past);
     $("#traumatic_past").html(consult.pacient_traumatic_past);
     $("#immunological_past").html(consult.pacient_immunological_past);
+    $("#civil_state").html(consult.pacient_civil_state);
     if (consult.pacient_gender === 'Masculino') {
         $("#woman_past").addClass("invisible");
         $("#pacient-main-data").removeClass("m6");
@@ -348,6 +349,7 @@ function Consult(json) {
             this.pacient_allergy_past = json.allergy_past;
             this.pacient_toxic_past = json.toxic_past;
             this.pacient_traumatic_past = json.traumatic_past;
+            this.pacient_civil_state = json.civil_state;
             this.pacient_immunological_past = json.immunological_past;
         }
         this.getInitials = function () {

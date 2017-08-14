@@ -209,7 +209,7 @@ function inflateConsultCardContent(consult) {
     content.append(cardTitle);
     var table = $("<table class='center'>");
     var row = $("<tr>");
-//    row.append($("<td class='center'>").append(editBtn));
+    row.append($("<td class='center'>").append(editBtn));
     row.append($("<td class='center'>").append(detailsBtn));
 //    row.append($("<td class='center'>").append(deleteBtn));
     table.append(row);

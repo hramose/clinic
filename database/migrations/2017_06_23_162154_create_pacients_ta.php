@@ -11,7 +11,7 @@ class CreatePacientsTa extends Migration {
         "n_documento", "full_name", "last_name", "doc_type", "gender"
         , "birthdate", "scholar_level", "phone", "address", "family_past"
         , "medical_past", "surgical_past", "allergy_past", "toxic_past"
-        , "traumatic_past", "immunological_past","civil_state"
+        , "traumatic_past", "immunological_past", "civil_state"
     );
 
     /**
@@ -25,10 +25,10 @@ class CreatePacientsTa extends Migration {
             $table->string(CreatePacientsTa::$COLUMNS[0], 15);
             $table->string(CreatePacientsTa::$COLUMNS[1], 30);
             $table->string(CreatePacientsTa::$COLUMNS[2], 30);
-            $table->enum(CreatePacientsTa::$COLUMNS[3], ["Cedula de Ciudadania", "Tarjeta de Identidad", "Cedula de Extranjeria"]);
+            $table->enum(CreatePacientsTa::$COLUMNS[3], ["Cedula de Ciudadania", "Tarjeta de Identidad", "Cedula de Extranjeria", "Registro Civil"]);
             $table->enum(CreatePacientsTa::$COLUMNS[4], ["Masculino", "Femenino"]);
             $table->date(CreatePacientsTa::$COLUMNS[5]);
-            $table->enum(CreatePacientsTa::$COLUMNS[6], ["Analfabeta", "Basica", "Media", "Profesional", "Posgrado"]);
+            $table->enum(CreatePacientsTa::$COLUMNS[6], ["Analfabeta", "Basica Secundaria", "Basica Primaria", "Media", "Profesional", "Posgrado"]);
             $table->string(CreatePacientsTa::$COLUMNS[7], 10);
             $table->string(CreatePacientsTa::$COLUMNS[8], 80);
             $table->text(CreatePacientsTa::$COLUMNS[9]);
