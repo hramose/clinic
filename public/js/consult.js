@@ -4,7 +4,7 @@ var $inputFUR = null;
 var pickerFUR = null;
 
 
-function initConsultForm(consult) {
+function initConsultForm(consult = null) {
     addInputListeners();
 
     $('.datepicker').pickadate({
@@ -48,7 +48,7 @@ function initConsultForm(consult) {
     pickerFUR = $inputFUR.pickadate('picker');
 
 
-    if (consult && consult !== null) {
+    if (consult !== null) {
         associateConsultToForm(consult);
         $("#form-header-text").html("Editar Consulta");
         $("#create_consult").html("Guardar <i class='material-icons right'>save</i>");
@@ -56,7 +56,7 @@ function initConsultForm(consult) {
         showPacientData(consult.id_pacient, consult);
         $("#id_pacient").attr("disabled", true);
         Materialize.updateTextFields();
-    }
+}
 
 }
 
@@ -79,8 +79,8 @@ function addInputListeners() {
 
 }
 
-function showPacientData(pacientId, consult) {
-    if (pacientId && pacientId !== null) {
+function showPacientData(pacientId = null, consult = null) {
+    if (pacientId !== null) {
         $.get("pacient_small.html", null, function (data) {
             $("#pacient-container").html(data);
             $.get("/pacient/" + pacientId, null, function (data) {
@@ -99,7 +99,7 @@ function showPacientData(pacientId, consult) {
                 }
             });
         });
-    }
+}
 }
 
 function cleanWomanInputs() {
@@ -189,8 +189,7 @@ function createConsult(shouldAssoc) {
 }
 
 function associateFormToConsult(consult) {
-    consult.consult_date = (new Date().toLocaleDateString().slice(0, 10) + "")
-            .replaceAll("/", "-");
+    consult.consult_date = formatColombianDate();
     consult.motive = $("#motive").val();
     consult.actual_sickness = $("#actual_sickness").val();
     consult.id_pacient = optionsPacient[$("#id_pacient").val()];
@@ -206,7 +205,6 @@ function associateFormToConsult(consult) {
     consult.analisis = $("#analisis").val();
     consult.tratamiento = $("#tratamiento").val();
     consult.examen_fisico = $("#examen_fisico").val();
-    consult.consult_date = new Date().toISOString().slice(0, 10);
     consult.menarquia = $("#menarquia").val();
     consult.cycles = $("#cycles").val();
     consult.gestacion = $("#gestacion").val();
@@ -305,8 +303,8 @@ function bindPacientDataInConsult(consult) {
     }
 }
 
-function Consult(json) {
-    if (json && json !== null) {
+function Consult(json = null) {
+    if (json !== null) {
         this.consult_id = json.consult_id;
         this.consult_date = json.consult_date;
         this.motive = json.motive;
@@ -361,5 +359,5 @@ function Consult(json) {
             var LN = this.pacient_last_name.toUpperCase().split(" ")[0];
             return FN.charAt(0) + "" + LN.charAt(0);
         };
-    }
+}
 }

@@ -21,7 +21,6 @@ class CreatePacientsTa extends Migration {
      */
     public function up() {
         Schema::create(CreatePacientsTa::$TABLE_NAME, function(Blueprint $table) {
-            $table->primary(CreatePacientsTa::$COLUMNS[0]);
             $table->string(CreatePacientsTa::$COLUMNS[0], 15);
             $table->string(CreatePacientsTa::$COLUMNS[1], 30);
             $table->string(CreatePacientsTa::$COLUMNS[2], 30);
@@ -39,6 +38,8 @@ class CreatePacientsTa extends Migration {
             $table->text(CreatePacientsTa::$COLUMNS[14]);
             $table->text(CreatePacientsTa::$COLUMNS[15]);
             $table->enum(CreatePacientsTa::$COLUMNS[16], ["Soltero", "Union Libre", "Casado", "Divorciado", "Viudo"]);
+            
+            $table->primary(CreatePacientsTa::$COLUMNS[0]);
         });
     }
 

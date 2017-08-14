@@ -1,4 +1,4 @@
-function initPacientForm(pacient, toView) {
+function initPacientForm(pacient = null, toView) {
     $('.carousel.carousel-slider').carousel({
         fullWidth: true
     });
@@ -12,7 +12,7 @@ function initPacientForm(pacient, toView) {
     $('.collapsible').collapsible();
     $('.modal').modal();
     $('select').material_select();
-    if (pacient && pacient !== null) {
+    if (pacient !== null) {
         if (toView) {
             dataBindToView(pacient);
         } else {
@@ -29,7 +29,7 @@ function initPacientForm(pacient, toView) {
             createPacient();
             return false;
         });
-    }
+}
 }
 
 function loadPacients() {
@@ -209,8 +209,8 @@ function cleanDataPacient(data) {
     return ret;
 }
 
-function Pacient(json) {
-    if (json && json !== null) {
+function Pacient(json = null) {
+    if (json !== null) {
         this.doc_type = json.doc_type;
         this.n_documento = json.n_documento;
         this.full_name = json.full_name;
@@ -229,10 +229,6 @@ function Pacient(json) {
         this.civil_state = json.civil_state;
         this.immunological_past = json.immunological_past;
         this.getInitials = function () {
-            if (typeof (this.full_name) != "string"
-                    || typeof (this.last_name) != "string") {
-                return "";
-            }
             var FN = this.full_name.toUpperCase().split(" ")[0];
             var LN = this.last_name.toUpperCase().split(" ")[0];
             return FN.charAt(0) + "" + LN.charAt(0);
