@@ -1,3 +1,4 @@
+CREATE SCHEMA IF NOT EXISTS clinic;
 USE clinic;
 INSERT INTO clinic.cie10 (code, description, group_cie) VALUES 
  ('A00','Colera','I1'),
