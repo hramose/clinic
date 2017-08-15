@@ -37,7 +37,7 @@ class CreateConsultTa extends Migration {
             $table->text(CreateConsultTa::$COLUMNS[12]);
             $table->text(CreateConsultTa::$COLUMNS[13]);
             $table->string(CreateConsultTa::$COLUMNS[14], 15);
-            $table->date(CreateConsultTa::$COLUMNS[15]);
+            $table->dateTimeTz(CreateConsultTa::$COLUMNS[15]);
             $table->text(CreateConsultTa::$COLUMNS[16]);
 
             $table->integer(CreateConsultTa::$COLUMNS[17])->nullable();

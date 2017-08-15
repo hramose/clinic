@@ -189,7 +189,6 @@ function createConsult(shouldAssoc) {
 }
 
 function associateFormToConsult(consult) {
-    consult.consult_date = formatColombianDate();
     consult.motive = $("#motive").val();
     consult.actual_sickness = $("#actual_sickness").val();
     consult.id_pacient = optionsPacient[$("#id_pacient").val()];

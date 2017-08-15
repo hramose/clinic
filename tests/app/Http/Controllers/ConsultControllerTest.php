@@ -82,7 +82,6 @@ class ConsultControllerTest extends TestCase {
 
     public static function checkJson($consult) {
         return [
-//            "consult_id" => $consult->consult_id,
             'motive' => $consult->motive,
             'actual_sickness' => $consult->actual_sickness,
             'fc' => $consult->fc,
@@ -91,13 +90,11 @@ class ConsultControllerTest extends TestCase {
             'temperature' => $consult->temperature,
             'weight' => $consult->weight,
             'size' => $consult->size,
-//            'imc' => $consult->imc,
             'oximetria' => $consult->oximetria,
             'paraclinicos' => $consult->paraclinicos,
             'analisis' => $consult->analisis,
             'tratamiento' => $consult->tratamiento,
             'id_pacient' => "" . $consult->id_pacient,
-            'consult_date' => $consult->consult_date,
             'examen_fisico' => $consult->examen_fisico,
             'menarquia' => $consult->menarquia,
             'cycles' => $consult->cycles,

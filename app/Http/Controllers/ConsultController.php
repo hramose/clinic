@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Consult;
 use Illuminate\Support\Facades;
+use Carbon\Carbon;
 
 class ConsultController extends Controller {
 
@@ -35,6 +36,8 @@ class ConsultController extends Controller {
 
     public function create(Request $request) {
         $consult = Consult::create($request->all());
+        $consult->consult_date = Carbon::Now()->setTimezone('America/Bogota');
+        $consult->save();
         return response()->json($consult, 201);
     }
 

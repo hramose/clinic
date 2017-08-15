@@ -57,7 +57,6 @@ $factory->define(App\Consult::class, function (Faker\Generator $faker) {
         'analisis' => $faker->text,
         'tratamiento' => $faker->text,
         'id_pacient' => 0,
-        'consult_date' => $faker->date($format = 'Y-m-d', $max = 'now'),
         'examen_fisico' => $faker->text,
         'menarquia' => 15,
         'cycles' => '30/25',

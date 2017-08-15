@@ -128,21 +128,6 @@ function getViewTypeString(type) {
     }
 }
 
-function formatColombianDate() {
-    var dateArray = new Date().toLocaleDateString().split("-");
-    var dateString = "";
-    for (var i = 0; i < dateArray.length; i++) {
-        if (dateArray[i].length < 2) {
-            dateString += "-0" + dateArray[i];
-        } else if (dateArray[i].length === 2) {
-            dateString += "-" + dateArray[i];
-        } else {
-            dateString += dateArray[i];
-        }
-    }
-    return dateString;
-}
-
 function displayMessage(message) {
     $("#modal-message").modal('open');
     $("#message-content").html(message);
